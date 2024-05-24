@@ -4,11 +4,15 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-preset-react-app": "^10.0.1"
+    "babel-preset-react-app": "^10.0.1",
+    "@babel/plugin-proposal-private-property-in-object": "^7.18.6"
   }
 }
