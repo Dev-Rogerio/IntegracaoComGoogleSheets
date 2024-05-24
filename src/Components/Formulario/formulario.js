@@ -36,9 +36,6 @@ function Formulario() {
   const [taxaDesconto, setTaxaDesconto] = useState('');
   const [resultadoDesconto, setResultadoDesconto] = useState('');
 
-
-
-
   let ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
 
   const handleLimparFormulario = () => {
