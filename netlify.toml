@@ -1,6 +1,6 @@
 [build]
 base = "."
-comand = "npm run buiol"
+comand = "npm run build"
 publish = "./build/"
 
 
