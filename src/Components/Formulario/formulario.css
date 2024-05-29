@@ -584,7 +584,7 @@ letter-spacing: 1.5px;
   margin-top: 3px;
 }
 
-@media(max-width: 765px) {
+@media(max-width: 600px) {
   .containerForm {
     width: 80%;
     margin-left: 50%;
