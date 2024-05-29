@@ -503,7 +503,7 @@ function Formulario() {
                 )}
               </div>
               <div className="vencimentoForm">
-                <label className="iDayMonth" type="text">Tx./ Antecipação</label>
+                <label className="iDayMonth" type="text">Tx./Antecip.</label>
                 <input className="iDayMonth2" type="text" placeholder="%" value={taxaDesconto} onChange={handleTaxaDescontoChange} />
                 <input className="iDayMonth3" type="text" placeholder="$" value={resultadoDesconto} readOnly />
               </div>

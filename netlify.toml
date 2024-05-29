@@ -1,3 +1,10 @@
+[build]
+base = "."
+comand = "npm run buiol"
+publish = "./build/"
+
+
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
