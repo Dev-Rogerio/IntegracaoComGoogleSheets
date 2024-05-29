@@ -419,7 +419,6 @@ color: rgb(95, 95, 242);
   border-radius: 4px 4px  0px 0px;
   padding: 1.5px;
 }
-
 .rowsSix {  
   display: grid;
     display: flex;   
@@ -430,18 +429,13 @@ color: rgb(95, 95, 242);
     border-radius: 0px 0px 4px 4px;    
     gap: 1px;
     margin-top: 1px;  
-   }
+   }   
 .iOpton {
   display: grid;
-  display: flex;
-  grid-template-columns: 1fr 1fr 1fr; 
-  justify-content: center;
-  align-items: center;
-  width: 60%;
+  grid-template-columns: 1fr 1fr 1fr;   
   height: 70px;
   padding: 10px;
-  background-color: #d5d5d5;
-  border-radius: 0px 0px 4px 4px;
+   border-radius: 0px 0px 4px 4px;
   gap: 5px;  
  }
  .optionForm{
@@ -456,9 +450,7 @@ color: rgb(95, 95, 242);
   grid-column: 1/2; 
   background-color: rgba(129, 129, 129, 0.6);
   outline: none;
-  border-radius: 4px;
-  
-  
+  border-radius: 4px;  
   }
 .iSection {    
   font-size: 12px;  
@@ -470,8 +462,7 @@ color: rgb(95, 95, 242);
   margin-left: 50%;
   transform: translate(-50%);
   color: #2229;
-  margin-top: 10px;
- 
+  margin-top: 10px; 
 }
 .valorForm {
   display: block;  
@@ -479,8 +470,7 @@ color: rgb(95, 95, 242);
   height: 70px;
   grid-column: 2/3;   
   background-color: rgba(129, 129, 129, 0.6);
-  border-radius: 4px;
-  
+  border-radius: 4px;  
 }
 .parcelamento {
   display: grid;
@@ -491,10 +481,8 @@ color: rgb(95, 95, 242);
   font-size: 10px;
   text-align: center;
   color: #cccccc;
-  letter-spacing: 1.3px; 
-  
+  letter-spacing: 1.3px;   
 }
-
 .iValor {  
   width: 90%;
   height: 30px;
@@ -509,11 +497,8 @@ color: rgb(95, 95, 242);
   margin-top: 10px;
   margin-left: 50%;
   transform: translate(-50%);
-  text-align: center;
-
-  
+  text-align: center;  
 }
-
 .vencimentoForm {
   display: grid;
   display: block;
@@ -575,7 +560,6 @@ color: rgb(95, 95, 242);
  align-items: center;
  border-radius: 0px 0px 4px 4px; 
 }
-
 button {
 display: flex;
 justify-content: center;
@@ -599,3 +583,410 @@ letter-spacing: 1.5px;
   justify-content: center;
   margin-top: 3px;
 }
+
+@media(max-width: 400px) {
+  .containerForm {
+    width: 80%;
+    margin-left: 50%;
+    margin-top: -50px;
+    margin-right: auto;
+  }
+  .iId {
+    font-size: 11px;
+  }
+  .form-h1 {
+    font-size: large;
+  }
+  .formImg {
+    height: 40px;
+  }
+  .sairForm {
+    font-size: small;
+  }
+  .rowsOne {    
+    width: 100%;
+    display: grid;
+    gap: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    padding: 1%;    
+    margin-left: 50%;
+    transform: translate(-50%);
+  } 
+  .id {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    width: 30%;
+   height: 90%;   
+  }
+  .vendedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    width: 100%;
+   height: 90%;   
+  }
+  .data {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    width: 60%;
+   height: 90%;   
+  }
+  .pedido {
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+    width: 50%;
+   height: 90%;   
+  }
+  .formLabel {
+    font-size: 11px;
+  } 
+  .iId {
+    height: 25px;
+    width: 98%;
+  }
+  .iVend::placeholder {
+    font-size: smaller;
+    text-indent: 5%;
+  }
+  .iData::placeholder {
+    font-size: 10px;   
+  text-indent: 5%;
+  }
+  .iPed::placeholder {
+    font-size: smaller;
+    text-indent: 5%;
+  }
+  .iVend {
+    height: 25px;
+    width: 98%;
+  }
+  .iData {
+    height: 25px;
+    width: 98%;
+  }
+  .iPed {
+    height: 25px;
+    width: 98%;
+  }
+ .rowsTwo {
+    width: 100%;
+    display: grid;
+    gap: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    padding: 1%; 
+    margin-left: 50%;
+    transform: translate(-50%);   
+}
+.client {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  width: 65%;
+ height: 90%;   
+}
+.celular {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  width: 33%;
+ height: 90%;   
+}
+.telefone {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  width: 33%;
+ height: 90%;   
+}
+.iClint   {
+  height: 25px;
+    width: 98%;
+}
+.iFone{
+  height: 25px;
+    width: 98%;
+}
+.iCel {
+  height: 25px;
+    width: 98%;
+}
+.iClint::placeholder, .iCel::placeholder, .iFone::placeholder{
+  font-size: smaller;
+    text-indent: 5%;
+}
+.rowsThree {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  padding: 1%;  
+  gap: 3px;   
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+.email {
+   width: 650%;
+  height: 90%;      
+  grid-column: 1/2;   
+}
+.referencia {
+margin: 0;
+width: 35%;
+height: 90%;        
+grid-column: 2/3; 
+}
+.iEmail {
+  width: 100%;
+  height: 25px;
+  font-size: smaller;
+  text-indent: 5px;
+}
+.iRef {
+  width: 100%;
+  height: 25px;
+  font-size: smaller;
+  text-indent: 5px;
+ }
+ .iRef::placeholder,
+ .iEmail::placeholder {
+  font-size: smaller;
+    text-indent: 5%;
+ }
+ .rowsFour {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  padding: 1%;  
+  gap: 3px;   
+  margin-left: 50%;
+  transform: translate(-50%);
+ }
+ .valor,
+ .taxaPercent, 
+ .descCartao, 
+ .comissao,
+ .liquido,
+ .caixa,
+ .bruto {
+  margin: 0;
+  width: 35%;
+  height: 90%;        
+  grid-column: 2/3; 
+ }
+ .iVal::placeholder,
+ .iTaxaCartao::placeholder,
+ .iDesc::placeholder,
+ .iBruto::placeholder,
+ .iCom::placeholder,
+ .iLiq::placeholder,
+ .iCaixa::placeholder {
+  text-indent: 5px;  
+  }
+  .iVal,
+  .iTaxaCartao,
+  .iDesc,
+  .iBruto,
+  .iCom,
+  .iLiq,
+  .iCaixa {
+  text-indent: 5px;     
+  width: 90%;
+  height: 25px;
+  margin: 0;
+  font-size: smaller;
+   }
+   form {
+        width: 100%;
+   }
+   .fiveAndsix {
+    display: block;
+    width: 103%;
+    height: auto;
+    margin-left: 50%;
+    transform: translate(-50%);    
+   }   
+.rowsFive {
+  width: 100%;
+ display: flex; 
+ margin-left: 50%;
+ transform: translate(-50%);
+ gap: 2px;
+}
+.rowsSix {
+  margin-top: 6px;
+  width: 100%;
+   display: flex;
+  justify-content: center;
+  align-items: center;   
+  margin-left: 50%;
+  transform: translate(-50%); 
+  gap: 2px;
+}
+.lFomrPag {
+  width: 75% ;
+  height: 25px;
+  font-size: x-small;
+  background-color: #efefef;
+}
+.LSalvarDados {
+  width: 29%;
+  height: 25px;
+  font-size: x-small;
+  background-color: #efefef;
+}
+.iOpton {
+  display: grid;
+  width: 75%;
+  grid-template-columns: 1fr 1fr 1fr; 
+  background-color: #efefef;
+  gap: 7px;
+}
+.divOptionForm { 
+  width: 100%;
+  height: 70px;  
+  grid-column: 1/2;  
+  border: 1px solid #222;
+  background-color: #d5d5d5;
+}
+.formaPgto {
+  margin-left: 50%;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  transform: translate(-50%);
+  background-color: transparent;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3px;
+  width: 95%;
+  height: 20px;
+  font-size: 7px;   
+}
+.iSection {
+   width: 90%;
+  height: 25px;
+  font-size: 10px;
+  border: none;
+  border: 1px solid #222;
+}
+.valorForm {  
+  width: 100%;
+  height: 70px;  
+  grid-column: 1/2;  
+  border: 1px solid #222;
+  background-color: #d5d5d5;
+  grid-column: 2/3; 
+}
+.parcelamento {
+  margin-left: 50%;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  transform: translate(-50%);
+  background-color: transparent;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3px;
+  width: 95%;
+  height: 20px;
+  font-size: 7px;   
+}
+.iValor {
+  width: 90%;
+  height: 25px;
+  font-size: 10px;
+  border: none;
+  border: 1px solid #222;
+}
+.vencimentoForm { 
+  width: 100%;
+  height: 70px;  
+  grid-column: 1/2;  
+  border: 1px solid #222;
+  background-color: #d5d5d5;
+  grid-column: 3/4;
+}
+
+
+
+
+
+.iDayMonth {
+  margin-left: 50%;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  transform: translate(-50%);
+  background-color: transparent;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3px;
+  width: 95%;
+  height: 20px;
+  font-size: 7px;   
+  
+}
+
+
+
+.iDayMonth2 {
+  width: 90%;
+  height: 15px;
+  font-size: 10px;
+  border: none;
+  border: 1px solid #222;
+
+}
+.iDayMonth3 {
+  width: 90%;
+  height: 15px;
+  font-size: 10px;
+  border: none;
+  border: 1px solid #222;
+
+}
+.formLabel{  
+  font-size: 8px;
+  color: #222;
+}
+.botoes {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 25%; 
+  background-color: #efefef;
+  }
+button {
+  height: 25px;
+  margin-top: 5px;  
+  font-size: 8px;  
+  background-color: #706f6f;
+}
+.copy {
+  font-size: 7px;
+  color: #222;
+  margin-top: 18px;
+}
+}
+
+
+
+
+
+

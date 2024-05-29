@@ -317,8 +317,6 @@ function Formulario() {
               />
             </label>
           </div>
-
-
           <div className="referencia">
             <label htmlFor="">
               <span className='formLabel'>Origem/indicação</span>
@@ -435,84 +433,86 @@ function Formulario() {
             </label>
           </div>
         </div>
-        <div className="rowsFive">
-          <label htmlFor="" className="lFomrPag">Forma de Pagamento</label>
-          <label htmlFor="" className="LSalvarDados">Salvar os dados</label>
-        </div>
-        <div className="rowsSix">
-          <div className="iOpton">
-            <div className="divOptionForm">
-              <label className="formaPgto">Forma / Pgto.</label>
-              <label htmlFor="">
-                <span className='formLabel'></span>
-                <select
-                  className="iSection"
-                  type="text"
-                  name='Form/Pag'
-                  onChange={handleFormaPagamentoChange}
-                  required
-                >
-                  <option className="optionForm" >Debito/ Cartão</option>
-                  <option className="optionForm" >Debito/ Pix</option>
-                  <option className="optionForm" >Dinheiro</option>
-                  <option className="optionForm" >Parc./ 1 vezes</option>
-                  <option className="optionForm" >Parc./ 2 vezes</option>
-                  <option className="optionForm" >Parc./ 3 vezes</option>
-                </select>
-              </label>
-
-            </div>
-            <div className="valorForm">
-              <label htmlFor="" className="parcelamento">Saldo</label>
-
-              {(formaPagamento === 'Dinheiro' || formaPagamento === 'Debito/ Pix') ? (
-                <input
-                  className="iValor"
-                  type="text"
-                  name='Form/Pag'
-                  value={compra}
-                  readOnly
-                  required
-                />
-              ) : formaPagamento === 'Parc./ 1 vezes' ? (
-                <input
-                  className="iValor"
-                  type="text"
-                  name='Form/Pag'
-                  value={(valorBruto / 1).toFixed(2)}
-                  readOnly
-                  required
-                />
-              ) : formaPagamento === 'Parc./ 2 vezes' ? (
-                <input
-                  className="iValor"
-                  type="text"
-                  name='Form/Pag'
-                  value={(valorBruto / 2).toFixed(2)}
-                  readOnly
-                  required
-                />
-              ) : (
-                <input
-                  className="iValor"
-                  type="text"
-                  name='Form/Pag'
-                  value={(valorBruto / 3).toFixed(2)}
-                  readOnly
-                  required
-                />
-              )}
-            </div>
-            <div className="vencimentoForm">
-              <label className="iDayMonth" type="text">Tx./ Antecipação</label>
-              <input className="iDayMonth2" type="text" placeholder="%" value={taxaDesconto} onChange={handleTaxaDescontoChange} />
-              <input className="iDayMonth3" type="text" placeholder="$" value={resultadoDesconto} readOnly />
-            </div>
-
+        <div className="fiveAndsix">
+          <div className="rowsFive">
+            <label htmlFor="" className="lFomrPag">Forma de Pagamento</label>
+            <label htmlFor="" className="LSalvarDados">Salvar os dados</label>
           </div>
-          <div className="botoes">
-            <button type='submit' >Enviar</button>
-            <button type="submit"  >Limpar</button>
+          <div className="rowsSix">
+            <div className="iOpton">
+              <div className="divOptionForm">
+                <label className="formaPgto">Forma/Pgto.</label>
+                <label htmlFor="">
+                  <span className='formLabel'></span>
+                  <select
+                    className="iSection"
+                    type="text"
+                    name='Form/Pag'
+                    onChange={handleFormaPagamentoChange}
+                    required
+                  >
+                    <option className="optionForm" >Debito/ Cartão</option>
+                    <option className="optionForm" >Debito/ Pix</option>
+                    <option className="optionForm" >Dinheiro</option>
+                    <option className="optionForm" >Parc./ 1 vezes</option>
+                    <option className="optionForm" >Parc./ 2 vezes</option>
+                    <option className="optionForm" >Parc./ 3 vezes</option>
+                  </select>
+                </label>
+
+              </div>
+              <div className="valorForm">
+                <label htmlFor="" className="parcelamento">Saldo</label>
+
+                {(formaPagamento === 'Dinheiro' || formaPagamento === 'Debito/ Pix') ? (
+                  <input
+                    className="iValor"
+                    type="text"
+                    name='Form/Pag'
+                    value={compra}
+                    readOnly
+                    required
+                  />
+                ) : formaPagamento === 'Parc./ 1 vezes' ? (
+                  <input
+                    className="iValor"
+                    type="text"
+                    name='Form/Pag'
+                    value={(valorBruto / 1).toFixed(2)}
+                    readOnly
+                    required
+                  />
+                ) : formaPagamento === 'Parc./ 2 vezes' ? (
+                  <input
+                    className="iValor"
+                    type="text"
+                    name='Form/Pag'
+                    value={(valorBruto / 2).toFixed(2)}
+                    readOnly
+                    required
+                  />
+                ) : (
+                  <input
+                    className="iValor"
+                    type="text"
+                    name='Form/Pag'
+                    value={(valorBruto / 3).toFixed(2)}
+                    readOnly
+                    required
+                  />
+                )}
+              </div>
+              <div className="vencimentoForm">
+                <label className="iDayMonth" type="text">Tx./ Antecipação</label>
+                <input className="iDayMonth2" type="text" placeholder="%" value={taxaDesconto} onChange={handleTaxaDescontoChange} />
+                <input className="iDayMonth3" type="text" placeholder="$" value={resultadoDesconto} readOnly />
+              </div>
+
+            </div>
+            <div className="botoes">
+              <button type='submit' >Enviar</button>
+              <button type="submit"  >Limpar</button>
+            </div>
           </div>
         </div>
         <p className="copy">Este projeto foi desenvolvido por - Rogério de Almeia - &#169; 2024</p>
