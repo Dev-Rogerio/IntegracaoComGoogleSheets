@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getCLS, getFID, getLCP } from 'web-vitals';
 import InputMask from "react-input-mask";
 import "../Formulario/formulario.css";
 import logoForm from "../../Img/logo branco.png"
