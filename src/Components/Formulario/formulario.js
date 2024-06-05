@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getCLS, getFID, getLCP } from 'web-vitals';
 import InputMask from "react-input-mask";
 import "../Formulario/formulario.css";
 import logoForm from "../../Img/logo branco.png"
 
-// https://www.youtube.com/watch?v=w7SUjrKCdwE
-// https://chat.openai.com/c/5b406498-8b73-4cb3-86ac-68312bfd9e7c
-{/* <form onSubmit={handleSubmit} action="https://api.sheetmonkey.io/form/eTzUtbRMsdFfDLSZMJXfo6" method='post'   > */ }
 
 function Formulario() {
-
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(parseInt(localStorage.getItem('ultimoId')));
   const [vendedor, setVendedor] = useState('');
-  const [data, setData] = useState('');
+  const [dataPedido, setDataPedido] = useState('');
   const [pedido, setPedido] = useState('');
   const [client, setClient] = useState('');
   const [celular, setCelular] = useState('');
@@ -40,8 +35,9 @@ function Formulario() {
   let ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
 
   const handleLimparFormulario = () => {
+    setId(id + 1);
     setVendedor('');
-    setData('');
+    setDataPedido('');
     setPedido('');
     setClient('');
     setCelular('');
@@ -67,10 +63,50 @@ function Formulario() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setId(id + 1);
-    console.log('Dados do formulário');
-    handleLimparFormulario(); // Limpa o formulário após enviar
-    setDataVencimento('')
+
+    const data = {
+      id,
+      Vendedor: vendedor,
+      'Data_Pedido': dataPedido,
+      Pedido: pedido,
+      Cliente: client,
+      Celular: celular,
+      Telefone: telefone,
+      email,
+      Referencia: referencia,
+      'Vl_Comp': compra,
+      Taxa: taxaCartao,
+      'Desc_Cartao': descCart,
+      'Valor_Bruto': valorBruto,
+      Comissão: taxaComissao,
+      'Valor_Liq.': valorLiquido,
+      Caixa: caixa,
+      'Form_Pag.': formaPagamento,
+    };
+
+    console.log('Enviando dados:', data);
+
+    try {
+      console.log(data)
+      const response = await fetch("https://sheetdb.io/api/v1/iacg5pfqkrtq0", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        console.log('Dados enviados com sucesso');
+        handleLimparFormulario(''); // Limpa o formulário após enviar
+        setDataVencimento();
+      } else {
+        console.error('Erro ao enviar dados', response.statusText);
+      }
+    } catch (error) {
+      console.log('Erro ao enviar dados', error);
+    }
+    handleLimparFormulario();
+    localStorage.setItem('ultimoId', id + 1);
   };
 
   const calcularDesconto = (valorBruto, taxaDesconto) => {
@@ -179,11 +215,10 @@ function Formulario() {
     }
   };
 
-
-
   return (
     <div className='containerForm'>
-      <form action="https://api.sheetmonkey.io/form/eTzUtbRMsdFfDLSZMJXfo6" method='post'  >
+      {/* <form onSubmit={handleSubmit} > */}
+      <form onSubmit={handleSubmit} >
         <div className="menuForm">
           <div className="formImg">
             <img className="imgForm" src={logoForm} alt="" />
@@ -206,49 +241,52 @@ function Formulario() {
           </div>
 
           <div className='vendedor'>
-            <label htmlFor="">
+            <label htmlFor="vendedor">
               <span className='formLabel'>Vendedor</span>
               <input
                 className='iVend'
                 type="text"
-                name='Vendedor'
+                id="vendedor"
+                name='vendedor'
                 placeholder="Nome"
-                required
                 value={vendedor}
-                onChange={(event) => setVendedor(event.target.value)}
+                onChange={(e) => setVendedor(e.target.value)}
+                required
 
               />
             </label>
           </div>
 
           <div className="data">
-            <label htmlFor="">
+            <label htmlFor="data">
               <span className='formLabel'>Data</span>
               <InputMask
                 className='iData'
                 mask="99/99/9999"
-                type="data"
-                name="Data do pedido"
+                type="text"
+                id="data"
+                name="data"
                 placeholder="DD/MM/AAAA"
+                value={dataPedido}
+                onChange={(e) => setDataPedido(e.target.value)}
                 required
-                value={data}
-                onChange={(event) => setData(event.target.value)}
               />
 
             </label>
           </div>
 
           <div className='pedido'>
-            <label htmlFor="">
+            <label htmlFor="pedido">
               <span className='formLabel'>Pedido</span>
               <input
                 className='iPed'
-                type="text"
-                name='Pedido'
+                type="number"
+                id="pedido"
+                name='pedido'
                 placeholder="Pedido"
-                required
                 value={pedido}
-                onChange={(event) => setPedido(event.target.value)}
+                onChange={(e) => setPedido(e.target.value)}
+                required
               />
             </label>
           </div>
@@ -256,48 +294,52 @@ function Formulario() {
 
         <div className="rowsTwo">
           <div className='client'>
-            <label htmlFor="">
+            <label htmlFor="cliente">
               <span className='formLabel'>Cliente</span>
               <input
                 className='iClint'
                 type="text"
-                name='Clinte'
+                id="cliente"
+                name='clinte'
                 placeholder="Cliente"
-                required
                 value={client}
-                onChange={(event) => setClient(event.target.value)}
+                onChange={(e) => setClient(e.target.value)}
+                required
               />
             </label>
           </div>
 
           <div className='celular'>
-            <label htmlFor="">
+            <label htmlFor="celular">
               <span className='formLabel'>Celular</span>
               <InputMask
                 className='iCel'
                 mask="(99) 99999-9999"
                 type="text"
-                name='Celular'
+                id="celular"
+                name='celular'
                 placeholder="Celular"
                 required
                 value={celular}
-                onChange={(event) => setCelular(event.target.value)}
+                onChange={(e) => setCelular(e.target.value)}
               />
             </label>
           </div>
 
 
           <div className='telefone'>
-            <label htmlFor="">
+            <label htmlFor="telefone">
               <span className='formLabel'>Telefone</span>
               <InputMask
                 className='iFone'
                 mask="(11) 9999-9999"
                 type="text"
-                name='Telefone'
+                id="telefone"
+                name='telefone'
                 placeholder="Telefone"
                 value={telefone}
-                onChange={(event) => setTelefone(event.target.value)}
+                onChange={(e) => setTelefone(e.target.value)}
+                required
               />
             </label>
           </div>
@@ -305,76 +347,80 @@ function Formulario() {
         </div>
         <div className="rowsThree">
           <div className="email">
-            <label htmlFor="">
+            <label htmlFor="email">
               <span className='formLabel'>E-mail</span>
               <input
                 className='iEmail'
                 type="email"
-                name="email"
+                id="email"
+                name="data[email]"
                 placeholder="E-mail"
-                required
                 value={email}
-                onChange={(event) => setEmail(event.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </label>
           </div>
           <div className="referencia">
-            <label htmlFor="">
+            <label htmlFor="referencia">
               <span className='formLabel'>Origem/indicação</span>
               <input
                 className='iRef'
                 type="text"
-                name="Referencia"
+                id="referencia"
+                name="referencia"
                 placeholder="Referência"
-                required
                 value={referencia}
-                onChange={(event) => setReferencia(event.target.value)}
+                onChange={(e) => setReferencia(e.target.value)}
+                required
               />
             </label>
           </div>
         </div>
-
-
         <div className="rowsFour">
           <div className="valor">
-            <label className="labelForm" htmlFor="">
+            <label className="labelForm" htmlFor="compra">
               <span className='formLabel'>Vl./Comp.</span>
               <input
                 className='iVal'
-                type="text"
+                type="number"
+                id="compra"
                 name="Vl./Comp"
                 placeholder="0,00"
-                required
                 value={compra}
                 onChange={handleValorCompraChange}
+                required
               />
             </label>
           </div>
 
           <div className="taxaPercent">
-            <label htmlFor="">
+            <label htmlFor="taxaCartao">
               <span className='formLabel'>Tx./Cart.</span>
               <input
                 className='iTaxaCartao'
-                type="text"
-                name='Taxa'
+                type="number"
+                id="taxaCartao"
+                name='taxaCartao'
                 placeholder="0,0"
-                required
                 value={taxaCartao}
                 onChange={handleTaxaCartaoChange}
+                required
               />
             </label>
           </div>
 
           <div className="descCartao">
-            <label htmlFor="">
+            <label htmlFor="descCart">
               <span className='formLabel'>Des./Cart.</span>
               <input
                 className='iDesc'
-                type="text"
-                name='Desc./Cart.'
+                type="number"
+                name='descCart'
                 placeholder="0,00"
                 value={descCart}
+                onChange={(e) => setDescCart(e.target.value)}
+                readOnly
               />
             </label>
           </div>
@@ -394,42 +440,46 @@ function Formulario() {
 
 
           <div className="comissao">
-            <label htmlFor="">
+            <label htmlFor="taxaComissao">
               <span className='formLabel'>Tx/Com.</span>
               <input
                 className='iCom'
-                type="text"
-                name='Comissão'
+                type="number"
+                id="taxaComissao"
+                name='taxaComissao'
                 placeholder="0,0"
-                required
                 value={taxaComissao}
                 onChange={handleTaxaComissaoChange}
+                required
               />
             </label>
           </div>
 
           <div className="liquido">
-            <label htmlFor="">
+            <label htmlFor="valorLiquido">
               <span className='formLabel'>Pag./Vend</span>
               <input
                 className='iLiq'
-                type="text"
-                name='Valor Liquido'
+                type="number"
+                id="valorLiquido"
+                name='valorLiquido'
                 placeholder="0,00"
                 value={valorLiquido}
+                readOnly
               />
             </label>
           </div>
 
           <div className="caixa">
-            <label htmlFor="">
+            <label htmlFor="caixa">
               <span className='formLabel'>Caixa</span>
               <input
                 className='iCaixa'
-                type="text"
-                name='Caixa'
+                type="number"
+                name='caixa'
                 placeholder="0,00"
                 value={caixa}
+                readOnly
               />
             </label>
           </div>
@@ -442,22 +492,24 @@ function Formulario() {
           <div className="rowsSix">
             <div className="iOpton">
               <div className="divOptionForm">
-                <label className="formaPgto">Forma/Pgto.</label>
-                <label htmlFor="">
+                <label htmlFor="" className="formaPgto">Forma/Pgto.</label>
+                <label htmlFor="formaPagamento">
                   <span className='formLabel'></span>
                   <select
                     className="iSection"
                     type="text"
-                    name='Form/Pag'
+                    id="formaPagamento"
+                    name='formaPagamento'
+                    value={formaPagamento}
                     onChange={handleFormaPagamentoChange}
                     required
                   >
-                    <option className="optionForm" >Debito/ Cartão</option>
-                    <option className="optionForm" >Debito/ Pix</option>
-                    <option className="optionForm" >Dinheiro</option>
-                    <option className="optionForm" >Parc./ 1 vezes</option>
-                    <option className="optionForm" >Parc./ 2 vezes</option>
-                    <option className="optionForm" >Parc./ 3 vezes</option>
+                    <option value="" className="optionForm" >Debito/ Cartão</option>
+                    <option value="" className="optionForm" >Debito/ Pix</option>
+                    <option value="AV" className="optionForm" >Dinheiro</option>
+                    <option value="Parc./ 1 vezes" className="optionForm" >Parc./ 1 vezes</option>
+                    <option value="Parc./ 2 vezes" className="optionForm" >Parc./ 2 vezes</option>
+                    <option value="Parc./ 3 vezes" className="optionForm" >Parc./ 3 vezes</option>
                   </select>
                 </label>
 
@@ -512,7 +564,7 @@ function Formulario() {
             </div>
             <div className="botoes">
               <button type='submit' >Enviar</button>
-              <button type="submit"  >Limpar</button>
+              <button type="button" onClick={handleLimparFormulario}  >Limpar</button>
             </div>
           </div>
         </div>
@@ -522,4 +574,5 @@ function Formulario() {
     </div >
   );
 }
+
 export default Formulario
