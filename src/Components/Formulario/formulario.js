@@ -31,6 +31,7 @@ function Formulario() {
   const [taxaAntecipacao, setTaxaAntecipacao] = useState('');
   const [taxaDesconto, setTaxaDesconto] = useState('');
   const [resultadoDesconto, setResultadoDesconto] = useState('');
+  const [cpf, setCpf] = useState('');
 
   let ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
 
@@ -52,6 +53,7 @@ function Formulario() {
     setValorBruto('');
     setValorLiquido('');
     setCaixa('');
+    setCpf('')
   };
 
   const handlePreencherId = () => {
@@ -70,6 +72,7 @@ function Formulario() {
       'Data_Pedido': dataPedido,
       Pedido: pedido,
       Cliente: client,
+      cpf,
       Celular: celular,
       Telefone: telefone,
       email,
@@ -308,6 +311,19 @@ function Formulario() {
               />
             </label>
           </div>
+          <div className="infoPersona">
+            <label htmlFor="">
+              <span className='formLabel'>Cpf.</span>
+              <input className="iCpf"
+                type="text"
+                name='cpf'
+                placeholder="Cpf"
+                value={cpf}
+                onChange={(e) => setCpf(e.target.value)}
+                required
+              />
+            </label>
+          </div>
 
           <div className='celular'>
             <label htmlFor="celular">
@@ -363,7 +379,7 @@ function Formulario() {
           </div>
           <div className="referencia">
             <label htmlFor="referencia">
-              <span className='formLabel'>Origem/indicação</span>
+              <span className='formLabel'>Origem / Indicação</span>
               <input
                 className='iRef'
                 type="text"
