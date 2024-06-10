@@ -93,23 +93,20 @@ body {
   border-radius: 4px;
   }  
   .rowsOne {
-  display: grid;
+  display: flex;
   width: 94%;  
+  gap: 20px;
   height:  60px;
   background-color: #efefef;
   justify-content: center;  
-  border-radius: 4px;   
-  gap: 39px;
+  border-radius: 4px;    
   margin-top: 20px;
-  padding: 0px 25px 0px 25px;
-  grid-template-columns: 10% 30% 30% 15%;
+  padding: 0px 25px 0px 25px; 
   }
   .id {     
-  height: 30px;
-  width: 100%;
-  outline: 0;
-  grid-column: 1/2;
-  }
+  width: 30%;
+  outline: 0;  
+}
   .iId {    
   display: block;
   width: 100%;
@@ -122,7 +119,6 @@ body {
   color: red;
   }    
   .vendedor {     
-  height: 30px;
   width: 100%;
   outline: 0;
   grid-column: 2/3;
@@ -138,8 +134,7 @@ body {
   text-transform: capitalize;
     }    
 .data {  
-height: 25px;
-width: 100%;
+width: 40%;
 outline: 0;
 grid-column: 3/4;
 }
@@ -153,8 +148,7 @@ border: 1px solid #222;
 text-indent: 10px;
 }
 .pedido {     
-height: 30px;
-width: 100%;
+width: 40%;
 outline: 0;
 grid-column: 4/5;
 display: grid;
@@ -169,37 +163,34 @@ border: 1px solid #222;
 text-indent: 10px;
 }
 .rowsTwo {
-  display: grid;
+  display: flex;
   width: 94%;  
+  gap: 6px;
   height:  60px;
   background-color: #efefef;
-  border-radius: 4px;   
-  grid-template-columns: 18% 44% 18% 18%;
-  padding: 0px 25px 0px 25px;
-  margin-top: 10px;  
-  gap: 6px;
-}
+  justify-content: space-between;  
+  border-radius: 4px;    
+  margin-top: 10px;
+  padding: 0px 25px 0px 25px;  
+  gap: 6px; 
+ }
 .cpf {
-  height: 100px;
-width: 60%;
-outline: 0;
-grid-column: 1/2;
+ width: 50%; 
+ outline: 0;
 }
 .iCpf {
-  display: block;
+  display: block; 
   width: 100%;
   height: 30px; 
   outline: 0; 
   border-radius: 3px;
   border: 1px solid #222;
   text-indent: 10px; 
-}
+ }
 .client {  
-height: 30px;
-width: 100%;
-outline: 0;
-grid-column: 2/3;
-  }
+ width: 100%;
+ outline: 0;
+}
 .iClint {
 display: block;
 width: 100%;
@@ -210,12 +201,9 @@ border: 1px solid #222;
 text-indent: 10px;
 text-transform: capitalize;
 }
-
 .celular {  
-height: 30px;
-width: 100%;
+width: 50%;
 outline: 0;
-grid-column: 3/4;
 }
 .iCel {
 display: block;
@@ -227,10 +215,9 @@ border: 1px solid #222;
 text-indent: 10px;
 }
 .telefone {  
-height: 30px;
-width: 100%;
+width: 50%;
 outline: 0;
-grid-column: 4/5;
+
 }
 .iFone {
 display: block;
@@ -242,21 +229,19 @@ border: 1px solid #222;
 text-indent: 10px;
 }
 .rowsThree { 
-  display: grid;
+  display: flex;
   width: 94%;  
-  height: 60px;
+  gap: 6px;
+  height:  60px;
   background-color: #efefef;
-  border-radius: 4px;     
-  padding: 0px 25px 0px 25px;
-  margin-top: 10px;  
-  gap: 49px;  
-grid-template-columns: 15% 55% 15%;
+  justify-content: space-between;  
+  border-radius: 4px;    
+  margin-top: 10px;
+  padding: 0px 25px 0px 25px;   
 }
 .aniversario {  
-  height: 30px;
-  width: 100%;
+  width: 40%;
   outline: 0;
-  grid-column: 1/2;
   }
   .iAniversario {
   display: block;
@@ -268,7 +253,6 @@ grid-template-columns: 15% 55% 15%;
   text-indent: 10px;
   }
 .email {  
-height: 30px;
 width: 100%;
 outline: 0;
 grid-column: 2/3;
@@ -283,11 +267,8 @@ border: 1px solid #222;
 text-indent: 10px;
 }
 .referencia {  
-height: 30px;
-width: 100%;
+width: 50%;
 outline: 0;
-grid-column: 3/4;
-margin-left: 20px;
 }
 .iRef {
 display: block;
@@ -299,25 +280,19 @@ border: 1px solid #222;
 text-indent: 10px;
 }
 .rowsFour { 
-  display: grid;
+  display: flex;
   width: 94%;  
+  gap: 6px;
   height:  60px;
   background-color: #efefef;
-  justify-content: center;  
-  border-radius: 4px;   
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
-  justify-content: center;  
-  border-radius: 4px;
+  justify-content: space-between;  
+  border-radius: 4px;    
   margin-top: 10px;
-  gap: 5px;
-  padding: 0px 25px 0px 25px;
+  padding: 0px 25px 0px 25px;   
 }
 .valor {  
-height: 30px;
 width: 100%;
 outline: 0;
-grid-column: 1/2;
-font-size: 13px;
 }
 .iVal {
 display: block;
@@ -330,11 +305,9 @@ text-indent: 10px;
 margin-top: 3px;
 }
 .desconto {  
-  height: 30px;
   width: 100%;
   outline: 0;
-  grid-column: 2/3;
-  font-size: 13px;
+  
   }
   .iDesconto {
   display: block;
@@ -347,11 +320,9 @@ margin-top: 3px;
   margin-top: 3px;
   }
 .taxaPercent {
-height: 30px;
 width: 100%;
 outline: 0;
-grid-column: 3/4;  
-font-size: 13px;
+
 }
 .iTaxaCartao {
 display: block;
@@ -364,11 +335,9 @@ text-indent: 10px;
 margin-top: 3px;
 }
 .descCartao {
-height: 30px;
 width: 100%;
 outline: 0;
-grid-column: 4/5;  
-font-size: 13px;
+
 }
 .iDesc {
 display: block;
@@ -382,11 +351,9 @@ margin-top: 3px;
 background-color: #e2e1e1;
 }
 .bruto {
-height: 30px;
 width: 100%;
 outline: 0;
-grid-column: 5/6; 
-font-size: 13px;
+
 }
 .iBruto {
 display: block;
@@ -400,12 +367,10 @@ margin-top: 3px;
 background-color: #e2e1e1;
 color: rgb(95, 95, 242);
 }
-.comissao {
-height: 30px;
+.comissao {  
 width: 100%;
 outline: 0;
-grid-column: 6/7;
-font-size: 13px;
+
 }
 .iCom {
 display: block;
@@ -418,11 +383,8 @@ text-indent: 10px;
 margin-top: 3px;
 }
 .liquido {
-  height: 30px;
   width: 100%;
-  outline: 0;
-  grid-column: 7/8; 
-  font-size: 13px;
+  outline: 0;    
   }
   .iLiq {
   display: block;
@@ -437,11 +399,9 @@ margin-top: 3px;
   color: rgb(95, 95, 242);
   }
 .caixa {
-height: 30px;
 width: 100%;
 outline: 0;
-grid-column: 8/9;
-font-size: 13px;
+
 }
 .iCaixa {
 display: block;
@@ -694,15 +654,18 @@ letter-spacing: 1.5px;
     font-size: small;    
   }
   .rowsOne {    
-    width: 100%;
-    display: grid;
+    background-color: #efefef;
+  height:  60px;
+  border-radius: 4px;   
+  margin-top: 10px; 
+    /* width: 100%;
     gap: 3px;
     display: flex;
     justify-content: center;
     align-items: center;    
     padding: 1%;    
     margin-left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%); */
   } 
   .id {
     display: flex;
@@ -764,15 +727,15 @@ letter-spacing: 1.5px;
     width: 98%;
   }
  .rowsTwo {
-    width: 100%;
-    display: grid;
-    gap: 3px;
-    display: flex;
-    justify-content: center;
+  display: flex;
+    width: 94%;   
+    /* background-color: #efefef;    */
+    justify-content: space-between;
     align-items: center;    
-    padding: 1%; 
-    margin-left: 50%;
-    transform: translate(-50%);   
+   border-radius: 4px;
+   margin-top: 10px;  
+   /* padding: 0px 25px 0px 25px; */
+   
 }
 .client {
   display: flex;
@@ -812,7 +775,12 @@ letter-spacing: 1.5px;
   text-indent: 5%;
 }
 .rowsThree {
-  width: 100%;
+  background-color: #efefef;
+  height:  60px;
+  border-radius: 4px;   
+  margin-top: 10px; 
+
+  /* width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr; 
   display: flex;
@@ -821,7 +789,7 @@ letter-spacing: 1.5px;
   padding: 1%;  
   gap: 3px;   
   margin-left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%); */
 }
 .email {
    width: 650%;
@@ -852,7 +820,11 @@ grid-column: 2/3;
     text-indent: 5%;
  }
  .rowsFour {
-  width: 100%;
+  background-color: #efefef;
+  height:  60px;
+  border-radius: 4px;   
+  margin-top: 10px; 
+  /* width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr; 
   display: flex;
@@ -861,7 +833,7 @@ grid-column: 2/3;
   padding: 1%;  
   gap: 3px;   
   margin-left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%); */
  }
  .valor,
  .taxaPercent, 

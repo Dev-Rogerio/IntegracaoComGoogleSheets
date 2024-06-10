@@ -290,7 +290,7 @@ function Formulario() {
           </div>
         </div>
         <div className="rowsTwo">
-          <div className="infoPersona">
+          <div className="cpf">
             <label htmlFor="">
               <span className='formLabel'>Cpf</span>
               <input className="iCpf"
