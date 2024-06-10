@@ -242,7 +242,6 @@ function Formulario() {
               />
             </label>
           </div>
-
           <div className='vendedor'>
             <label htmlFor="vendedor">
               <span className='formLabel'>Vendedor</span>
@@ -255,11 +254,9 @@ function Formulario() {
                 value={vendedor}
                 onChange={(e) => setVendedor(e.target.value)}
                 required
-
               />
             </label>
           </div>
-
           <div className="data">
             <label htmlFor="data">
               <span className='formLabel'>Data</span>
@@ -274,10 +271,8 @@ function Formulario() {
                 onChange={(e) => setDataPedido(e.target.value)}
                 required
               />
-
             </label>
           </div>
-
           <div className='pedido'>
             <label htmlFor="pedido">
               <span className='formLabel'>Pedido</span>
@@ -294,8 +289,20 @@ function Formulario() {
             </label>
           </div>
         </div>
-
         <div className="rowsTwo">
+          <div className="infoPersona">
+            <label htmlFor="">
+              <span className='formLabel'>Cpf</span>
+              <input className="iCpf"
+                type="text"
+                name='cpf'
+                placeholder="Cpf"
+                value={cpf}
+                onChange={(e) => setCpf(e.target.value)}
+                required
+              />
+            </label>
+          </div>
           <div className='client'>
             <label htmlFor="cliente">
               <span className='formLabel'>Cliente</span>
@@ -311,20 +318,6 @@ function Formulario() {
               />
             </label>
           </div>
-          <div className="infoPersona">
-            <label htmlFor="">
-              <span className='formLabel'>Cpf.</span>
-              <input className="iCpf"
-                type="text"
-                name='cpf'
-                placeholder="Cpf"
-                value={cpf}
-                onChange={(e) => setCpf(e.target.value)}
-                required
-              />
-            </label>
-          </div>
-
           <div className='celular'>
             <label htmlFor="celular">
               <span className='formLabel'>Celular</span>
@@ -341,8 +334,6 @@ function Formulario() {
               />
             </label>
           </div>
-
-
           <div className='telefone'>
             <label htmlFor="telefone">
               <span className='formLabel'>Telefone</span>
@@ -359,9 +350,23 @@ function Formulario() {
               />
             </label>
           </div>
-
         </div>
         <div className="rowsThree">
+          <div className="aniversario">
+            <label htmlFor="email">
+              <span className='formLabel'>Aniversário</span>
+              <input
+                className='iAniversario'
+                type="email"
+                id="email"
+                name="data[email]"
+                placeholder="Aniversário"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+          </div>
           <div className="email">
             <label htmlFor="email">
               <span className='formLabel'>E-mail</span>
@@ -409,7 +414,21 @@ function Formulario() {
               />
             </label>
           </div>
-
+          <div className="desconto">
+            <label className="labelForm" htmlFor="compra">
+              <span className='formLabel'>Desconto</span>
+              <input
+                className='iDesconto'
+                type="number"
+                id="compra"
+                name="Vl./Comp"
+                placeholder="0,00"
+                value={compra}
+                onChange={handleValorCompraChange}
+                required
+              />
+            </label>
+          </div>
           <div className="taxaPercent">
             <label htmlFor="taxaCartao">
               <span className='formLabel'>Tx./Cart.</span>
@@ -425,7 +444,6 @@ function Formulario() {
               />
             </label>
           </div>
-
           <div className="descCartao">
             <label htmlFor="descCart">
               <span className='formLabel'>Des./Cart.</span>
@@ -440,7 +458,6 @@ function Formulario() {
               />
             </label>
           </div>
-
           <div className="bruto">
             <label htmlFor="">
               <span className='formLabel'>Vl./Bru.</span>
@@ -453,8 +470,6 @@ function Formulario() {
               />
             </label>
           </div>
-
-
           <div className="comissao">
             <label htmlFor="taxaComissao">
               <span className='formLabel'>Tx/Com.</span>
@@ -470,7 +485,6 @@ function Formulario() {
               />
             </label>
           </div>
-
           <div className="liquido">
             <label htmlFor="valorLiquido">
               <span className='formLabel'>Pag./Vend</span>
@@ -485,7 +499,6 @@ function Formulario() {
               />
             </label>
           </div>
-
           <div className="caixa">
             <label htmlFor="caixa">
               <span className='formLabel'>Caixa</span>
@@ -528,7 +541,6 @@ function Formulario() {
                     <option value="Parc./ 3 vezes" className="optionForm" >Parc./ 3 vezes</option>
                   </select>
                 </label>
-
               </div>
               <div className="valorForm">
                 <label htmlFor="" className="parcelamento">Saldo</label>
@@ -576,19 +588,18 @@ function Formulario() {
                 <input className="iDayMonth2" type="text" placeholder="%" value={taxaDesconto} onChange={handleTaxaDescontoChange} />
                 <input className="iDayMonth3" type="text" placeholder="$" value={resultadoDesconto} readOnly />
               </div>
-
             </div>
             <div className="botoes">
-              <button type='submit' >Enviar</button>
-              <button type="button" onClick={handleLimparFormulario}  >Limpar</button>
+              <div className="border">
+                <button type='submit' >Enviar</button>
+                <button type="button" onClick={handleLimparFormulario}  >Limpar</button>
+              </div>
             </div>
           </div>
         </div>
         <p className="copy">Este projeto foi desenvolvido por - Rogério de Almeia - &#169; 2024</p>
-
       </form >
     </div >
   );
 }
-
 export default Formulario
