@@ -401,6 +401,7 @@ function Formulario() {
                 value={desconto}
                 onChange={handleDescontoChange}
 
+
               />
             </label>
           </div>
