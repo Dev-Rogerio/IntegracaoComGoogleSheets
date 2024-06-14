@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
 import "../Formulario/formulario.css";
-import logoForm from "../../Img/logo branco.png"
-
+import logoForm from "../../Img/logo branco.png";
 
 function Formulario() {
-  const [id, setId] = useState(parseInt(localStorage.getItem('ultimoId')));
+  const [id, setId] = useState(parseInt(localStorage.getItem('ultimoId')) || 1);
   const [vendedor, setVendedor] = useState('');
   const [dataPedido, setDataPedido] = useState('');
   const [pedido, setPedido] = useState('');
@@ -23,17 +22,20 @@ function Formulario() {
   const [valorLiquido, setValorLiquido] = useState('');
   const [caixa, setCaixa] = useState('');
   const [formaPagamento, setFormaPagamento] = useState('');
-  const [compraParcelada, setCompraParcelada] = useState('');
-  const [dataParcela, setDataParcela] = useState('');
-  const [dataVencimento, setDataVencimento] = useState('');
-  const [dataVencimento2, setDataVencimento2] = useState('');
-  const [dataVencimento3, setDataVencimento3] = useState('');
-  const [taxaAntecipacao, setTaxaAntecipacao] = useState('');
   const [taxaDesconto, setTaxaDesconto] = useState('');
   const [resultadoDesconto, setResultadoDesconto] = useState('');
   const [cpf, setCpf] = useState('');
+  const [aniversario, setAniversario] = useState('');
+  const [desconto, setDesconto] = useState('');
+  const [vlCDesc, setVlCdesc] = useState(0);
+  const [txCom, setTxCom] = useState(0);
+  const [pagVend, setPagVend] = useState(0);
+  const [valorComDesconto, setValorComDesconto] = useState(0);
 
-  let ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
+  useEffect(() => {
+    const ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
+    setId(ultimoIdSalvo);
+  }, []);
 
   const handleLimparFormulario = () => {
     setId(id + 1);
@@ -53,14 +55,10 @@ function Formulario() {
     setValorBruto('');
     setValorLiquido('');
     setCaixa('');
-    setCpf('')
-  };
-
-  const handlePreencherId = () => {
-    const ultimoIdSalvo = localStorage.getItem('ultimoId');
-    if (ultimoIdSalvo) {
-      setId(parseInt(ultimoIdSalvo))
-    }
+    setCpf('');
+    setAniversario('');
+    setDesconto('');
+    setValorComDesconto('');
   };
 
   const handleSubmit = async (event) => {
@@ -85,12 +83,12 @@ function Formulario() {
       'Valor_Liq.': valorLiquido,
       Caixa: caixa,
       'Form_Pag.': formaPagamento,
+      Aniversario: aniversario,
     };
 
     console.log('Enviando dados:', data);
 
     try {
-      console.log(data)
       const response = await fetch("https://sheetdb.io/api/v1/iacg5pfqkrtq0", {
         method: 'POST',
         headers: {
@@ -100,7 +98,7 @@ function Formulario() {
       });
       if (response.ok) {
         console.log('Dados enviados com sucesso');
-        handleLimparFormulario(''); // Limpa o formulário após enviar
+        handleLimparFormulario();
         setDataVencimento();
       } else {
         console.error('Erro ao enviar dados', response.statusText);
@@ -112,76 +110,37 @@ function Formulario() {
     localStorage.setItem('ultimoId', id + 1);
   };
 
-  const calcularDesconto = (valorBruto, taxaDesconto) => {
-    const valorBrutoFloat = parseFloat(valorBruto);
-    const taxaDescontoFloat = parseFloat(taxaDesconto);
-    const resultadoDesconto = valorBrutoFloat * (taxaDescontoFloat / 100);
-    return resultadoDesconto.toFixed(2);
-  };
-
-
-  const calcularValorBruto = (valorDaCompra, valorDescontoCartão) => {
-    if (!isNaN(valorDaCompra) && !isNaN(valorDescontoCartão)) {
-      return (valorDaCompra - valorDescontoCartão).toFixed(2);
-    } else {
-      return '';
-    }
-  };
-
   const handleValorCompraChange = (event) => {
     const valor = event.target.value;
-    setCompra(valor)
-    const valorDaCompra = parseFloat(valor);
-    const valorDescontoCartão = parseFloat(descCart);
-    const novoValorBruto = calcularValorBruto(valorDaCompra, valorDescontoCartão);
-    setValorBruto(novoValorBruto);
-    const valorLiquido = novoValorBruto - parseFloat(descCom);
-    setValorLiquido(valorLiquido.toFixed(2));
-  }
+    setCompra(valor);
+    const valorComDescontoCalculado = calcularDesconto(valor, desconto);
+    setValorComDesconto(valorComDescontoCalculado);
+  };
+
+  const handleDescontoChange = (event) => {
+    const descontoValue = event.target.value;
+    setDesconto(descontoValue);
+    const valorComDescontoCalculado = calcularDesconto(compra, descontoValue);
+    setValorComDesconto(valorComDescontoCalculado);
+  };
 
   const handleTaxaDescontoChange = (event) => {
     const txDesconto = event.target.value;
     setTaxaDesconto(txDesconto);
-    const desconto = calcularDesconto(valorBruto, txDesconto); // Passar os parâmetros aqui
+    const desconto = calcularDesconto(valorBruto, txDesconto);
     setResultadoDesconto(desconto);
   };
-
-
-  useEffect(() => {
-    setId(ultimoIdSalvo);
-  }, []);
-
-
-  useEffect(() => {
-    const valorDaCompra = parseFloat(compra);
-    const valorDescontoCartão = parseFloat(descCart);
-    if (!isNaN(valorDaCompra) && !isNaN(valorDescontoCartão)) {
-      const valorBruto = valorDaCompra - valorDescontoCartão;
-      setValorBruto(valorBruto.toFixed(2));
-    } else {
-      setValorBruto('')
-    }
-  }, [compra, descCart])
-
-  useEffect(() => {
-    const ultimoIdSalvo = localStorage.getItem('ultimoId')
-    if (ultimoIdSalvo) {
-      setId(parseInt(ultimoIdSalvo));
-    }
-  }, [])
-
 
   const handleTaxaCartaoChange = (event) => {
     const txCartao = event.target.value;
     setTaxaCartao(txCartao);
-    const valorDaCompra = parseFloat(compra);
+    const valorBase = desconto ? parseFloat(valorComDesconto) : parseFloat(compra);
     const taxaDoCartao = parseFloat(txCartao);
-    const valorDescontoCartão = (valorDaCompra * taxaDoCartao) / 100;
+    const valorDescontoCartão = (valorBase * taxaDoCartao) / 100;
     setDescCart(valorDescontoCartão.toFixed(2));
-    const novoValorBruto = calcularValorBruto(valorDaCompra, valorDescontoCartão);
+    const novoValorBruto = calcularValorBruto(valorBase, valorDescontoCartão);
     setValorBruto(novoValorBruto);
   };
-
 
   const handleTaxaComissaoChange = (event) => {
     const txComissao = event.target.value;
@@ -198,24 +157,37 @@ function Formulario() {
     } else {
       setDescCom('');
       setValorLiquido('');
-      setCaixa('')
+      setCaixa('');
     }
-    console.log({ taxaComissao, descCom, valorDaCompra });
-  }
+  };
 
   const handleFormaPagamentoChange = (event) => {
     setFormaPagamento(event.target.value);
-    handleParcelaChange();
-  }
+    // handleParcelaChange();
+  };
 
-  const handleParcelaChange = () => {
-    if (formaPagamento === 'Parc./ 1 vezes') {
-      // lógica para 1 parcela
-    } else if (formaPagamento === 'Parc./ 2 vezes') {
-      // lógica para 2 parcelas
-    } else if (formaPagamento === 'Parc./ 3 vezes') {
-      // lógica para 3 parcelas
+  const calcularDesconto = (valor, desconto) => {
+    const valorFloat = parseFloat(valor);
+    const descontoFloat = parseFloat(desconto);
+    const valorComDesconto = valorFloat - (valorFloat * (descontoFloat / 100));
+    return valorComDesconto.toFixed(2);
+  };
+
+  const calcularValorBruto = (valorBase, valorDescontoCartão) => {
+    if (!isNaN(valorBase) && !isNaN(valorDescontoCartão)) {
+      return (valorBase - valorDescontoCartão).toFixed(2);
+    } else {
+      return '';
     }
+  };
+
+  const handleAniversarioChange = (event) => {
+    const rawValue = event.target.value.replace(/\D/g, '');
+    const day = rawValue.substring(0, 2);
+    const month = rawValue.substring(2, 4);
+    const year = rawValue.substring(4, 8);
+    const formattedValue = `${day}/${month}/${year}`;
+    setAniversario(formattedValue);
   };
 
   return (
@@ -291,9 +263,11 @@ function Formulario() {
         </div>
         <div className="rowsTwo">
           <div className="cpf">
-            <label htmlFor="">
+            <label htmlFor="cpf">
               <span className='formLabel'>Cpf</span>
-              <input className="iCpf"
+              <InputMask
+                className="iCpf"
+                mask="999.999.999-99"
                 type="text"
                 name='cpf'
                 placeholder="Cpf"
@@ -353,16 +327,17 @@ function Formulario() {
         </div>
         <div className="rowsThree">
           <div className="aniversario">
-            <label htmlFor="email">
+            <label htmlFor="aniversario">
               <span className='formLabel'>Aniversário</span>
-              <input
+              <InputMask
                 className='iAniversario'
-                type="email"
-                id="email"
-                name="data[email]"
-                placeholder="Aniversário"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                mask="99/99/9999"
+                type="text"
+                id="data"
+                name="data"
+                placeholder="DD/MM/AAAA"
+                value={aniversario}
+                onChange={(e) => setAniversario(e.target.value)}
                 required
               />
             </label>
@@ -405,7 +380,7 @@ function Formulario() {
               <input
                 className='iVal'
                 type="number"
-                id="compra"
+                id="valorCompra"
                 name="Vl./Comp"
                 placeholder="0,00"
                 value={compra}
@@ -415,17 +390,31 @@ function Formulario() {
             </label>
           </div>
           <div className="desconto">
-            <label className="labelForm" htmlFor="compra">
+            <label className="labelForm" htmlFor="">
               <span className='formLabel'>Desconto</span>
               <input
                 className='iDesconto'
                 type="number"
-                id="compra"
+                id="desconto" t
                 name="Vl./Comp"
                 placeholder="0,00"
-                value={compra}
-                onChange={handleValorCompraChange}
-                required
+                value={desconto}
+                onChange={handleDescontoChange}
+
+              />
+            </label>
+          </div>
+          <div className="valor_desconto">
+            <label className="labelForm" htmlFor="">
+              <span className='formLabel'>Vl./C.Desc</span>
+              <input
+                className='iValor_desconto'
+                type="number"
+                id="vldesconto" t
+                name="Vl./C.Desc"
+                placeholder="0,00"
+                value={valorComDesconto}
+                readOnly
               />
             </label>
           </div>
@@ -453,7 +442,6 @@ function Formulario() {
                 name='descCart'
                 placeholder="0,00"
                 value={descCart}
-                onChange={(e) => setDescCart(e.target.value)}
                 readOnly
               />
             </label>
@@ -504,6 +492,7 @@ function Formulario() {
               <span className='formLabel'>Caixa</span>
               <input
                 className='iCaixa'
+                id="caixa"
                 type="number"
                 name='caixa'
                 placeholder="0,00"
@@ -513,10 +502,12 @@ function Formulario() {
             </label>
           </div>
         </div>
-        <div className="fiveAndsix">
-          <div className="rowsFive">
-            <label htmlFor="" className="lFomrPag">Forma de Pagamento</label>
-            <label htmlFor="" className="LSalvarDados">Salvar os dados</label>
+        <div className="rows-Five">
+          <div className="fiveAndsix">
+            <div className="rowsFive">
+              <label htmlFor="" className="lFomrPag">Forma de Pagamento</label>
+              <label htmlFor="" className="LSalvarDados">Salvar os dados</label>
+            </div>
           </div>
           <div className="rowsSix">
             <div className="iOpton">
@@ -596,6 +587,7 @@ function Formulario() {
               </div>
             </div>
           </div>
+
         </div>
         <p className="copy">Este projeto foi desenvolvido por - Rogério de Almeia - &#169; 2024</p>
       </form >
