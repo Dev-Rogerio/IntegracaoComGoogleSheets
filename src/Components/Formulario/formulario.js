@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+import ReactModal from "react-modal";
 import InputMask from "react-input-mask";
 import "../Formulario/formulario.css";
 import logoForm from "../../Img/logo branco.png";
+import ModalMassage from "../Modal/modal";
+
+ReactModal.setAppElement('#root');
 
 function Formulario() {
   const [id, setId] = useState(parseInt(localStorage.getItem('ultimoId')) || 1);
@@ -31,6 +35,8 @@ function Formulario() {
   const [txCom, setTxCom] = useState(0);
   const [pagVend, setPagVend] = useState(0);
   const [valorComDesconto, setValorComDesconto] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
@@ -63,6 +69,16 @@ function Formulario() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // if (!vendedor || !dataPedido || !pedido || !client || !celular || telefone || !email || !referencia || !compra || !aniversario) {
+    //   openModal();
+    //   return;
+    // }
+
+    if (!validateFields()) {
+      openModal();
+      return;
+    }
 
     const data = {
       id,
@@ -108,6 +124,23 @@ function Formulario() {
     }
     handleLimparFormulario();
     localStorage.setItem('ultimoId', id + 1);
+  };
+
+  const validateFields = () => {
+    const newErrors = {};
+    if (!vendedor) newErrors.vendedor = 'Vendedor é obrigatório';
+    if (!dataPedido) newErrors.dataPedido = 'Data do pedido é obrigatória';
+    if (!pedido) newErrors.pedido = 'Pedido é obrigatório';
+    if (!client) newErrors.client = 'Cliente é obrigatório';
+    if (!celular) newErrors.celular = 'Celular é obrigatório';
+    if (!telefone) newErrors.telefone = 'Telefone é obrigatório';
+    if (!email) newErrors.email = 'Email é obrigatório';
+    if (!referencia) newErrors.referencia = 'Referência é obrigatória';
+    if (!compra) newErrors.compra = 'Valor da compra é obrigatório';
+    if (!aniversario) newErrors.aniversario = 'Aniversário é obrigatório';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleValorCompraChange = (event) => {
@@ -189,6 +222,12 @@ function Formulario() {
     const formattedValue = `${day}/${month}/${year}`;
     setAniversario(formattedValue);
   };
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className='containerForm'>
@@ -218,22 +257,22 @@ function Formulario() {
             <label htmlFor="vendedor">
               <span className='formLabel'>Vendedor</span>
               <input
-                className='iVend'
+                className={`iVend ${errors.vendedor ? 'input-error' : ''}`}
                 type="text"
                 id="vendedor"
                 name='vendedor'
                 placeholder="Nome"
                 value={vendedor}
                 onChange={(e) => setVendedor(e.target.value)}
-                required
               />
+              <span className="error-message"></span>
             </label>
           </div>
           <div className="data">
             <label htmlFor="data">
               <span className='formLabel'>Data</span>
               <InputMask
-                className='iData'
+                className={`iData ${errors.dataPedido ? 'input-error' : ''}`}
                 mask="99/99/9999"
                 type="text"
                 id="data"
@@ -241,7 +280,6 @@ function Formulario() {
                 placeholder="DD/MM/AAAA"
                 value={dataPedido}
                 onChange={(e) => setDataPedido(e.target.value)}
-                required
               />
             </label>
           </div>
@@ -249,14 +287,13 @@ function Formulario() {
             <label htmlFor="pedido">
               <span className='formLabel'>Pedido</span>
               <input
-                className='iPed'
+                className={`iPed ${errors.pedido ? 'input-error' : ''}`}
                 type="number"
                 id="pedido"
                 name='pedido'
                 placeholder="Pedido"
                 value={pedido}
                 onChange={(e) => setPedido(e.target.value)}
-                required
               />
             </label>
           </div>
@@ -273,7 +310,6 @@ function Formulario() {
                 placeholder="Cpf"
                 value={cpf}
                 onChange={(e) => setCpf(e.target.value)}
-                required
               />
             </label>
           </div>
@@ -281,14 +317,13 @@ function Formulario() {
             <label htmlFor="cliente">
               <span className='formLabel'>Cliente</span>
               <input
-                className='iClint'
+                className={`iClient ${errors.client ? 'input-error' : ''}`}
                 type="text"
                 id="cliente"
                 name='clinte'
                 placeholder="Cliente"
                 value={client}
                 onChange={(e) => setClient(e.target.value)}
-                required
               />
             </label>
           </div>
@@ -296,13 +331,12 @@ function Formulario() {
             <label htmlFor="celular">
               <span className='formLabel'>Celular</span>
               <InputMask
-                className='iCel'
+                className={`iCel ${errors.celular ? 'input-error' : ''}`}
                 mask="(99) 99999-9999"
                 type="text"
                 id="celular"
                 name='celular'
                 placeholder="Celular"
-                required
                 value={celular}
                 onChange={(e) => setCelular(e.target.value)}
               />
@@ -320,7 +354,6 @@ function Formulario() {
                 placeholder="Telefone"
                 value={telefone}
                 onChange={(e) => setTelefone(e.target.value)}
-                required
               />
             </label>
           </div>
@@ -338,7 +371,6 @@ function Formulario() {
                 placeholder="DD/MM/AAAA"
                 value={aniversario}
                 onChange={(e) => setAniversario(e.target.value)}
-                required
               />
             </label>
           </div>
@@ -346,14 +378,13 @@ function Formulario() {
             <label htmlFor="email">
               <span className='formLabel'>E-mail</span>
               <input
-                className='iEmail'
+                className={`iEmail ${errors.email ? 'input-error' : ''}`}
                 type="email"
                 id="email"
                 name="data[email]"
                 placeholder="E-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
             </label>
           </div>
@@ -361,14 +392,13 @@ function Formulario() {
             <label htmlFor="referencia">
               <span className='formLabel'>Origem / Indicação</span>
               <input
-                className='iRef'
+                className={`iRef ${errors.referencia ? 'input-error' : ''}`}
                 type="text"
                 id="referencia"
                 name="referencia"
                 placeholder="Referência"
                 value={referencia}
                 onChange={(e) => setReferencia(e.target.value)}
-                required
               />
             </label>
           </div>
@@ -385,7 +415,6 @@ function Formulario() {
                 placeholder="0,00"
                 value={compra}
                 onChange={handleValorCompraChange}
-                required
               />
             </label>
           </div>
@@ -400,8 +429,6 @@ function Formulario() {
                 placeholder="0,00"
                 value={desconto}
                 onChange={handleDescontoChange}
-
-
               />
             </label>
           </div>
@@ -430,7 +457,6 @@ function Formulario() {
                 placeholder="0,0"
                 value={taxaCartao}
                 onChange={handleTaxaCartaoChange}
-                required
               />
             </label>
           </div>
@@ -470,7 +496,6 @@ function Formulario() {
                 placeholder="0,0"
                 value={taxaComissao}
                 onChange={handleTaxaComissaoChange}
-                required
               />
             </label>
           </div>
@@ -523,7 +548,6 @@ function Formulario() {
                     name='formaPagamento'
                     value={formaPagamento}
                     onChange={handleFormaPagamentoChange}
-                    required
                   >
                     <option value="" className="optionForm" >Debito/ Cartão</option>
                     <option value="" className="optionForm" >Debito/ Pix</option>
@@ -536,7 +560,6 @@ function Formulario() {
               </div>
               <div className="valorForm">
                 <label htmlFor="" className="parcelamento">Saldo</label>
-
                 {(formaPagamento === 'Dinheiro' || formaPagamento === 'Debito/ Pix') ? (
                   <input
                     className="iValor"
@@ -544,7 +567,6 @@ function Formulario() {
                     name='Form/Pag'
                     value={compra}
                     readOnly
-                    required
                   />
                 ) : formaPagamento === 'Parc./ 1 vezes' ? (
                   <input
@@ -553,7 +575,6 @@ function Formulario() {
                     name='Form/Pag'
                     value={(valorBruto / 1).toFixed(2)}
                     readOnly
-                    required
                   />
                 ) : formaPagamento === 'Parc./ 2 vezes' ? (
                   <input
@@ -588,10 +609,10 @@ function Formulario() {
               </div>
             </div>
           </div>
-
         </div>
         <p className="copy">Este projeto foi desenvolvido por - Rogério de Almeia - &#169; 2024</p>
       </form >
+      <ModalMassage isOpen={isModalOpen} onClose={closeModal} errors={errors} />
     </div >
   );
 }

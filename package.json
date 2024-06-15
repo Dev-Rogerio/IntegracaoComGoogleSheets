@@ -21,6 +21,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "papaparse": "^5.4.1",
     "react-input-mask": "^2.0.4",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
     "web-vitals": "^4.0.1"
