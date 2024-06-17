@@ -10,7 +10,7 @@ const ModalMassage = ({ isOpen, onClose, errors }) => {
         <div className="backgroundTransparent" onClick={onclose}>
           <div className="modalOpen modal-content">
             <header className="modal-header">
-              <button className="btm-fchar close-button" onClick={onClose}><span className="spanModal close-icon">Close</span>X</button>
+              <button className="btm-close close-button" onClick={onClose}><span className="spanModal close-icon">Close</span>X</button>
             </header>
             <main className="modal-body">
               <h1 modal-title>[ Error... ]</h1>
@@ -21,7 +21,7 @@ const ModalMassage = ({ isOpen, onClose, errors }) => {
             <aside modal-aside>
               {firstErrorField && (
                 <h3 className="animated-text">
-                  {`Preencha o campo ${firstErrorField}, é obrigatório.`}
+                  {`O Campo ${firstErrorField}, é Obrigatório.`}
                 </h3>
               )}
             </aside>

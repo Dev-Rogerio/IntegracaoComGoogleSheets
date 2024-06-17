@@ -1,0 +1,73 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.MenuScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;  
+  background-color: #928f8f;
+   
+}
+.screenMenu {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;  
+  width: 100%;
+  padding: 50px; 
+  background-color: #d9d6d6;
+  margin-left: 50%;
+  transform: translate(-50%);
+  gap: 30px;
+  border-left: 1px solid #222;   
+  border: 1px solid #222;
+  box-shadow: 5px 5px 1px 1px  rgba(0, 0, 0, 0.2);;
+}
+.rowsOneMenu {
+  display: flex;  
+  justify-content: center;
+  width: 100%;
+  gap: 10%;  
+  padding-bottom: 20px;
+}
+.rowsTwoMenu {
+  display: flex;  
+  justify-content: center;
+  width: 100%;
+  gap: 10%;
+  padding-top: 20px;
+}
+.formMenu {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 30%;
+  border: 1px solid #222;
+  background-color: aliceblue;
+  border-radius: 4px;
+  padding: 10px;  
+}
+
+.imgMenu {
+  margin-left: 50%;
+  transform: translate(-50%);
+  width: 60%;  
+}
+.textP {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 20px;
+  background-color: #222;
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  border-radius: 4px;
+  padding: 5%;
+  margin-left: -5%;
+}

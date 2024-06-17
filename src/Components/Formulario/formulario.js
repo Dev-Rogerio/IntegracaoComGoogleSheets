@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import ReactModal from "react-modal";
 import InputMask from "react-input-mask";
 import "../Formulario/formulario.css";
@@ -8,6 +9,9 @@ import ModalMassage from "../Modal/modal";
 ReactModal.setAppElement('#root');
 
 function Formulario() {
+  const navigate = useNavigate(); // Hook para navegação
+  const redirectToFormulario = () => navigate('/');
+
   const [id, setId] = useState(parseInt(localStorage.getItem('ultimoId')) || 1);
   const [vendedor, setVendedor] = useState('');
   const [dataPedido, setDataPedido] = useState('');
@@ -37,6 +41,7 @@ function Formulario() {
   const [valorComDesconto, setValorComDesconto] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
@@ -70,11 +75,6 @@ function Formulario() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // if (!vendedor || !dataPedido || !pedido || !client || !celular || telefone || !email || !referencia || !compra || !aniversario) {
-    //   openModal();
-    //   return;
-    // }
-
     if (!validateFields()) {
       openModal();
       return;
@@ -103,6 +103,7 @@ function Formulario() {
     };
 
     console.log('Enviando dados:', data);
+    setIsLoading(true);
 
     try {
       const response = await fetch("https://sheetdb.io/api/v1/iacg5pfqkrtq0", {
@@ -121,6 +122,8 @@ function Formulario() {
       }
     } catch (error) {
       console.log('Erro ao enviar dados', error);
+    } finally {
+      setIsLoading(false);
     }
     handleLimparFormulario();
     localStorage.setItem('ultimoId', id + 1);
@@ -128,16 +131,16 @@ function Formulario() {
 
   const validateFields = () => {
     const newErrors = {};
-    if (!vendedor) newErrors.vendedor = 'Vendedor é obrigatório';
-    if (!dataPedido) newErrors.dataPedido = 'Data do pedido é obrigatória';
-    if (!pedido) newErrors.pedido = 'Pedido é obrigatório';
-    if (!client) newErrors.client = 'Cliente é obrigatório';
-    if (!celular) newErrors.celular = 'Celular é obrigatório';
-    if (!telefone) newErrors.telefone = 'Telefone é obrigatório';
-    if (!email) newErrors.email = 'Email é obrigatório';
-    if (!referencia) newErrors.referencia = 'Referência é obrigatória';
-    if (!compra) newErrors.compra = 'Valor da compra é obrigatório';
-    if (!aniversario) newErrors.aniversario = 'Aniversário é obrigatório';
+    if (!vendedor) newErrors.Vendedor = 'Vendedor é obrigatório';
+    if (!dataPedido) newErrors.Data = 'Data do pedido é obrigatória';
+    if (!pedido) newErrors.Pedido = 'Pedido é obrigatório';
+    if (!client) newErrors.Cliente = 'Cliente é obrigatório';
+    if (!celular) newErrors.Celular = 'Celular é obrigatório';
+    if (!aniversario) newErrors.Aniversario = 'Aniversário é obrigatório';
+    // if (!telefone) newErrors.telefone = 'Telefone é obrigatório';
+    if (!email) newErrors.Email = 'Email é obrigatório';
+    if (!referencia) newErrors.Referencia = 'Referência é obrigatória';
+    if (!compra) newErrors.Compra = 'Valor da compra é obrigatório';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -238,7 +241,7 @@ function Formulario() {
             <img className="imgForm" src={logoForm} alt="" />
           </div>
           <h1 className='form-h1'>Relatório de vendas</h1>
-          <label className="sairForm" htmlFor="">Sair</label>
+          <label className="sairForm" htmlFor="" onClick={redirectToFormulario}>Sair</label>
         </div>
         <div className="rowsOne">
           <div className='id'>
@@ -604,7 +607,7 @@ function Formulario() {
             </div>
             <div className="botoes">
               <div className="border">
-                <button type='submit' >Enviar</button>
+                <button type='submit' disabled={isLoading} >{isLoading ? 'enviando...' : 'enviar'}</button>
                 <button type="button" onClick={handleLimparFormulario}  >Limpar</button>
               </div>
             </div>
