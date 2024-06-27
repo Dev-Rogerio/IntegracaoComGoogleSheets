@@ -42,6 +42,7 @@ function Formulario() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [birthday, setBirthday] = useState('');
 
   useEffect(() => {
     const ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
@@ -70,6 +71,7 @@ function Formulario() {
     setAniversario('');
     setDesconto('');
     setValorComDesconto('');
+
   };
 
   const handleSubmit = async (event) => {
@@ -130,20 +132,149 @@ function Formulario() {
   };
 
   const validateFields = () => {
-    const newErrors = {};
-    if (!vendedor) newErrors.Vendedor = 'Vendedor é obrigatório';
-    if (!dataPedido) newErrors.Data = 'Data do pedido é obrigatória';
-    if (!pedido) newErrors.Pedido = 'Pedido é obrigatório';
-    if (!client) newErrors.Cliente = 'Cliente é obrigatório';
-    if (!celular) newErrors.Celular = 'Celular é obrigatório';
-    if (!aniversario) newErrors.Aniversario = 'Aniversário é obrigatório';
-    // if (!telefone) newErrors.telefone = 'Telefone é obrigatório';
-    if (!email) newErrors.Email = 'Email é obrigatório';
-    if (!referencia) newErrors.Referencia = 'Referência é obrigatória';
-    if (!compra) newErrors.Compra = 'Valor da compra é obrigatório';
+
+    let valid = true;
+    let newErrors = {};
+
+    if (!vendedor) {
+      newErrors.Vendedor = 'Vendedor é obrigatório';
+      valid = false;
+    }
+    if (!dataPedido) {
+      newErrors.Data = 'Data do pedido é obrigatória';
+      valid = false;
+    }
+    if (!pedido) {
+      newErrors.Pedido = 'Pedido é obrigatório';
+      valid = false;
+    }
+    if (!cpf) {
+      newErrors.CPF = 'CPF inválido';
+      valid = false;
+    } else if (!validaCPF(cpf)) {
+      newErrors.CPF = 'Cpf inválido';
+      valid = false;
+    }
+    if (!client) {
+      newErrors.Cliente = 'Cliente é obrigatório';
+      valid = false;
+    }
+    if (!celular) {
+      newErrors.Celular = 'Celular é obrigatório';
+      valid = false;
+    }
+    if (!aniversario) {
+      newErrors.Aniversario = 'Aniversário é obrigatório';
+      valid = false
+    }
+    if (!email) {
+      newErrors.Email = 'Email é obrigatório';
+      valid = false;
+    }
+    if (!referencia) {
+      newErrors.Referencia = 'Referência é obrigatória';
+      valid = false;
+    }
+    if (!compra) {
+      newErrors.Compra = 'Valor da compra é obrigatório';
+      valid = false;
+    }
+    const aniversarioError = validateAniversario(aniversario);
+    if (aniversarioError) {
+      newErrors.Aniversario = aniversarioError;
+      valid = false;
+    }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return valid;
+  };
+
+
+  function validaCPF(cpf) {
+    cpf = cpf.replace(/[^\d]+/g, '');
+    if (cpf.length !== 11 ||
+      cpf === "00000000000" ||
+      cpf === "11111111111" ||
+      cpf === "22222222222" ||
+      cpf === "33333333333" ||
+      cpf === "44444444444" ||
+      cpf === "55555555555" ||
+      cpf === "66666666666" ||
+      cpf === "77777777777" ||
+      cpf === "88888888888" ||
+      cpf === "99999999999") {
+      return false;
+    }
+    let add = 0;
+    for (let i = 0; i < 9; i++) {
+      add += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let rev = 11 - (add % 11);
+    if (rev === 10 || rev === 11) {
+      rev = 0;
+    }
+    if (rev !== parseInt(cpf.charAt(9))) {
+      return false;
+    }
+    add = 0;
+    for (let i = 0; i < 10; i++) {
+      add += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    rev = 11 - (add % 11);
+    if (rev === 10 || rev === 11) {
+      rev = 0;
+    }
+    if (rev !== parseInt(cpf.charAt(10))) {
+      return false;
+    }
+    return true;
+  }
+
+  const validateAniversario = (aniversario) => {
+    if (!aniversario) return 'Data de nascimento é obrigatória';
+
+    const today = new Date();
+    const aniversarioParts = aniversario.split('/');
+    const aniversarioDate = new Date(aniversarioParts[2], aniversarioParts[1] - 1, aniversarioParts[0]);
+
+    if (aniversarioDate.getFullYear() <= 1900) {
+      return 'Data de nascimento deve ser maior que 1900';
+    }
+
+    const age = today.getFullYear() - aniversarioDate.getFullYear();
+    const monthDifference = today.getMonth() - aniversarioDate.getMonth();
+
+
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 && today.getDate() < aniversarioDate.getDate())
+    ) {
+      age--;
+    }
+
+    if (age < 0 || age > 120) {
+      return 'Data de nascimento inválida';
+    }
+
+    return '';
+  };
+  const setInputSelection = (element, start, end) => {
+    // Verifica se o elemento de entrada suporta a seleção de texto
+    if (element.type === 'text' || element.type === 'search' || element.type === 'tel' || element.type === 'url' || element.type === 'password') {
+      element.selectionStart = start;
+      element.selectionEnd = end;
+    }
+  };
+  const formatDate = (date) => {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
   };
 
   const handleValorCompraChange = (event) => {
@@ -272,16 +403,16 @@ function Formulario() {
             </label>
           </div>
           <div className="data">
-            <label htmlFor="data">
+            <label htmlFor="dataPedido">
               <span className='formLabel'>Data</span>
-              <InputMask
-                className={`iData ${errors.dataPedido ? 'input-error' : ''}`}
+              <input
+                className="iData"
                 mask="99/99/9999"
-                type="text"
-                id="data"
+                type="date"
+                id="dataPedido"
                 name="data"
                 placeholder="DD/MM/AAAA"
-                value={dataPedido}
+                value={formatDate(dataPedido)}
                 onChange={(e) => setDataPedido(e.target.value)}
               />
             </label>
@@ -306,14 +437,17 @@ function Formulario() {
             <label htmlFor="cpf">
               <span className='formLabel'>Cpf</span>
               <InputMask
-                className="iCpf"
+                className={`iCpf errors.CPF ? 'input-error' : ""`}
                 mask="999.999.999-99"
+                id="cpf"
                 type="text"
                 name='cpf'
                 placeholder="Cpf"
                 value={cpf}
                 onChange={(e) => setCpf(e.target.value)}
               />
+
+
             </label>
           </div>
           <div className='client'>
@@ -365,16 +499,17 @@ function Formulario() {
           <div className="aniversario">
             <label htmlFor="aniversario">
               <span className='formLabel'>Aniversário</span>
-              <InputMask
-                className='iAniversario'
-                mask="99/99/9999"
-                type="text"
-                id="data"
+              <input
+                className={`iAniversario ${errors.aniversario ? 'input-error' : ''}`}
+                // mask="99/99/9999"
+                type="date"
+                id="aniversario"
                 name="data"
                 placeholder="DD/MM/AAAA"
                 value={aniversario}
                 onChange={(e) => setAniversario(e.target.value)}
               />
+
             </label>
           </div>
           <div className="email">

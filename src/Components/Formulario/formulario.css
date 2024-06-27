@@ -75,6 +75,7 @@ input {
   font-weight: 600;
   font-size: 11px;
   color: #2226;   
+  text-transform: lowercase;
 }
 .formaPgto {
    width: 100%;
@@ -300,6 +301,7 @@ border-radius: 3px;
 border: 1px solid #222;
 text-indent: 10px;
 cursor: pointer;
+text-transform: lowercase;
 }
 .rowsFour { 
   display: flex;

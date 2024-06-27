@@ -8,66 +8,71 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;  
-  background-color: #928f8f;
-   
+  background-color: #928f8f;   
 }
-.screenMenu {
+.containnerMenu {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  background-color: #d1d1d1;  
+  grid-row-gap: 20px;
+  padding: 40px;
+  border-radius: 4px;    
+  width: 40%;
+  height: 65%;
+}
+.itemCadastroMenu {
   display: block;
-  align-items: center;
   justify-content: center;
-  border-radius: 5px;  
-  width: 100%;
-  padding: 50px; 
-  background-color: #d9d6d6;
+  align-items: center;
+  background-color: rgb(245, 194, 101);    
+}
+.itemFormularioMenu{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(245, 194, 101);  
+}
+.itemMeasureMenu {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(245, 194, 101);  
+}
+.itemOnLineMenu{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(245, 194, 101);   
+}
+.centerMenu {
   margin-left: 50%;
   transform: translate(-50%);
-  gap: 30px;
-  border-left: 1px solid #222;   
-  border: 1px solid #222;
-  box-shadow: 5px 5px 1px 1px  rgba(0, 0, 0, 0.2);;
-}
-.rowsOneMenu {
-  display: flex;  
-  justify-content: center;
-  width: 100%;
-  gap: 10%;  
-  padding-bottom: 20px;
-}
-.rowsTwoMenu {
-  display: flex;  
-  justify-content: center;
-  width: 100%;
-  gap: 10%;
-  padding-top: 20px;
-}
-.formMenu {
-  display: block;
-  justify-content: center;
-  align-items: center;
-  width: 15%;
-  height: 30%;
-  border: 1px solid #222;
-  background-color: aliceblue;
   border-radius: 4px;
-  padding: 10px;  
+  border: 1px solid #222;
+  border-radius: 4px;
+  width: 80%;
+  height: 100%;
 }
-
 .imgMenu {
   margin-left: 50%;
   transform: translate(-50%);
-  width: 60%;  
+  width: 50%;  
+  margin-top: 5%;
 }
 .textP {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 70%;
   height: 20px;
   background-color: #222;
-  color: white;
-  text-align: center;
+  color: white;  
   margin-top: 20px;
   border-radius: 4px;
   padding: 5%;
-  margin-left: -5%;
+  margin-left: 50%;
+  transform: translate(-50%);
 }
+
+
