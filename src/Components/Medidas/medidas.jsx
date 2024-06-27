@@ -111,6 +111,8 @@ const Medidas = () => {
                 </div>
               </form>
             </div>
+
+
             <div className="typePunho">
               <h3 className="scribeParis">Modelos de Punho</h3>
               <form className="modelPunho">
@@ -155,23 +157,56 @@ const Medidas = () => {
                 </div>
               </form>
             </div>
-            <div className="typeCamisa">
+
+
+
+            <section className="TypeCamisa">
               <h3 className="scribeParis">Modelo da Camisa</h3>
-              <div className="columnShirtMeasure">
-                <div className="itemA">
-                  <img className="Mang" src={Manga} alt="" />
-                  <div className="itemPalaBolso">
-                    <img className="itemShirtMeasure" src={Bolso} alt="" />
-                    <img className="itemShirtMeasure" src={Pala} alt="" />
-                    <img className="itemShirtMeasure" src={Frente} alt="" />
-                    <img className="itemShirtMeasure" src={Costa} alt="" />
-                    <div className="itemB">D</div>
-                  </div>
-                  <div className="containerFour">
-                  </div>
-                </div>
-              </div>
-            </div >
+
+              <section className="containerMoldeMeasure">
+                <div className="leftMolde">
+                  <img className="imgMang" src={Manga} alt="" />
+                  <section className="itemBolso">
+                    <img className="imgbolso" src={Bolso} alt="" />
+                    <img className="imgbolso" src={Pala} alt="" />
+                  </section>
+                  <section className="itemFreteCosta">
+                    <img className="imgFrente" src={Frente} alt="" />
+                    <img className="imgFrente" src={Costa} alt="" />
+
+                  </section>
+                </div >
+
+                <section className="sectionScribe">
+                  <section className="scribeForObs">a</section>
+
+
+                  B</section>
+              </section>
+            </section >
+
+
+
+
+
+
+            <span className="spanMangaMeasure"> </span>
+
+
+            <span className="BolsoPalaMeasure"> </span>
+            {/* */}
+
+            {/* <div className="gridLeftMeasure">  */}
+
+            {/* <div className="itemA">
+              <div className="itemPalaBolso">
+                <div className="itemB">D</div>
+              </div> */}
+            {/* </div> */}
+
+
+
+
           </div >
         </div >
       </div >

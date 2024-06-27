@@ -235,21 +235,18 @@
   height: 80px;
   background-color: #e7e7e7;
 }
-
 .typePunho {
 width: 100%;
 height: 70px;
 margin-top: 57px;
 background-color: #e7e7e7;
 }
-
 .typeCamisa {
   width: 100%;
   height: 70px;
   margin-top: 57px;
   background-color: #e7e7e7;
-  }
-  
+  }  
   .columnShirtMeasure {
     display: grid;
     grid-template-columns: 25% 75%;
@@ -293,4 +290,84 @@ background-color: #e7e7e7;
   margin-left: 50%;
   transform: translate(-50%);
 }
+/*  */
+.TypeCamisa{
+  display: block;
+  width: 100%;
+  height: 70px;
+  margin-top: 57px;
+}
+.containerMoldeMeasure {
+  display: flex;
+  /* background-color: violet; */
+  background-color: #e7e7e7;
+  width: 100%;
+}
+.leftMolde {
+  display: block;
+  width: 35%;
+}
+.imgMang {
+  margin-left: 10px;  
+}
+.itemBolso {
+  display: flex;
+  gap: 95px;
+  margin-left: 15px;
+}
+.imgbolso {
+  width: 75px;
+}
+.itemFreteCosta {
+  display: flex;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.imgFrente {
+  width: 120px;
+  height: 250px;
+  margin-left: 10px;
+}
+.sectionScribe {
+  width: 65%;
+  /* background-color: yellowgreen;  */
+}
+.scribeForObs {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius:  1px solid #222;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.gridLeftMeasure {
+ 
+}
+.spanMangaMeasure {
   
+}
+.BolsoPalaMeasure {
+  
+}
+
+.imgbolso {
+  
+}
+
+
+
+
+
+
+
