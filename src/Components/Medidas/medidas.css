@@ -10,103 +10,59 @@
   justify-content: center;
   align-items: center;
  }
- .claintMeasure {
+ .ScribeToText {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
   width: 100%;
   height: 35px;
-  background-color: #858383;
+  background-color: #5a5a5aa9;
  }
 .productionToken {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 40px;
-  background-color: #858383;
-  margin-top: 5px;
+  height: 53px;
+  background-color: #858383; 
+  border-bottom: 1px solid #480082;
 } 
 .collunTokenMeasure {
   display: block;
   width: 70%;
   height: 100%;
-  border: 1px solid #222;
+  border: 4px solid #480082;
   background-color: white;
   overflow-y: scroll;
+  
 }
 /*-CD-*/
-.clientData {
+.containerColumnGray{
   display: block;
   width: 100%;
   height: 100px;
   background-color: #e7e7e7;  
-  margin-top: 15px; 
+  margin-top: 2px; 
+  border-bottom: 1px solid #480082;
 }
-.scribe-Data {
- display: flex;
- gap: 5px; 
- background-color: #e7e7e7;
+ .textClient {
+  font-size: 10px;
+  color: #222;
+  font-family: roboto;
+  letter-spacing: 1px
+ } 
+ .itemData {
+  display: block;
  }
-.scribe-Data p:nth-child(1) {
-  width: 15%;
-  margin-left: 10px; 
-}
-.scribe-Data p:nth-child(2) {
-  width: 45%;  
-  margin-left: 16px; 
-}
-.scribe-Data p:nth-child(3) {
-  width: 15%;   
-  margin-left: 17px;
-}
-.scribe-Data p:nth-child(4) {
-  width: 15%;
-  margin-left: 18px;  
-}
-.iData {
-  display: flex;
-  justify-content: space-around;   
-  align-items: center;
-  gap: 5px;
-  margin-top: 2px;
+ .inputClient {
+  height: 25px;
+  border-radius: 4px;
   border: none;
-  background-color: #e7e7e7;
-}
-.iData input {
-  height: 30px;
-  border-radius: 2px;
-}
-.iData input:nth-child(1) {
-  width: 15%;
-  border: 1px solid #222;
-}
-.iData input:nth-child(2) {
-  width: 45%;
-  border: 1px solid #222;  
-}
-.iData input:nth-child(3) {
-  width: 15%;
-  border: 1px solid #222;  
-}
-.iData input:nth-child(4) {
-  width: 15%;
-  border: 1px solid #222;  
-  margin-right: 10px;
-}
-/* DM */
-.measureData {
-  margin-top: 20px;
-  background-color: #e7e7e7;
-  }
-.iMeasure {
-  display: grid;
-  width: 100%;
-  height: 120px;
-  grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 30% 70% 20%;  
-  grid-column-gap: 30px;   
-}
+  border-bottom: 2px solid #2229;  
+  border-right: 2px solid #2229;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
+  outline: none; 
+ }
 .medidas {
   display: flex;
   justify-content: center;
@@ -116,96 +72,51 @@
   background-color: #a19f9f;
   margin: 0;
 }
-.iMeasure input { 
+.containerColumnChocolate {
   display: flex;
- margin-left: 50%;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 40px;   
-  border: 1px solid #222;
-  border-radius: 3px;
+  height: 51px;
+  background-color: chocolate;
+  gap: 24px;
+}
+.formChocolate {
+  height: 57px;
+}
+.itemMeasure {
+  display: block;    
+}
+.imgSizePunho {
+  width: 70px;
+} 
+.iMeasure {
+  width: 60px;
+  height: 25px;
+  border-radius: 4px;
+  border: none;
+  border-bottom: 2px solid #2229;  
+  border-right: 2px solid #2229;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  outline: none; 
+}
+.textMeasure{
+  font-size: 10px;
+  color: #222;
+  font-family: roboto;
+  letter-spacing: 1px
+}
+.sectionTypeColarinho {
+  display: block;
+}
+.radioParis {
+  display: flex;
+  gap: 10px;
+  justify-content: center;  
+}
+.imgColarinho {
+  width: 110px;
   margin-top: 10px;
-}
-.iMeasure p {
-  margin-left: 50%;
-  margin-top: -30px;
-}
-.colar:nth-child(2){  
-  grid-column: 1/2;
-  grid-row: 2;
-}
-.colar:nth-child(3){ 
-  grid-column: 1/2;
-  grid-row: 3  
-}
-.pala:nth-child(4) {  
-  grid-column: 2/3;
-  grid-row: 2;
-}
-.pala:nth-child(5) {  
-  grid-column: 2/3;
-  grid-row: 3;
-}
-.manga:nth-child(6) { 
-  grid-column: 3/4;
-  grid-row:  2;
-}
-.manga:nth-child(7) { 
-  grid-column: 3/4;
-  grid-row: 3;
-}
-.torax:nth-child(8) { 
-  grid-column: 4/5;
-  grid-row:  2;
-}
-.torax:nth-child(9) { 
-  grid-column: 4/5;
-  grid-row: 3;
-}
-.cintura:nth-child(10) { 
-  grid-column: 5/6;
-  grid-row:  2;
-}
-.cintura:nth-child(11) {  
-  grid-column: 5/6;
-  grid-row: 3;
-}
-.quadril:nth-child(12) {  
-  grid-column: 6/7;
-  grid-row:  2;
-}
-.quadril:nth-child(13) {  
-  grid-column: 6/7;
-  grid-row: 3;
-}
-.cumprimento:nth-child(14) {  
-  grid-column: 7/8;
-  grid-row:  2;
-}
-.cumprimento:nth-child(15) {  
-  grid-column: 7/8;
-  grid-row: 3;
-}
-.punho:nth-child(16) {  
-  grid-column: 8/9;
-  grid-row:  2;
-}
-.punho:nth-child(17) {  
-  grid-column: 8/9;
-  grid-row: 3;
-}
-/*  */
-.typeColar {
-  width: 100%;
-  height: 70px;
-  margin-top: 7px;
-  background-color: #e7e7e7; 
-}
-.modelColar {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  height: 80px;
-  background-color: #e7e7e7; 
 }
 .imgParis {
   width: 110px;
@@ -222,11 +133,6 @@
 .divParisMeasure {
   display: block;
 }
-.radioParis {
-  display: flex;
-  gap: 10px;
-  justify-content: center;  
-}
 /* MP */
 .modelPunho {
   display: flex;
@@ -234,17 +140,18 @@
   width: 100%;
   height: 80px;
   background-color: #e7e7e7;
+  border-bottom: 1px solid #480082;
 }
 .typePunho {
 width: 100%;
 height: 70px;
-margin-top: 57px;
+margin-top: 49px;
 background-color: #e7e7e7;
 }
 .typeCamisa {
   width: 100%;
   height: 70px;
-  margin-top: 57px;
+  margin-top: 49px;
   background-color: #e7e7e7;
   }  
   .columnShirtMeasure {
@@ -305,65 +212,62 @@ background-color: #e7e7e7;
 }
 .leftMolde {
   display: block;
-  width: 35%;
+  width: 30%;
+  background-color: chocolate;
 }
-.imgMang {
-  margin-left: 10px;  
+.itemSectionShirt {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.imgMang {  
+  width: 75%;  
 }
 .itemBolso {
   display: flex;
-  gap: 95px;
-  margin-left: 15px;
+  gap: 75px;  
+  
 }
 .imgbolso {
-  width: 75px;
+  width: 55px;
 }
 .itemFreteCosta {
   display: flex;
-  margin-left: 10px;
+  justify-content: center;
   margin-top: 5px;
+  gap: 17px;
+  margin-left: -7px;
 }
 .imgFrente {
-  width: 120px;
-  height: 250px;
+  width: 80px;
+  height: 160px;
   margin-left: 10px;
 }
-.sectionScribe {
-  width: 65%;
-  /* background-color: yellowgreen;  */
+.itemSectionScribe {
+  width: 100%; 
+  background-color: #480082;
 }
-.scribeForObs {
+.scribeToObs {
   display: flex;
-  width: 100%;
+  width: 80%;
   height: 100%;
-  background-color: white;
+  /* background-color: white; */
   border-radius:  1px solid #222;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-.gridLeftMeasure {
- 
-}
-.spanMangaMeasure {
-  
-}
-.BolsoPalaMeasure {
-  
+.itemButton {
+  display: flex;
+  gap: 10px;
 }
 
-.imgbolso {
-  
-}
+
+
+
+
+
+
+
+
+
 
 
 
