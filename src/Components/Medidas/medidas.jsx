@@ -28,24 +28,24 @@ const Medidas = () => {
           <div className="containerColumnGray">
             <h3 className="ScribeToText">Cliente</h3>
             <div className="containerColumnChocolate">
-              <section className="sectionId itemData">
-                <p className="textClient" >ID</p>
+              <section className="sectionId displayBlock">
+                <p className="textMeasure" >ID</p>
                 <input className="inputClient" type="text" />
               </section>
-              <sectio className="sectionCpf itemData">
-                <p className="textClient" >CPF</p>
-                <input className="inputClient" type="text" />
-              </sectio>
-              <section className="sectionNome itemData">
-                <p className="textClient" >Nome</p>
+              <section className="sectionCpf displayBlock">
+                <p className="textMeasure" >Cpf</p>
                 <input className="inputClient" type="text" />
               </section>
-              <section className="sectionData itemData">
-                <p className="textClient" >Data</p>
+              <section className="sectionNome displayBlock">
+                <p className="textMeasure" >Nome</p>
                 <input className="inputClient" type="text" />
               </section>
-              <sectio className="sectonEntrega itemData">
-                <p className="textClient" >Entrega</p>
+              <section className="sectionData displayBlock">
+                <p className="textMeasure" >Data</p>
+                <input className="inputClient" type="text" />
+              </section>
+              <sectio className="sectonEntrega displayBlock">
+                <p className="textMeasure" >Entrega</p>
                 <input className="inputClient" type="text" />
               </sectio>
             </div>
@@ -53,45 +53,45 @@ const Medidas = () => {
               <div className="containerColumnGray">
                 <h3 className="ScribeToText">Medidas</h3>
                 <div className="containerColumnChocolate">
-                  <section className="sectionColar itemMeasure">
-                    <input type="text" className="colar iMeasure" />
-                    <p className="colar textMeasure" >Colar</p>
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
+                    <p className="textMeasure" >Colar</p>
                   </section>
-                  <section className="Pala itemMeasure">
-                    <input type="text" className="pala iMeasure" />
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
                     <p className="pala textMeasure">Pala</p>
                   </section>
-                  <section className="manga itemMeasure">
-                    <input type="text" className="manga iMeasure" />
-                    <p className="manga textMeasure">Manga</p>
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
+                    <p className="textMeasure">Manga</p>
                   </section>
-                  <section className="torax itemMeasure">
-                    <input type="text" className="torax iMeasure" />
-                    <p className="torax textMeasure">Tórax</p>
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
+                    <p className="textMeasure">Tórax</p>
                   </section>
-                  <section className="cintura itemMeasure">
-                    <input type="text" className="cintura iMeasure" />
-                    <p className="cintura textMeasure">Cintura</p>
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
+                    <p className="textMeasure">Cintura</p>
                   </section>
-                  <section className="quadril itemMeasure">
-                    <input type="text" className="quadril iMeasure" />
-                    <p className="quadril textMeasure">Quadril</p>
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
+                    <p className="textMeasure">Quadril</p>
                   </section>
-                  <section className="cumprimento itemMeasure">
-                    <input type="text" className="cumprimento iMeasure" />
-                    <p className="cumprimento textMeasure">Cumpr.</p>
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
+                    <p className="textMeasure">Cumpr.</p>
                   </section>
-                  <section className="punho itemMeasure">
-                    <input type="text" className="punho iMeasure" />
-                    <p className="punho textMeasure">Punho</p>
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
+                    <p className="textMeasure">Punho</p>
                   </section>
-                  <section className="biceps itemMeasure">
-                    <input type="text" className="biceps iMeasure" />
-                    <p className="biceps textMeasure">Biceps</p>
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
+                    <p className="textMeasure">Biceps</p>
                   </section>
-                  <section className="braco itemMeasure">
-                    <input type="text" className="braco iMeasure" />
-                    <p className="braco textMeasure">Braço</p>
+                  <section className="displayBlock">
+                    <input type="text" className="typeInput" />
+                    <p className="textMeasure">Braço</p>
                   </section>
                 </div>
               </div>
@@ -103,7 +103,7 @@ const Medidas = () => {
                 <h3 className="ScribeToText">Modelos de Colarinho</h3>
                 <form className="containerColumnChocolate formChocolate">
 
-                  <section className="sectionTypeColarinho">
+                  <section className="displayBlock">
                     <img src={Colarinho} alt="" className="imgColarinho" />
                     <div className="radioParis">
                       <input type="radio" id="paris" className="ColumnOneMeasure" />
@@ -111,7 +111,7 @@ const Medidas = () => {
                     </div>
                   </section>
 
-                  <section className="sectionTypeColarinho">
+                  <section className="displayBlock">
                     <img src={Colarinho} alt="" className="imgColarinho" />
                     <div className="radioParis">
                       <input type="radio" id="paris" className="ColumnOneMeasure" />
@@ -119,7 +119,7 @@ const Medidas = () => {
                     </div>
                   </section>
 
-                  <div className="sectionTypeColarinho">
+                  <div className="displayBlock">
                     <img src={Colarinho} alt="" className="imgColarinho" />
                     <div className="radioParis">
                       <input type="radio" id="paris" className="ColumnOneMeasure" />
@@ -128,14 +128,14 @@ const Medidas = () => {
                   </div>
 
 
-                  <div className="sectionTypeColarinho">
+                  <div className="displayBlock">
                     <img src={Colarinho} alt="" className="imgColarinho" />
                     <div className="radioParis">
                       <input type="radio" id="paris" className="ColumnOneMeasure" />
                       <label className="textMeasure" htmlFor="paris">Bico-Down</label>
                     </div>
                   </div>
-                  <div className="sectionTypeColarinho">
+                  <div className="displayBlock">
                     <img src={Colarinho} alt="" className="imgColarinho" />
                     <div className="radioParis">
                       <input type="radio" id="paris" className="ColumnOneMeasure" />
@@ -143,7 +143,7 @@ const Medidas = () => {
                     </div>
                   </div>
 
-                  <div className="sectionTypeColarinho">
+                  <div className="displayBlock">
                     <img src={Colarinho} alt="" className="imgColarinho" />
                     <div className="radioParis">
                       <input type="radio" id="paris" className="ColumnOneMeasure" />
@@ -195,6 +195,51 @@ const Medidas = () => {
 
               </form>
             </div>
+            <div className="containerColumnGray">
+              <h3 className="ScribeToText">Especificações</h3>
+              <div className="containerColumnChocolate formChocolate">
+                <section className="displayBlock">
+                  <label className="textMeasure" htmlFor=""> Mtrs/tecido</label>
+                  <input type="text" className="displayBlock typeInput" />
+                </section>
+
+                <section className="displayBlock">
+                  <label htmlFor="" className="textMeasure">Monograma:</label>
+                  <input type="text" className="displayBlock typeInput iMonograma" />
+                </section>
+
+                <section>
+                  <label htmlFor="" className="textMeasure">Bolso</label>
+                  <input type="radio" className="displayBlock" />
+                </section>
+                <section>
+                  <label htmlFor="" className="textMeasure">Sem/Bolso</label>
+                  <input type="radio" className="displayBlock" />
+                </section>
+                <section>
+                  <label htmlFor="" className="textMeasure">WA</label>
+                  <input type="radio" className="displayBlock" />
+                </section>
+                <section>
+                  <label htmlFor="" className="textMeasure">Const. Normal</label>
+                  <input type="radio" className="displayBlock" />
+                </section>
+                <section>
+                  <label htmlFor="" className="textMeasure">Const. Beirada</label>
+                  <input type="radio" className="displayBlock" />
+                </section>
+                <section>
+                  <label htmlFor="" className="textMeasure">Frente Lisa</label>
+                  <input type="radio" className="displayBlock" />
+                </section>
+
+
+
+
+
+              </div>
+
+            </div>
             <section className="containerColumnGray">
               <h3 className="ScribeToText">Modelo da Camisa</h3>
               <section className="containerMoldeMeasure">
@@ -224,14 +269,14 @@ const Medidas = () => {
                 <section className="itemSectionScribe">
                   <section className="scribeToObs">
                     <form action="">
-                      <textarea name="" id="">M</textarea>
+                      <textarea className="messageTextarea"></textarea>
                     </form>
                   </section>
                 </section>
               </section>
               <div className="containerColumnGray itemButton">
-                <button>Enviar</button>
-                <button>Limpar</button>
+                <button className="buttonEnviar">Enviar</button>
+                <button className="buttonLimpar">Limpar</button>
               </div>
             </section >
           </div >
