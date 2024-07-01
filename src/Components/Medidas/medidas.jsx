@@ -1,12 +1,6 @@
 import React from "react";
 
 import '../Medidas/medidas.css';
-// import Paris from '../AssetsIcons/paris.png';
-// import Italy from '../AssetsIcons/italy.png';
-// import Ingles from '../AssetsIcons/ingles.png';
-// import BicoDown from '../AssetsIcons/bico.png';
-// import Windsor from '../AssetsIcons/windsor.png';
-// import Douglas from '../AssetsIcons/douglas.png';
 import Colarinho from '../AssetsIcons/typeColarinho.png';
 import Duplo from '../AssetsIcons/duplo.png';
 import Redondo from '../AssetsIcons/redondo.png';
@@ -20,33 +14,38 @@ import FranceBotao from '../AssetsIcons/francesBotao.png';
 
 const Medidas = () => {
 
+  const handlePrint = () => {
+    window.print();
+  }
+
   return (
     <>
       <div className="containerMeasure">
         <div className="collunTokenMeasure">
+
           <h1 className="productionToken">Ficha de Produção</h1>
           <div className="containerColumnGray">
             <h3 className="ScribeToText">Cliente</h3>
             <div className="containerColumnChocolate">
               <section className="sectionId displayBlock">
                 <p className="textMeasure" >ID</p>
-                <input className="inputClient" type="text" />
+                <input className="inputClient itemId" type="text" />
               </section>
               <section className="sectionCpf displayBlock">
                 <p className="textMeasure" >Cpf</p>
-                <input className="inputClient" type="text" />
+                <input className="inputClient itemCpf" type="text" />
               </section>
               <section className="sectionNome displayBlock">
                 <p className="textMeasure" >Nome</p>
-                <input className="inputClient" type="text" />
+                <input className="inputClient itemNome" type="text" />
               </section>
               <section className="sectionData displayBlock">
                 <p className="textMeasure" >Data</p>
-                <input className="inputClient" type="text" />
+                <input className="inputClient itemData" type="text" />
               </section>
-              <sectio className="sectonEntrega displayBlock">
+              <sectio className="sectionEntrega displayBlock">
                 <p className="textMeasure" >Entrega</p>
-                <input className="inputClient" type="text" />
+                <input className="inputClient itemEntrega" type="text" />
               </sectio>
             </div>
             <div className="measureData">
@@ -275,8 +274,9 @@ const Medidas = () => {
                 </section>
               </section>
               <div className="containerColumnGray itemButton">
-                <button className="buttonEnviar">Enviar</button>
-                <button className="buttonLimpar">Limpar</button>
+                <button className="buttonSalvar">Salvar</button>
+                <button className="buttonExcluir">Excluir</button>
+                <button className="buttonLimpar" onClick={handlePrint}>Imprimir</button>
               </div>
             </section >
           </div >
