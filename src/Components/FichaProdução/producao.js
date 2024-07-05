@@ -50,7 +50,7 @@ const Producao = () => {
                 <input type="text" className="iContactProduction iFont" />
               </div>
               <div className="flexData _marginTopDate">
-                <p className="textColor">DATA:</p>
+                <p className="textColor">DATE:</p>
                 <input type="text" className="iDateProduction iFont" />
                 <div className="flexDataDelivery">
                   <p className="textColor iEntrega">ENTREGA:</p>
