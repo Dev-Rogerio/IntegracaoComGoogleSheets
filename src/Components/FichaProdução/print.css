@@ -1,0 +1,83 @@
+
+@media print {
+  .no-print {
+    display: none;
+  }
+body {  
+  font-size: 12pt; 
+  color:black;
+  background: white;  
+ } 
+ .screenTokenMeasure {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #480082;
+  background-color: white;
+  overflow-y: none;  
+}
+.seller {
+  width: 100px;
+  outline: none;
+  border: 1px solid #2229;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.iClientProduction {
+  width: 100%;
+  height: 22px;
+  margin-left: 8px;  
+} 
+.textCpfMediaPrint{
+  margin-left: 10px;
+}
+._toMedidaPrint{
+  margin-left: -10px;
+}
+.textColorMediaPrint {
+  margin-left: 5px;
+}
+.iMeters {
+  width: 45px;
+}
+.iMonograma{
+  width: 80px;  
+}
+.iDateProduction {
+  margin-left: -2px; 
+}
+.iEntregaProduction{
+  margin-left: -5px;
+}
+.flexDataDelivery {
+  margin-left: 4px;
+}
+.meters {
+  margin-left: -15px;
+}
+.iArea {
+  margin-left: 30px;
+  width: 95%;
+  height: 240px;
+}
+.rowsTwoMeasure {
+  margin-top: -40px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,506 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+.containerTypeMeasure{  
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color:teal ;    
+  justify-content: center;
+  align-items: center;
+ }
+ /* .collunTokenProduction {
+   display: block;
+   width: 70%;
+   height: 100%;
+   border: 4px solid gray;
+   background-color:  beige;
+   background-color: red;
+   overflow-y: scroll;   
+ }  */ 
+.screenTokenMeasure {
+  display: block;
+  width: 70%;
+  height: 100%;
+  border: 4px solid #480082;
+  background-color: beige;
+  overflow-y: scroll;  
+}
+._dispalayFlexHeader {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
+ height: 53px; 
+ background-color: beige;   
+} 
+.sectionHeaderLeft {
+  display: flex;
+  margin-left: 10px;
+  gap: 8px;
+}
+.textColor {
+  font-size: 10px;
+  color: black;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.seller {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: beige;
+  outline: none;
+}
+.iFont {
+  font-size: 15px;
+  text-indent: 5px;
+  text-transform: capitalize;
+  font-weight: bold;
+  color: black;
+}
+.textToken {
+  font-size: 23px;
+}
+.sectionHeaderRight { 
+  display: flex;  
+  align-items: center;
+  width: 25%;
+  height: 100%;
+  gap: 8px;
+ } 
+ .NumberToken{
+  display: flex;  
+  width: 70%;
+  height: 30px;
+  border-radius: 2px;
+  outline: none;
+  border: 1px solid #222;
+ } 
+.iFont {
+  font-weight: bold;
+}
+  .rowsOneMeasure {
+    display: flex;
+    width: 100%;
+    height: 210px;
+    background-color: beige;
+  }  
+.dataClient{
+   width: 100%;
+  padding: 10px;  
+}
+.ArtcleContactName {
+  display: flex;
+  width: 100%;
+  height: auto;
+  background-color: beige; 
+}
+.flexData {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+}
+.iClientProduction {
+  width: 100%;
+  height: 22px;
+  margin-left: 38px;
+  outline: none;
+  border: none;
+  background-color: #ccc;
+  border-radius: 2px;  
+}
+._textColor{
+  font-size: 10px;
+  color: black;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin-left: 15px;  
+}
+._marginTop {  
+  margin-top: 15px;  
+}
+.iContactProduction {
+  margin-left: 17px;
+  width: 100%;
+  height: 22px;
+   outline: none;
+  border: none;
+  background-color: #ccc;
+  border-radius: 2px;  
+}
+._marginTopDate{
+  display: flex;
+  justify-content: start;
+  margin-top: 15px;    
+}
+.iDateProduction {
+  margin-left: 30px;
+  width: 45%;
+  height: 22px;
+  outline: none;
+  border: none;
+  background-color: #ccc;
+  border-radius: 2px; 
+}
+.flexDataDelivery {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+  margin-left: 15px; 
+}
+.iEntrega {
+  margin-left: 63px;  
+}
+.iEntregaProduction {
+  margin-left: 10%;
+  width: 45%;
+  height: 22px;
+  outline: none;
+  border: none;
+  background-color: #ccc;
+  border-radius: 2px; 
+}
+.measuresDatas {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;  
+}
+._divMeasure {
+  display: flex;
+  width: 100%;  
+  gap: 1px;
+}
+.iFild {
+  text-align: center;
+  width: 98%;
+  outline: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;  
+}
+.iColarProducao { 
+  height: 40px;
+  border-bottom: none ;
+  border-left: none;
+  border-top: none;
+  border-right: 1px solid #2229;
+  background-color: #ccc;
+}
+.pFild {
+  font-size: 10px;
+  color: black;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-align: center;
+}
+.iPalaProducao {  
+  height: 40px;
+  border-bottom: none ;
+  border-left: none;
+  border-top: none;
+  border-right: 1px solid #2229;
+  background-color: #ccc;
+}
+.iMangaProducao {  
+  height: 40px;
+  border-bottom: none ;
+  border-left: none;
+  border-top: none;
+  border-right: 1px solid #2229;
+  background-color: #ccc;
+}
+.iToraxProducao { 
+  height: 40px;
+  border-bottom: none ;
+  border-left: none;
+  border-top: none;
+  border-right: 1px solid #2229;
+  background-color: #ccc;
+}
+.iCinturaProducao { 
+  height: 40px;
+  border-bottom: none ;
+  border-left: none;
+  border-top: none;
+  border-right: 1px solid #2229;
+  background-color: #ccc;
+}
+.iQuadrilProducao { 
+  height: 40px;
+  border-bottom: none ;
+  border-left: none;
+  border-top: none;
+  border-right: 1px solid #2229;
+  background-color: #ccc;
+}
+.iCumprProducao { 
+  height: 40px;
+  border-bottom: none ;
+  border-left: none;
+  border-top: none;
+  border-right: 1px solid #2229;
+  background-color: #ccc;
+}
+.iPunhoProducao { 
+  height: 40px;
+  border-bottom: none ;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  background-color: #ccc;
+}
+.divCollumnTwoRight {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.collumnOneModel{
+  display: flex;
+  justify-content: center;
+  width: 100%;  
+}
+.centralized {
+  display: flex;
+  width: 100%;
+  justify-content: center;   
+  gap: 40px;
+}
+.imgParis {
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;  
+}
+._displayFlex{
+  width: 100%;
+  justify-content: center;
+  display: flex;  
+  gap: 10px;
+}   
+._iIngles {
+  margin-left: -6px;
+} 
+._iIngles {
+  margin-left: -6px;
+}
+._iDouglas {
+  margin-left: 10px;
+}
+._BicoDow {
+  margin-left: 3px;
+}
+.rowsTwoMeasure {
+  display: flex;
+  justify-content: center;
+   width: 100%;
+  height: 70px;
+  gap: 30px;
+  background-color: beige;  
+}
+.optionLeft {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 15px; 
+}
+.meters {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; 
+}
+.iMeters{
+  width: 70px;
+  height: 25px;
+  text-align: center;
+  border-radius: 3px;
+  border: 1px solid #2229;
+  outline: none;
+}
+.optionRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+._imgPunho {
+  display: block;
+}
+.punhoDouble {
+  width: 45%;
+}
+._typeRadio {
+  display: flex;
+  width: 100%; 
+ gap: 10px;  
+}
+.rowsThreeMeasure {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 49%;
+  background-color: beige;
+}
+.itemRowsLeft {
+  display: flex;
+  justify-content: center;
+  width: 25%;  
+}
+.typeOfShirts {
+  display: block;
+  width: 100%;  
+}
+.moldeLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+}
+.imgManga {
+  width: 90%;
+}
+.typeBolso {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  gap: 20px;  
+}
+.imgTypeBolso {   
+  width: 25%;
+}
+.FrenteCosta {
+  display: flex;
+  justify-content: center;
+  width: 100%;  
+}
+.imgMolde {
+width: 100px;
+height: 185px;
+margin-left: 10px;
+}
+.typeFormRight{
+display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 70%;
+}
+.displayBlock {
+  display: block;
+  width: 100%;
+}
+.firstRowsOptions {
+  display: flex;
+  justify-content: center;  
+  width: 100%;   
+}
+.ArticleGap {
+  gap: 5px; 
+  background-color: beige;
+}
+.message {
+  width: 100%;
+  background-color: beige;
+  height: 70%;
+}
+.iArea {
+  border: 1px solid #2229;
+  width: 100%;
+  height: 278px;
+  background-color: beige;
+  outline: none;
+  border: 1px solid rgb(185, 181, 181);
+}
+.areaBottom {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px; 
+}
+.screenClose{
+  width: 31%;
+  height: 30px;
+  background-color: gray;
+}
+.sendForm {
+  width: 31%;
+  height: 30px;
+  background-color: green;
+}
+.printScreen {
+  width: 31%;
+  height: 30px;
+  background-color: blue;
+}
+
+
+
+
+/* 
+.flexDadosMedidas {
+  display: flex; 
+  margin-top: 10px;
+  width: 95%;
+  border-radius: 2px;
+  height: 47px;
+}   
+ .containerColumnProduction {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: beige;  
+  margin-top: 2px; 
+  border-bottom: 1px solid #480082;
+}  
+ .sectorCpf {  
+  width: 15%;  
+ } 
+.flexDataDate {
+  display: flex;
+  margin: auto;
+} 
+.flexDadosEntrega {
+  display: flex; 
+ } 
+.flexDadosEntrega p {
+  margin-left: 32px;
+} 
+ medidas 
+ rowsOneMeasure 
+ .rowsThreeMeasure {
+  width: 100%;
+  display: flex;
+  height: 100px;
+  background-color: red; 
+} 
+ rowsTwoMeasure */
+
+
+
+
+
+
+
+
+/* 462 */
+
+
+
+
+
+
+
+
+

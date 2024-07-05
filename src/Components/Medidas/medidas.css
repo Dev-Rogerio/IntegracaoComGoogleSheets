@@ -25,7 +25,7 @@
   align-items: center;
   width: 100%;
   height: 53px;
-  background-color: #858383; 
+  background-color: #c0bdbd; 
   border-bottom: 1px solid #480082;
 } 
 .collunTokenMeasure {
@@ -37,8 +37,17 @@
   overflow-y: scroll;
   
 }
-/*-CD-*/
-.containerColumnGray{
+.containerColumnChocolate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 51px;
+  background-color: chocolate;
+  gap: 24px;
+}
+/*================Client-*/
+.containerColumnGrayClient {
   display: block;
   width: 100%;
   height: 100px;
@@ -46,7 +55,23 @@
   margin-top: 2px; 
   border-bottom: 1px solid #480082;
 } 
- .inputClient {
+.containerColumnChocolateClient {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 51px;
+  background-color: chocolate;
+  gap: 24px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 51px;
+  background-color: chocolate;
+  gap: 20px; */
+}
+.inputClient {
   width: 100%;
   height: 25px;
   border-radius: 4px;
@@ -56,6 +81,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
   outline: none; 
  }  
+ 
  .sectionId {
   width: 10%;
  }
@@ -71,16 +97,49 @@
  .sectionEntrega {  
   width: 10%;
  }
-.medidas {
+/* ============================= */
+.containerColumnGrayMedidas{
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #e7e7e7;  
+  margin-top: 2px; 
+  border-bottom: 1px solid #480082;
+ } 
+.containerColumnChocolateMedidas {
   display: flex;
   justify-content: center;
   align-items: center;
-  grid-row: 1;
-  grid-column: 1/10;
-  background-color: #a19f9f;
-  margin: 0;
+  width: 100%;
+  height: 51px;
+  background-color: chocolate; 
+  gap: 15px;
 }
-.containerColumnChocolate {
+.displayBlockMedidas {
+  display: block;  
+  width: 8%;    
+}
+.inputMedidas{
+  text-align: center;
+  width: 100%;
+  height: 25px;
+  border-radius: 4px;
+  border: none;
+  border-bottom: 2px solid #2229;  
+  border-right: 2px solid #2229;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
+  outline: none; 
+ }  
+/* =============================== */
+.containerColumnGrayColar {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #e7e7e7;  
+  margin-top: 2px; 
+  border-bottom: 1px solid #480082;
+} 
+.containerColumnChocolateColar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,12 +148,82 @@
   background-color: chocolate;
   gap: 24px;
 }
-.formChocolate {
+/* ========================= */
+.containerColumnGrayPunho{
+display: block;
+width: 100%;
+height: 100px;
+background-color: #e7e7e7;  
+margin-top: 2px; 
+border-bottom: 1px solid #480082;
+}
+
+.containerColumnChocolatePunho {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 51px;
+  background-color: chocolate;
+  gap: 24px;
+}
+
+/* ========================opções */
+.containerColumnGrayOpcoes{
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #e7e7e7;  
+  margin-top: 2px; 
+  border-bottom: 1px solid #480082;
+  }
+  
+.containerColumnChocolateOpcoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 51px;
+  background-color: chocolate;
+  gap: 24px;
+}
+.sectionMetragem{
+  width: 70px;
+ 
+}
+.iMetragem {
+  text-align: center;
+  display: block;
+  width: 75%;
+  height: 25px;
+  border-radius: 4px; 
+  border: 1px solid #2229;    
+  box-shadow: none;   
+  outline: none;
+ } 
+
+ .iMonograma {
+  text-align: center;
+  display: block;
+  width: 35%;
+  height: 25px;
+  border-radius: 4px; 
+  border: 1px solid #2229;    
+  box-shadow: none;   
+  outline: none;
+ } 
+
+
+.formChocolateColar {
+  height: 57px;
+}
+.formChocolateOpcoes {
   height: 57px;
 }
 .displayBlock {
   display: block;   
 }
+
 .imgSizePunho {
   width: 70px;
 } 
@@ -234,7 +363,7 @@ background-color: #e7e7e7;
 }
 .itemBolso {
   display: flex;
-  gap: 75px;  
+  gap: 45px;  
   
 }
 .imgbolso {
@@ -299,16 +428,224 @@ background-color: #e7e7e7;
 /* imprimir */
 /* print.css */
 @media print {
-  .containerMeasure {
-    width: 100%;
-  }
-
-  .itemButton {
+  .no-print {
     display: none;
   }
-
-  /* Adicione mais estilos conforme necessário */
+body {  
+  font-size: 12pt; 
+  color:black;
+  background: white;
+  overflow: hidden;
 }
+
+.containerMeasure{
+  margin: 0;
+  width: 100%;  
+}
+.collunTokenMeasure{
+  width: 100%;
+  overflow: hidden;  
+}
+
+.containerColumnGrayMedidas{
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #e7e7e7;  
+  margin-top: 2px; 
+  border-bottom: 1px solid #480082;
+  background-color: green;
+} 
+.containerColumnChocolateMedidas {
+  width: 90%;
+  margin-left: 50%;
+  transform: translate(-50%);
+  gap: 14px; 
+}
+.displayBlockMedidas {
+  display: block;  
+  /* width: 8%;     */
+}
+.inputMedidas{
+  width: 100%;
+  height: 25px;
+  border-radius: 4px;
+  border: 1px solid #2229;  
+  box-shadow: none;
+ }  
+ /* ======================client */
+ 
+.containerColumnGrayClient {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #e7e7e7;  
+  margin-top: 2px; 
+  border-bottom: 1px solid #480082;
+} 
+.containerColumnChocolateClient {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 51px;
+  background-color: chocolate;
+  gap: 20px;
+}
+.inputClient {
+  width: 100%;
+  height: 25px;
+  border-radius: 4px; 
+  border: 1px solid #2229;    
+  box-shadow: none;   
+ }  
+/* =================================Client */
+
+.containerColumnGrayColar {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #e7e7e7;  
+  margin-top: 2px; 
+  border-bottom: 1px solid #480082;
+} 
+.containerColumnChocolateColar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 51px;
+  background-color: chocolate;
+  gap: 24px;
+}
+
+.imgColarinho {
+  width: 90px;
+  margin-top: 10px;
+}
+/* ==================================colar */
+.containerColumnGrayOpcoes{
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #e7e7e7;  
+  margin-top: 2px; 
+  border-bottom: 1px solid #480082;
+  }  
+.containerColumnChocolateOpcoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 51px;
+  background-color: chocolate;
+  gap: 4px;
+}
+.sectionMetragem{
+  width: 70px; 
+}
+.iMetragem {
+  text-align: center;
+  display: block;
+  width: 75%;
+  height: 25px;
+  border-radius: 4px; 
+  border: 1px solid #2229;    
+  box-shadow: none;   
+  
+}
+
+ .iMonograma {
+  display: block;
+  width: 35%;
+  height: 25px;
+  border-radius: 4px; 
+  border: 1px solid #2229;    
+  box-shadow: none;   
+ 
+ } 
+
+/* ===========================opcoes */
+
+ 
+
+
+
+
+
+
+
+
+
+/* .containerMeasure {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  h1, h3, p {
+    margin: 0;
+    padding: 0;
+  }
+.collunTokenMeasure {
+  width: 160%;
+}
+.containerMoldeMeasure {
+  margin-left: 55px;
+}
+.itemButton {
+  display: none;
+}
+
+   /* Adicione mais estilos conforme necessário */
+    /* .inputClient {
+    border: 1px solid #2229;
+    border-radius: 0;
+    box-shadow: none;
+    width: 50px;
+    
+  }
+  
+  .measureData {
+    display: flex;
+    margin-left: 50%;
+    transform: translate(-50%);
+    width: 100%;  
+
+  }
+  .containerColumnGray {
+    width:  100%;
+  }
+  .containerColumnChocolate {
+    display: flex;
+    width: 100%;
+    margin-left: 50%;
+    transform: translate(-50%);
+   }
+  .formChocolateColar {
+    
+      
+    
+  }
+  .formChocolateOpcoes {
+    display: flex;
+    justify-content: space-around;
+     margin-left: 10px;
+   }
+  .displayBlock img {
+    width: 100%;
+    height: 25%;
+  }
+  .itemBolso {
+
+  }
+
+
+ */
+
+
+  }
+
+
 
 
 
