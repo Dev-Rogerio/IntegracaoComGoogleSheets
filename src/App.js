@@ -20,7 +20,7 @@ function App() {
           <Route path="/modal" element={<Modal />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/tabela" element={<Tabela />} />
-          <Route path="/medidas" element={<Medidas />} />
+          <Route path="/medidas" element={<Producao />} />
           <Route path="/producao" element={<Producao />} />
         </Routes>
       </Router>
