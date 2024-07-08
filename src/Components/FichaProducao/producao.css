@@ -9,16 +9,7 @@
   background-color:teal ;    
   justify-content: center;
   align-items: center;
- }
- /* .collunTokenProduction {
-   display: block;
-   width: 70%;
-   height: 100%;
-   border: 4px solid gray;
-   background-color:  beige;
-   background-color: red;
-   overflow-y: scroll;   
- }  */ 
+ } 
 .screenTokenMeasure {
   display: block;
   width: 70%;
@@ -72,13 +63,14 @@
   height: 100%;
   gap: 8px;
  } 
- .NumberToken{
+ .numberToken{
   display: flex;  
   width: 70%;
   height: 30px;
   border-radius: 2px;
   outline: none;
   border: 1px solid #222;
+  color: #2229;
  } 
 .iFont {
   font-weight: bold;
@@ -445,63 +437,3 @@ display: flex;
   height: 30px;
   background-color: blue;
 }
-
-
-
-
-/* 
-.flexDadosMedidas {
-  display: flex; 
-  margin-top: 10px;
-  width: 95%;
-  border-radius: 2px;
-  height: 47px;
-}   
- .containerColumnProduction {
-  display: block;
-  width: 100%;
-  height: 100px;
-  background-color: beige;  
-  margin-top: 2px; 
-  border-bottom: 1px solid #480082;
-}  
- .sectorCpf {  
-  width: 15%;  
- } 
-.flexDataDate {
-  display: flex;
-  margin: auto;
-} 
-.flexDadosEntrega {
-  display: flex; 
- } 
-.flexDadosEntrega p {
-  margin-left: 32px;
-} 
- medidas 
- rowsOneMeasure 
- .rowsThreeMeasure {
-  width: 100%;
-  display: flex;
-  height: 100px;
-  background-color: red; 
-} 
- rowsTwoMeasure */
-
-
-
-
-
-
-
-
-/* 462 */
-
-
-
-
-
-
-
-
-

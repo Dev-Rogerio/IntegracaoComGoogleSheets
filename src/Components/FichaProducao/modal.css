@@ -1,0 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.modalProduction {
+  position: fixed;
+  width: 350px;
+  height: 100px;
+  background-color: #ccc;
+  display: block;  
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.modalProduction h2 {
+  text-align: center;
+}
+.btnModalProduction {
+  margin-top: 20px;
+}

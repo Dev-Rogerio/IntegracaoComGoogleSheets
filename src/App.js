@@ -7,7 +7,7 @@ import Modal from "../src/Components/Modal/modal.jsx";
 import Menu from "../src/Components/Menu/menu.jsx";
 import Tabela from '../src/Components/Tabela/tabela.jsx';
 import Medidas from '../src/Components/Medidas/medidas.jsx';
-import Producao from '../src/Components/FichaProdução/producao.js';
+import Producao from './Components/FichaProducao/producao.js';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           <Route path="/modal" element={<Modal />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/tabela" element={<Tabela />} />
-          <Route path="/medidas" element={<Producao />} />
+          <Route path="/medidas" element={<Medidas />} />
           <Route path="/producao" element={<Producao />} />
         </Routes>
       </Router>

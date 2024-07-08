@@ -7,7 +7,6 @@ import logoForm from "../../Img/logo branco.png";
 import ModalMassage from "../Modal/modal";
 
 ReactModal.setAppElement('#root');
-
 function Formulario() {
   const navigate = useNavigate(); // Hook para navegação
   const redirectToFormulario = () => navigate('/');
@@ -43,6 +42,8 @@ function Formulario() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [birthday, setBirthday] = useState('');
+  const [cpfCadastrado, setCpfCadastrado] = useState(false);
+  const [cpfList, setCpfList] = useState(new Set());
 
   useEffect(() => {
     const ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
@@ -71,17 +72,38 @@ function Formulario() {
     setAniversario('');
     setDesconto('');
     setValorComDesconto('');
-
   };
-
+  const checkCpfRegistered = async (cpf) => {
+    try {
+      const response = await fetch(`http://localhost:3000/medidas/client/${cpf}`);
+      if (response.ok) {
+        const data = await response.json();
+        return !!data.client;
+      } else {
+        console.error('Erro ao verificar CPF:', response.statusText);
+        return false;
+      }
+    } catch (error) {
+      console.error('Erro ao verificar CPF:', error);
+      return false;
+    }
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (!validateFields()) {
       openModal();
       return;
     }
-
+    const cpf = event.target.cpf.value;
+    if (cpfList.has(cpf)) {
+      alert("Este CPF já foi inserido.");
+      return;
+    }
+    const cpfAlreadyRegistered = await checkCpfRegistered(cpf);
+    if (cpfAlreadyRegistered) {
+      alert("Este CPF já está cadastrado.");
+      return;
+    }
     const data = {
       id,
       Vendedor: vendedor,
@@ -103,10 +125,8 @@ function Formulario() {
       'Form_Pag.': formaPagamento,
       Aniversario: aniversario,
     };
-
     console.log('Enviando dados:', data);
     setIsLoading(true);
-
     try {
       const response = await fetch("https://sheetdb.io/api/v1/iacg5pfqkrtq0", {
         method: 'POST',
@@ -118,6 +138,7 @@ function Formulario() {
       if (response.ok) {
         console.log('Dados enviados com sucesso');
         handleLimparFormulario();
+        setCpfList(new Set(cpfList).add(cpf));
         setDataVencimento();
       } else {
         console.error('Erro ao enviar dados', response.statusText);
@@ -130,12 +151,9 @@ function Formulario() {
     handleLimparFormulario();
     localStorage.setItem('ultimoId', id + 1);
   };
-
   const validateFields = () => {
-
     let valid = true;
     let newErrors = {};
-
     if (!vendedor) {
       newErrors.Vendedor = 'Vendedor é obrigatório';
       valid = false;
@@ -184,12 +202,9 @@ function Formulario() {
       newErrors.Aniversario = aniversarioError;
       valid = false;
     }
-
     setErrors(newErrors);
     return valid;
   };
-
-
   function validaCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, '');
     if (cpf.length !== 11 ||
@@ -229,10 +244,8 @@ function Formulario() {
     }
     return true;
   }
-
   const validateAniversario = (aniversario) => {
     if (!aniversario) return 'Data de nascimento é obrigatória';
-
     const today = new Date();
     const aniversarioParts = aniversario.split('/');
     const aniversarioDate = new Date(aniversarioParts[2], aniversarioParts[1] - 1, aniversarioParts[0]);
@@ -240,22 +253,17 @@ function Formulario() {
     if (aniversarioDate.getFullYear() <= 1900) {
       return 'Data de nascimento deve ser maior que 1900';
     }
-
     const age = today.getFullYear() - aniversarioDate.getFullYear();
     const monthDifference = today.getMonth() - aniversarioDate.getMonth();
-
-
     if (
       monthDifference < 0 ||
       (monthDifference === 0 && today.getDate() < aniversarioDate.getDate())
     ) {
-      age--;
+      age == age - 1;
     }
-
     if (age < 0 || age > 120) {
       return 'Data de nascimento inválida';
     }
-
     return '';
   };
   const setInputSelection = (element, start, end) => {
@@ -270,34 +278,28 @@ function Formulario() {
     let month = '' + (d.getMonth() + 1);
     let day = '' + d.getDate();
     const year = d.getFullYear();
-
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
-
     return [year, month, day].join('-');
   };
-
   const handleValorCompraChange = (event) => {
     const valor = event.target.value;
     setCompra(valor);
     const valorComDescontoCalculado = calcularDesconto(valor, desconto);
     setValorComDesconto(valorComDescontoCalculado);
   };
-
   const handleDescontoChange = (event) => {
     const descontoValue = event.target.value;
     setDesconto(descontoValue);
     const valorComDescontoCalculado = calcularDesconto(compra, descontoValue);
     setValorComDesconto(valorComDescontoCalculado);
   };
-
   const handleTaxaDescontoChange = (event) => {
     const txDesconto = event.target.value;
     setTaxaDesconto(txDesconto);
     const desconto = calcularDesconto(valorBruto, txDesconto);
     setResultadoDesconto(desconto);
   };
-
   const handleTaxaCartaoChange = (event) => {
     const txCartao = event.target.value;
     setTaxaCartao(txCartao);
@@ -308,7 +310,6 @@ function Formulario() {
     const novoValorBruto = calcularValorBruto(valorBase, valorDescontoCartão);
     setValorBruto(novoValorBruto);
   };
-
   const handleTaxaComissaoChange = (event) => {
     const txComissao = event.target.value;
     setTaxaComissao(txComissao);
@@ -327,19 +328,16 @@ function Formulario() {
       setCaixa('');
     }
   };
-
   const handleFormaPagamentoChange = (event) => {
     setFormaPagamento(event.target.value);
     // handleParcelaChange();
   };
-
   const calcularDesconto = (valor, desconto) => {
     const valorFloat = parseFloat(valor);
     const descontoFloat = parseFloat(desconto);
     const valorComDesconto = valorFloat - (valorFloat * (descontoFloat / 100));
     return valorComDesconto.toFixed(2);
   };
-
   const calcularValorBruto = (valorBase, valorDescontoCartão) => {
     if (!isNaN(valorBase) && !isNaN(valorDescontoCartão)) {
       return (valorBase - valorDescontoCartão).toFixed(2);
@@ -347,7 +345,6 @@ function Formulario() {
       return '';
     }
   };
-
   const handleAniversarioChange = (event) => {
     const rawValue = event.target.value.replace(/\D/g, '');
     const day = rawValue.substring(0, 2);
@@ -362,7 +359,21 @@ function Formulario() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  const fetchClientNameByCpf = async (cpf) => {
+    try {
+      const response = await fetch(`http://localhost:3000/medidas/client/${cpf}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.client) {
+          setCliente(data.client.name);
+        }
+      } else {
+        console.error('Erro ao buscar nome do cliente pelo CPF:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Erro ao buscar nome do cliente pelo CPF:', error);
+    }
+  };
   return (
     <div className='containerForm'>
       {/* <form onSubmit={handleSubmit} > */}
@@ -446,8 +457,6 @@ function Formulario() {
                 value={cpf}
                 onChange={(e) => setCpf(e.target.value)}
               />
-
-
             </label>
           </div>
           <div className='client'>
@@ -509,7 +518,6 @@ function Formulario() {
                 value={aniversario}
                 onChange={(e) => setAniversario(e.target.value)}
               />
-
             </label>
           </div>
           <div className="email">
