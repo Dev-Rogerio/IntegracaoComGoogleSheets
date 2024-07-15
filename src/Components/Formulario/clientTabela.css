@@ -1,0 +1,235 @@
+*{
+  margin: 0;
+  padding: 0;  
+}
+.containerBody{
+  width: 100vw;
+  height: 100vh;
+  background-color: beige;
+}
+.topOrange{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+  background-color: rgb(131, 131, 130);
+  border-bottom: 1px solid #222;
+}
+._iBuscar { 
+  width: 170px;
+  height: 30px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid #222; 
+  margin-right: 20%;
+  text-indent: 10px;
+  cursor: pointer;
+}
+.closeClient {
+  margin-right: 40px;
+  color:black;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.s_Left{
+  width: 100%; 
+  height: 10px; 
+}
+.s_Kamisaria {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+}
+.s_Buscar {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+}
+.ImgLupaSearch {
+  width: 18px;
+  height: 18px;
+  color: white;
+  margin-top: 7px;
+}
+.a_CadastroCliente {
+  width: 100%;
+  height: 10%;
+  display: block;   
+  background-color: beige;  
+}
+.textArticleCad {
+  font-size: 32px;  
+  font-weight: bold; 
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 3%;
+}
+.textArticleCli {
+  font-family: roboto , sans-serif;
+  margin-left: 3%;
+  font-size: 18px;
+  font-weight: 400;
+}
+.mainPainel {
+  display: block;  
+  width: 100%;
+  height: 18%;
+  background-color: #ccc9;
+  padding: 10px; 
+  border-top: #222 1px solid;
+  border-bottom: #222 1px solid;
+}
+.personalDate {
+  display: flex;
+  justify-content: center;
+  width: 95%; 
+  margin-left: 50%;
+  transform: translate(-50%);
+  gap: 15px;
+}
+.personalDate p {
+  font-size: 11px;
+}
+._iMain{
+  width: 95%;
+  height: 27px;
+  border-radius: 3px;
+  outline: none; 
+  text-indent: 10px;
+  font-size: small;
+  border: 1px solid #222;
+  color: #222;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+._iMail-Email {
+  width: 95%;
+  height: 27px;
+  border-radius: 3px;
+  outline: none; 
+  text-indent: 10px;
+  font-size: small;
+  border: 1px solid #222;
+  color: #222;
+  cursor: pointer; 
+}
+.adressDate {
+  display: flex;
+  justify-content: center;
+  width: 95%;  
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-top: 15px;
+  gap: 15px;
+}
+.adressDate p {
+  font-size: 11px;
+}
+._anivesario {
+  width: 92%;
+}
+.sCpf {
+  width: 20%;   
+}
+.sNome {
+  width: 50%; 
+}
+.sEmail {
+  width: 50%;  
+}
+.sCelular {
+  width: 20%;  
+}
+.sTelefone {
+  width: 20%;  
+}
+.sAniversario {
+  width: 20%;   
+}
+.sCep {
+  width: 20%;
+}
+.sEndereco {
+  width: 50%;
+}
+.sNumero {
+  width: 5%;
+}
+.sComplemento {
+  width: 10%;
+}
+.sCidade {
+  width: 20%;
+}
+.sUf {
+  width: 5%;
+}
+.sBairro {
+  width: 25%;
+}
+.f_Button {
+  display: flex;
+  width: 97.5%;
+  justify-content: end;  
+  gap: 10px;    
+  padding: 20px;
+}
+.btn_Cancelar {
+  width: 10%;  
+  background-color: black;
+  font-size: 17px;
+  margin-right: 20px;
+}
+.btn_Cancelar:hover {
+  background-color: #ccc;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  color:  black;
+}
+.btn_Salvar {
+  width: 10%; 
+  background-color: teal;
+  font-size: 17px;
+}
+.btn_Salvar:hover {
+  background-color: rgb(1, 148, 148);
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  color: black;
+}
+.list {
+  width: 95%;  
+  height: 240px;  
+  margin: 0 auto;
+  margin-top: 5px;  
+  text-align: center;
+  max-height: 250px;
+  overflow-y: auto;
+}
+._table {
+  width: 100%;  
+  border-collapse: collapse;   
+  max-height: 250px; 
+  overflow-y: auto;
+}
+._table th {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #222;
+  text-align: center;
+  background-color: #ccc;
+  font-size: 12px;
+}
+thead th {
+  position: sticky;
+  height: 30px;
+  top: 0;
+  background-color: #f2f2f2;
+  z-index: 1;
+  padding: 10px;
+
+}

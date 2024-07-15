@@ -5,6 +5,7 @@ import Formulario from "../AssetsIcons/formulario.png";
 import Cadastro from "../AssetsIcons/cadastro.png";
 import Medida from '../AssetsIcons/medida.png';
 import Site from '../AssetsIcons/site.png';
+import Client from '../AssetsIcons/cliente.png'
 import "../Menu/menu.css";
 
 const Menu = () => {
@@ -18,11 +19,15 @@ const Menu = () => {
         <div className="containnerMenu">
           <div className="itemCadastroMenu centerMenu" onClick={() => navigate('/formulario')}>
             <img className="imgMenu" src={Cadastro} alt="Vendas" />
-            <p className="textP">Cadastro</p>
+            <p className="textP">Financeiro</p>
           </div>
           <div className="itemFormularioMenu centerMenu" onClick={redirectToFormulario}>
             <img className="imgMenu" src={FormularioIcon} alt="Formulario" />
-            <p className="textP">Formulário</p>
+            <p className="textP">Relatório</p>
+          </div>
+          <div className="itemCadClieMenu centerMenu" onClick={() => navigate('/clienttable')}>
+            <img className="imgMenu" src={Client} alt="Site" />
+            <p className="textP">Cad-Cliente</p>
           </div>
           <div className="itemMeasureMenu centerMenu" onClick={redirectToMeasure}>
             <img className="imgMenu" src={Medida} alt="Medida" />
@@ -32,6 +37,8 @@ const Menu = () => {
             <img className="imgMenu" src={Site} alt="Site" />
             <p className="textP">Site</p>
           </div>
+
+
         </div>
       </div >
     </>

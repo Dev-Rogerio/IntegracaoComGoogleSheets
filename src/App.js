@@ -8,6 +8,7 @@ import Menu from "../src/Components/Menu/menu.jsx";
 import Tabela from '../src/Components/Tabela/tabela.jsx';
 import Medidas from '../src/Components/Medidas/medidas.jsx';
 import Producao from './Components/FichaProducao/producao.js';
+import ClientTabela from '../src/Components/Formulario/clientTabela.jsx';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/tabela" element={<Tabela />} />
           <Route path="/medidas" element={<Medidas />} />
           <Route path="/producao" element={<Producao />} />
+          <Route path="/clientTable" element={<ClientTabela />} />
+
         </Routes>
       </Router>
     </React.Fragment>

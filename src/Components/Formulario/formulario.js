@@ -5,6 +5,7 @@ import InputMask from "react-input-mask";
 import "../Formulario/formulario.css";
 import logoForm from "../../Img/logo branco.png";
 import ModalMassage from "../Modal/modal";
+import Tabela from '../Formulario/clientTabela.jsx'
 
 ReactModal.setAppElement('#root');
 function Formulario() {
@@ -44,6 +45,8 @@ function Formulario() {
   const [birthday, setBirthday] = useState('');
   const [cpfCadastrado, setCpfCadastrado] = useState(false);
   const [cpfList, setCpfList] = useState(new Set());
+  const [dadosFormulario, setDadosFormulario] = useState([]);
+
 
   useEffect(() => {
     const ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
@@ -125,6 +128,8 @@ function Formulario() {
       'Form_Pag.': formaPagamento,
       Aniversario: aniversario,
     };
+
+    setDadosFormulario((prevDados) => [...prevDados]);
     console.log('Enviando dados:', data);
     setIsLoading(true);
     try {
@@ -365,7 +370,7 @@ function Formulario() {
       if (response.ok) {
         const data = await response.json();
         if (data.client) {
-          setCliente(data.client.name);
+          setClient(data.client.name);
         }
       } else {
         console.error('Erro ao buscar nome do cliente pelo CPF:', response.statusText);
@@ -759,7 +764,9 @@ function Formulario() {
         <p className="copy">Este projeto foi desenvolvido por - Rogério de Almeia - &#169; 2024</p>
       </form >
       <ModalMassage isOpen={isModalOpen} onClose={closeModal} errors={errors} />
-    </div >
+
+    </div>
+
   );
 }
 export default Formulario

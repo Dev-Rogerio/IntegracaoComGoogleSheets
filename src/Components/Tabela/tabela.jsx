@@ -1,79 +1,41 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import '../Tabela/tabela.css'
+import React from "react";
+import '../Tabela/tabela.css';
+import Edite from '../AssetsIcons/Edite.png';
+import Delete from '../AssetsIcons/delete.png';
 
-const Tabela = () => {
-  const [vendas, setVendas] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:3000/formulario')
-      .then(response => {
-        setVendas(response.data);
-      })
-      .catch(error => {
-        console.error('there was an eeror fatching the data!', error);
-      });
-  }, []);
-
+const Tabela = ({ resul, onDelete }) => {
   return (
-    <>
-      <div className="tabela-container">
-        <h2>Registro de Vendas</h2>
-        <table className="tabela">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Vendedor</th>
-              <th>Data</th>
-              <th>Pedido</th>
-              <th>Cpf</th>
-              <th>Cliente</th>
-              <th>Celular</th>
-              <th>Telefone</th>
-              <th>Aniversário</th>
-              <th>Email</th>
-              <th>Referencia</th>
-              <th>Compra</th>
-              <th>Desconto</th>
-              <th>Vl/Desc.</th>
-              <th>Tx/Cartão</th>
-              <th>Des/Cart</th>
-              <th>Vl/Bru</th>
-              <th>Tx/Comissão</th>
-              <th>Pag</th>
-              <th>Caixa</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              vendas.map(venda => (
-                <tr key={venda.id}>
-                  <td>{venda.vendedor}</td>
-                  <td>{venda.Data}</td>
-                  <td>{venda.Pedido}</td>
-                  <td>{venda.Cpf}</td>
-                  <td>{venda.Cliente}</td>
-                  <td>{venda.Celelar}</td>
-                  <td>{venda.Telefone}</td>
-                  <td>{venda.Aniversário}</td>
-                  <td>{venda.Email}</td>
-                  <td>{venda.Referencia}</td>
-                  <td>{venda.Compra}</td>
-                  <td>{venda.Desconto}</td>
-                  <td>{venda.Vldesc}</td>
-                  <td>{venda.TxCartão}</td>
-                  <td>{venda.DesCart}</td>
-                  <td>{venda.VlBru}</td>
-                  <td>{venda.TxComissão}</td>
-                  <td>{venda.Pag}</td>
-                  <td>{venda.Caixa}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-    </>
+    <tr>
+      <td>{resul.id}</td>
+      <td>{resul.cpf}</td>
+      <td>{resul.nome}</td>
+      <td>{resul.email}</td>
+      <td>{resul.celular}</td>
+      <td>{resul.telefone}</td>
+      <td>{resul.aniversario}</td>
+      <td>{resul.cep}</td>
+      <td>{resul.endereco}</td>
+      <td>{resul.numero}</td>
+      <td>{resul.complemento}</td>
+      <td>{resul.cidade}</td>
+      <td>{resul.uf}</td>
+      <td>{resul.bairro}</td>
+      <td>
+        <section className="containerImg">
+          <img
+            className="imgLine"
+            src={Edite} alt=""
+          />
+          <img
+            className="imgLine"
+            src={Delete}
+            alt=""
+            onClick={() => onDelete(resul.id)}
+          />
+        </section>
+      </td>
+    </tr>
+
   )
 }
-export default Tabela
+export default Tabela;
