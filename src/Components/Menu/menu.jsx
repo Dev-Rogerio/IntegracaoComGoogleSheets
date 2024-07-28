@@ -13,6 +13,10 @@ const Menu = () => {
   const redirectToFormulario = () => window.open('https://docs.google.com/spreadsheets/d/1lW0Umi_ctxjxSQgSP2PaCJlcVwmfLJSO2ybCoDm_Htk/edit?gid=0#gid=0');
   const redirectToMeasure = () => navigate('/producao')
 
+  const redirecionarSite = () => {
+    window.open('https://www.kamisariazanuto.com.br', '_blank');
+  };
+
   return (
     <>
       <div className="MenuScreen">
@@ -33,12 +37,10 @@ const Menu = () => {
             <img className="imgMenu" src={Medida} alt="Medida" />
             <p className="textP">Medidas</p>
           </div>
-          <div className="itemOnLineMenu centerMenu">
+          <div className="itemOnLineMenu centerMenu" onClick={redirecionarSite}>
             <img className="imgMenu" src={Site} alt="Site" />
             <p className="textP">Site</p>
           </div>
-
-
         </div>
       </div >
     </>

@@ -10,7 +10,6 @@ import Medidas from '../src/Components/Medidas/medidas.jsx';
 import Producao from './Components/FichaProducao/producao.js';
 import ClientTabela from '../src/Components/Formulario/clientTabela.jsx';
 import ModalCadCli from '../src/Components/Formulario/ModalClientTable/modal.jsx'
-import ModalEdite from "./Components/Formulario/ModalEdite/modalEdite.jsx";
 
 function App() {
   return (
@@ -27,7 +26,6 @@ function App() {
           <Route path="/producao" element={<Producao />} />
           <Route path="/clientTable" element={<ClientTabela />} />
           <Route path="/modalcadcli" element={<ModalCadCli />} />
-          <Route path="/modaledite" element={<ModalEdite />} />
 
         </Routes>
       </Router>

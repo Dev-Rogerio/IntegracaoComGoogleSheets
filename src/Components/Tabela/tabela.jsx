@@ -4,38 +4,39 @@ import Edite from '../AssetsIcons/Edite.png';
 import Delete from '../AssetsIcons/delete.png';
 
 const Tabela = ({ resul, onDelete }) => {
+
   return (
-    <tr>
+    <tr >
       <td>{resul.id}</td>
-      <td>{resul.cpf}</td>
-      <td>{resul.nome}</td>
-      <td>{resul.email}</td>
-      <td>{resul.celular}</td>
-      <td>{resul.telefone}</td>
-      <td>{resul.aniversario}</td>
-      <td>{resul.cep}</td>
-      <td>{resul.endereco}</td>
-      <td>{resul.numero}</td>
-      <td>{resul.complemento}</td>
-      <td>{resul.cidade}</td>
-      <td>{resul.uf}</td>
-      <td>{resul.bairro}</td>
-      <td>
+      <td className="td_tableLine">{resul.cpf}</td>
+      <td className="td_tableLine">{resul.nome}</td>
+      <td className="_captalise">{resul.email}</td>
+      <td className="td_tableLine">{resul.celular}</td>
+      <td className="td_tableLine">{resul.telefone}</td>
+      <td className="td_tableLine">{resul.aniversario}</td>
+      <td className="td_tableLine">{resul.cep}</td>
+      <td className="td_tableLine">{resul.endereco}</td>
+      <td className="td_tableLine">{resul.numero}</td>
+      <td className="td_tableLine">{resul.complemento}</td>
+      <td className="td_tableLine">{resul.cidade}</td>
+      <td className="td_tableLine">{resul.uf}</td>
+      <td className="td_tableLine">{resul.bairro}</td>
+      <td className="td_tableLine">
         <section className="containerImg">
           <img
             className="imgLine"
-            src={Edite} alt=""
+            src={Edite}
+            alt="Edit"
           />
           <img
             className="imgLine"
             src={Delete}
-            alt=""
+            alt="Delete"
             onClick={() => onDelete(resul.id)}
           />
         </section>
       </td>
     </tr>
-
   )
 }
 export default Tabela;

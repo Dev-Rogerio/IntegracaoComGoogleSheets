@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import InputMask from "react-input-mask";
 import axios from "axios";
-import Logo from '../AssetsIcons/cadastro.png';
 import Lupa from '../AssetsIcons/lupa-black.png';
 import '../Formulario/clientTabela.css'
 import Tabela from "../Tabela/tabela";
 import { useNavigate } from 'react-router-dom';
+import ModalCadCli from "./ModalClientTable/modal";
+import Logotipo from "../AssetsIcons/logo.png";
 
 const ClienteTabela = () => {
   const navigate = useNavigate(); // Hook para navegação
   const redirectToFormulario = () => navigate('/');
-
   const [resul, setResul] = useState({
     id: 1,
     cpf: '',
@@ -27,21 +27,68 @@ const ClienteTabela = () => {
     uf: '',
     bairro: '',
   });
-
   const [resultado, setResultado] = useState([]);
-  const [atualId, setAtualId] = useState(1);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const saveResultados = JSON.parse(localStorage.getItem('clientes')) || [];
+    setResultado(saveResultados);
+  }, [])
+
+  const validarCPF = (cpf) => {
+    cpf = cpf.replace(/[^\d]+/g, '');
+    if (cpf.length !== 11) return false;
+    if (/^(\d)\1+$/.test(cpf)) return false;
+
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+      soma += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let resto = 11 - (soma % 11);
+    let digito1 = resto === 10 || resto === 11 ? 0 : resto;
+
+    if (digito1 !== parseInt(cpf.charAt(9))) return false;
+
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+      soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    resto = 11 - (soma % 11);
+    let digito2 = resto === 10 || resto === 11 ? 0 : resto;
+    return digito2 === parseInt(cpf.charAt(10));
+  };
 
   const salvar = () => {
-    setResul(prevResul => ({
-      ...prevResul,
-      id: atualId,
-    }));
-
-    setResultado(prevResultado => [
-      ...prevResultado,
-      { ...resul, id: atualId }
-    ]);
-
+    setIsLoading(true);
+    setTimeout(() => {
+      if (resul.cpf.trim() === '') {
+        openModal('CPF não pode ser vazio.');
+        limparFormulario();
+        setIsLoading(false)
+        return;
+      }
+      if (!validarCPF(resul.cpf)) {
+        openModal('CPF inválido.');
+        setIsLoading(false);
+        return;
+      }
+      const cpfExistente = resultado.some(cliente => cliente.cpf === resul.cpf);
+      if (cpfExistente) {
+        openModal('Cliente já existe!');
+        setIsLoading(false)
+        return;
+      }
+      const novoResul = { ...resul, id: resultado.length + 1 };
+      const newResultado = [...resultado, novoResul];
+      setResultado(newResultado);
+      localStorage.setItem('clientes', JSON.stringify(newResultado));
+      limparFormulario();
+      setIsLoading(false);
+    }, 3000);
+  };
+  const limparFormulario = () => {
     setResul({
       id: '',
       cpf: '',
@@ -58,7 +105,23 @@ const ClienteTabela = () => {
       uf: '',
       bairro: '',
     });
-    setAtualId(atualId + 1);
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setResul(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleDelete = (id) => {
+    setResultado(resultado.filter(row => row.id !== id));
+  };
+
+  const openModal = (message = '') => {
+    setModalMessage(message);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   }
 
   useEffect(() => {
@@ -93,22 +156,18 @@ const ClienteTabela = () => {
     };
     fetchAddress();
   }, [resul.cep]);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setResul(prevState => ({ ...prevState, [name]: value }));
-  };
-
-  const handleDelete = (id) => {
-    setResultado(resultado.filter(row => row.id !== id));
-  };
   return (
     <>
       <div className="containerBody">
         <header className="topOrange">
-          <section className="s_Left"></section>
+          <section className="s_Left">
+            <section>
+              <img className="_logoTipo" src={Logotipo} alt="" />
+              <h1 className="h1_textKamisaria">KAMISARIA ZANUTO</h1>
+            </section>
+          </section>
           <section className="s_Kamisaria">
-            <h1>Kamisaria 1.0</h1>
+            <h1>Versão 1.0</h1>
           </section>
           <section className="s_Buscar" onClick={redirectToFormulario}>
             <img src={Lupa} alt="" className="ImgLupaSearch" />
@@ -123,74 +182,78 @@ const ClienteTabela = () => {
         <main className="mainPainel">
           <div className="personalDate">
             <section className="sCpf">
-              <p>CPF:</p>
+              <label htmlFor="cpf" className="_label">CPF</label>
               <InputMask
                 mask="999.999.999-99"
                 className="_iMain "
                 type="text"
-                value={resul.cpf} onChange={handleInputChange}
+                value={resul.cpf}
+                onChange={handleInputChange}
                 name="cpf"
               />
             </section>
             <section className="sNome">
-              <p>Nome:</p>
+              <label htmlFor="nome" className="_label">Nome:</label>
               <input
                 className="_iMain"
                 type="text"
-                value={resul.nome} onChange={(e) => setResul({
-                  ...resul, nome: e.target.value
-                })} />
+                value={resul.nome} onChange={handleInputChange}
+                name="nome"
+                autocomplete="off"
+              />
             </section>
             <section className="sEmail">
-              <p>Email:</p>
+              <label htmlFor="email" className="_label">Email:</label>
               <input
                 className="_iMail-Email "
                 type="text"
                 value={resul.email}
-                onChange={(e) => setResul({
-                  ...resul, email: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="email"
+                autocomplete="off"
               />
             </section>
             <section className="sCelular">
-              <p>Celular:</p>
+              <label htmlFor="celular" className="_label">Celular:</label>
               <InputMask
                 mask="(99) 99999-9999"
                 className="_iMain"
                 type="text"
                 value={resul.celular}
-                onChange={(e) => setResul({
-                  ...resul, celular: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="celular"
+                autocomplete="off"
               />
             </section>
             <section className="sTelefone">
-              <p>Telefone:</p>
+              <label htmlFor="telefone" className="_label">Telefone:</label>
               <InputMask
                 mask="(99) 9999-9999"
                 className="_iMain"
                 type="text"
                 value={resul.telefone}
-                onChange={(e) => setResul({
-                  ...resul, telefone: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="telefone"
+                autocomplete="off"
               />
             </section>
             <section className="sAniversario">
-              <p>Aniversário:</p>
+              <label htmlFor="aniversario" className="_label">Aniversário:</label>
               <input
                 className="_iMain _anivesario"
                 type="date"
                 value={resul.aniversario}
-                onChange={(e) => setResul({
-                  ...resul, aniversario: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="aniversario"
+                autocomplete="off"
+                max="2005-12-31"
+                min="1900-01-01"
               />
             </section>
           </div>
           <div className="adressDate">
             <section className="sCep">
-              <p>CEP:</p>
+              <label htmlFor="cep" className="_label">CEP</label>
               <InputMask
                 mask="99999-999"
                 className="_iMain"
@@ -198,99 +261,100 @@ const ClienteTabela = () => {
                 value={resul.cep}
                 onChange={handleInputChange}
                 name="cep"
+                autocomplete="off"
               />
             </section>
             <section className="sEndereco">
-              <p>Endereço:</p>
+              <label htmlFor="endereco" className="_label">Endereço:</label>
               <input
                 className="_iMain"
                 type="text"
                 value={resul.endereco}
-                onChange={(e) => setResul({
-                  ...resul, endereco: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="endereco"
+                autocomplete="off"
               />
             </section>
             <section className="sNumero">
-              <p>Nº.</p>
+              <label htmlFor="nemero" className="_label">Nº.</label>
               <input
                 className="_iMain"
                 type="text"
                 value={resul.numero}
-                onChange={(e) => setResul({
-                  ...resul, numero: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="numero"
+                autocomplete="off"
               />
             </section>
             <section className="sComplemento">
-              <p>Complemento:</p>
+              <label htmlFor="complemento" className="_label">Complemento:</label>
               <input
                 className="_iMain"
                 type="text"
                 value={resul.cumprimento}
-                onChange={(e) => setResul({
-                  ...resul, complemento: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="complemento"
+                autocomplete="off"
               />
             </section>
             <section className="sCidade">
-              <p>Cidade:</p>
+              <label htmlFor="cidade" className="_label">Cidade:</label>
               <input
                 className="_iMain"
                 type="text"
                 value={resul.cidade}
-                onChange={(e) => setResul({
-                  ...resul, cidade: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="cidade"
+                autocomplete="off"
               />
             </section>
             <section className="sUf">
-              <p>UF:</p>
+              <label htmlFor="uf" className="_label">UF:</label>
               <input
                 className="_iMain"
                 type="text"
                 value={resul.uf}
-                onChange={(e) => setResul({
-                  ...resul, uf: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="uf"
+                autocomplete="off"
               />
             </section>
             <section className="sBairro">
-              <p>Bairro:</p>
+              <label htmlFor="bairro" className="_label">Bairro:</label>
               <input
                 className="_iMain"
                 type="text"
                 value={resul.bairro}
-                onChange={(e) => setResul({
-                  ...resul, bairro: e.target.value
-                })}
+                onChange={handleInputChange}
+                name="bairro"
+                autocomplete="off"
               />
             </section>
           </div>
         </main>
         <footer className="f_Button">
-          <button className="btn_Salvar" onClick={salvar} >Salvar</button>
-          <button className="btn_Cancelar">Cancelar</button>
+          <button className="btn_Salvar" onClick={salvar} >{isLoading ? "Enviando..." : "Salvar"}</button>
+          <button className="btn_Cancelar">Limpar</button>
         </footer>
         <div className="list">
           <table className="_table">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>CPF:</th>
-                <th>Nome:</th>
-                <th>Email:</th>
-                <th>Celular:</th>
-                <th>Telefone:</th>
-                <th>Aniversário</th>
-                <th>CEP:</th>
-                <th>Endereço:</th>
-                <th>Nº</th>
-                <th>Compl.:</th>
-                <th>Cidade:</th>
-                <th>UF:</th>
-                <th>Bairro</th>
-                <th>Ações</th>
+                <th className="thead_ClientTable">N.</th>
+                <th className="thead_ClientTable">CPF:</th>
+                <th className="thead_ClientTable">Nome:</th>
+                <th className="thead_ClientTable">Email:</th>
+                <th className="thead_ClientTable">Celular:</th>
+                <th className="thead_ClientTable">Telefone:</th>
+                <th className="thead_ClientTable">Aniversário</th>
+                <th className="thead_ClientTable">CEP:</th>
+                <th className="thead_ClientTable">Endereço:</th>
+                <th className="thead_ClientTable">Nº</th>
+                <th className="thead_ClientTable">Compl.:</th>
+                <th className="thead_ClientTable">Cidade:</th>
+                <th className="thead_ClientTable">UF:</th>
+                <th className="thead_ClientTable">Bairro</th>
+                <th className="thead_ClientTable">Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -299,6 +363,11 @@ const ClienteTabela = () => {
           </table>
         </div>
       </div>
+      <tabela dados={resultado} onDelete={handleDelete} />
+      <ModalCadCli
+        isOpen={showModal}
+        onRequestClose={closeModal}
+        message={modalMessage} />
     </>
   )
 }

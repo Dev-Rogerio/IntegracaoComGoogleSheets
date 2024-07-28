@@ -2,94 +2,71 @@
   padding: 0;
   margin: 0;
 }
-tbody td {
-  margin: 0 auto;
-    font-size: 10px;
-  border: 1px solid #222;   
-}
-tbody tr {
-  height: 20px; 
- }
-tbody tr:nth-child(odd) {
- background-color: white;
-}
-tbody tr:nth-child(even) {
-  background-color: #f6f2f2;
-}
-tbody td:nth-child(1) {
-  font-size: 9px; 
-}
-tbody td:nth-child(2) {
-  font-size: 9px;
-  width: 8%;
-}
-tbody td:nth-child(3) {  
-  width: 20%;
-}
-tbody td:nth-child(4) {
- width: 15%;
-}
-tbody td:nth-child(5) {
-  font-size: 9px;
-  width: 9%;
-}
-tbody td:nth-child(6) {
-  font-size: 9px;
-  width: 9%;
-}
-tbody td:nth-child(7) {
-  font-size: 9px;
-  width: 7%;
-}
-tbody td:nth-child(8) {
-  font-size: 9px;
-  width: 6%;
-}
-tbody td:nth-child(9) { 
-  width: 25%;
-}
-tbody td:nth-child(10) {
-  font-size: 9px;
-  width: 4%;
-}
-tbody td:nth-child(11) {
-  width: 7%;
-}
-tbody td:nth-child(12) {  
-  width: 7%;
-}
-tbody td:nth-child(13) {  
-  width: 3%;
-}
-tbody td:nth-child(14) {  
-  width: 35%;
-}
-.table td:nth-child(even) {
-  background-color: #f9f9f9;
-}
-.table td:hover {
-  background-color: #f1f1f1;
-}
-.imgLine {
-  width: 12px;
-  cursor: pointer;
-}
-.containerImg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-}
-.tabela {
+table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: collapse; 
 }
-.tabela th, .tabela td {
-  padding: 8px;
-  text-align: left;
+td {
+  vertical-align: middle; 
 }
-.tabela th {
-  background-color: #f2f2f2;
+td.centered {
+  text-align: center;
+}
+td.right-aligned {
+  text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.thead_Table_Client {
+  background-color: #007bff;
+  color: white;
   font-weight: bold;
 }
 
+
+tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+._dataTableClientRowsFixed,
+._dataTableClientRowsFixed td,
+.tbody_tableClient td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.imgLine {
+  width: 20px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.imgLine:hover {
+  opacity: 0.8;
+}
+.containerImg {
+  display: flex;
+  align-items: center;
+}
+/* ================== */

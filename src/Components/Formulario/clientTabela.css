@@ -1,20 +1,27 @@
 *{
   margin: 0;
   padding: 0;  
+  box-sizing: border-box;
 }
 .containerBody{
   width: 100vw;
   height: 100vh;
   background-color: beige;
-}
-.topOrange{
+  margin: 0 auto;
+ }
+.topOrange{ 
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 15%;
+  height: 20%;
   background-color: rgb(131, 131, 130);
   border-bottom: 1px solid #222;
+}
+.logotipo {
+  width: 50px;
+  height: 50px;
+  margin-left: 10%;
 }
 ._iBuscar { 
   width: 170px;
@@ -27,20 +34,45 @@
   cursor: pointer;
 }
 .closeClient {
-  margin-right: 40px;
-  color:black;
+  text-align: center;
+  width: 8%;
+  margin-right: 45px;
+  color: rgba(34, 34, 34, 0.9);
   letter-spacing: 1px;
   cursor: pointer;
+  font-family: roboto sans-serif;
 }
 .s_Left{
+  display: flex;
+  justify-content: start;
+  align-items: center;
   width: 100%; 
-  height: 10px; 
+  height: 100%;  
+}
+.s_Left section:nth-child(1) {
+margin-left: 10%;
+}
+._logoTipo {
+  width: 55px;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+.h1_textKamisaria {  
+  color: rgba(34, 34, 34, 0.9);
+  font-size: 16px;
+  transform: scaleY(1.3);
 }
 .s_Kamisaria {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; 
+  width: 100%;   
+}
+.s_Kamisaria h1 {
+  font-size:large;
+  text-decoration: underline;
+  font-family: roboto sans serif;
+  color: rgba(34, 34, 34, 0.9);
 }
 .s_Buscar {
   width: 100%;
@@ -64,18 +96,18 @@
   font-size: 32px;  
   font-weight: bold; 
   font-family: 'Times New Roman', Times, serif;
-  margin-left: 3%;
+  margin-left: 3%;  
 }
 .textArticleCli {
   font-family: roboto , sans-serif;
   margin-left: 3%;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
 }
 .mainPainel {
   display: block;  
   width: 100%;
-  height: 18%;
+  height: 25%;
   background-color: #ccc9;
   padding: 10px; 
   border-top: #222 1px solid;
@@ -93,16 +125,18 @@
   font-size: 11px;
 }
 ._iMain{
-  width: 95%;
+  width: 100%;
   height: 27px;
   border-radius: 3px;
   outline: none; 
   text-indent: 10px;
   font-size: small;
+  font-family: arial;
   border: 1px solid #222;
   color: #222;
   cursor: pointer;
   text-transform: capitalize;
+  letter-spacing: 0.8px;
 }
 ._iMail-Email {
   width: 95%;
@@ -124,11 +158,14 @@
   margin-top: 15px;
   gap: 15px;
 }
-.adressDate p {
-  font-size: 11px;
+._label {
+  font-size: small;
+  letter-spacing: 1px;
+  color: rgba(28, 28, 28, 0.9);
+  font-family: arial;
 }
 ._anivesario {
-  width: 92%;
+  width: 100%;
 }
 .sCpf {
   width: 20%;   
@@ -171,65 +208,120 @@
 }
 .f_Button {
   display: flex;
-  width: 97.5%;
+  width: 100%;
   justify-content: end;  
-  gap: 10px;    
-  padding: 20px;
+  padding: 5px;
+  gap: 30px;    
+  background-color: rgb(224, 222, 222);
 }
 .btn_Cancelar {
   width: 10%;  
-  background-color: black;
-  font-size: 17px;
-  margin-right: 20px;
+  background-color: rgb(106, 105, 105);
+  font-size: small;
+  font-family: roboto;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-right: 28px;
 }
 .btn_Cancelar:hover {
-  background-color: #ccc;
+  color: rgba(34, 34, 34, 0.9);
   cursor: pointer;
   border-bottom: 1px solid black;
   border-right: 1px solid black;
-  color:  black;
+  color:  #ccc;
 }
 .btn_Salvar {
   width: 10%; 
   background-color: teal;
-  font-size: 17px;
+  font-size: small;
+  font-family: roboto;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 .btn_Salvar:hover {
   background-color: rgb(1, 148, 148);
   cursor: pointer;
   border-bottom: 1px solid black;
   border-right: 1px solid black;
-  color: black;
-}
-.list {
-  width: 95%;  
-  height: 240px;  
-  margin: 0 auto;
-  margin-top: 5px;  
-  text-align: center;
-  max-height: 250px;
-  overflow-y: auto;
-}
+  color:  #ccc;
+} 
+   .list {
+    max-height: 35%;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    margin: 20px 1;
+    white-space: nowrap;
+    position: relative;
+  }  
 ._table {
-  width: 100%;  
-  border-collapse: collapse;   
-  max-height: 250px; 
-  overflow-y: auto;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  font-size: 14px;  
 }
-._table th {
-  margin: 0;
-  padding: 10px;
-  border: 1px solid #222;
-  text-align: center;
-  background-color: #ccc;
-  font-size: 12px;
+.thead_ClientTable {
+  border: 1px solid #ddd; 
+  padding: 8px; 
+  text-align: left; 
+  background-color: rgb(1, 148, 148); 
+  font-weight: bold; 
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
-thead th {
+td {
+  border: 1px solid #ddd; 
+  padding: 8px; 
+  text-align: left; 
+  text-transform: capitalize;
+}
+.thead_ClientTable {
   position: sticky;
-  height: 30px;
+  z-index: 2;
   top: 0;
-  background-color: #f2f2f2;
-  z-index: 1;
   padding: 10px;
-
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+  color: #fff;
+  text-align: center;
 }
+._captalise {
+  text-transform: lowercase;
+}
+tr:nth-child(even) {
+  background-color: #eeebeb; 
+}
+tr:nth-child(odd) {
+  background-color: #fff; 
+}
+.containerImg  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.containerImg img { 
+  width: 30%;
+  height: 30%;
+}
+/* @Media */
+@media (max-width: 768px) {
+  ._table {
+    font-size: 12px;
+  }
+  .thead_ClientTable,
+  tbody td {
+    padding: 8px;
+  }
+}
+@media (max-width: 480px) {
+  ._table {
+    font-size: 10px;
+  }
+  .thead_ClientTable,
+  tbody td {
+    padding: 6px;
+  }
+}
+
+

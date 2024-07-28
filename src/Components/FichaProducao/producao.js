@@ -67,7 +67,7 @@ const Producao = () => {
   const [client, setClient] = useState(formData.client || '');
   const [contato, setContato] = useState(formData.contato || '');
   const [inputDate, setInputDate] = useState('');
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
   const [deliveryDate, setDeliveryDate] = useState(calculateDelivreryDate());
   const handlePrint = () => {
     window.print();
@@ -166,11 +166,7 @@ const Producao = () => {
       setDeliveryDate('');
     }
   };
-  // const resetLastNumber = () => {
-  //   localStorage.removeItem('ultimoLastNumber');
-  //   setLastNumber(1000);
-  //   setFormData({ ...formData, number: 1000 }); // Atualizar o formData também
-  // };
+
   const handleCpfChange = async (event) => {
     const newCpf = event.target.value;
     setCpf(newCpf);
@@ -180,6 +176,8 @@ const Producao = () => {
         console.log('resposta da API:', response.data);
         if (response.data && response.data.client) {
           setClient(response.data.client);
+          setContato(response.data.contato || '');
+          setFormData({ ...formData, client: response.data.client, contato: response.data.contato || '' });
         } else {
           setClient('Cliente não encontrado');
         }
@@ -229,7 +227,9 @@ const Producao = () => {
                     onChange={handleCpfChange}
                   />
                 </div>
-                <MyModal isOpen={isModalOpen} handleClose={closeModal} errorMessage={errorMessage} />
+                <MyModal isOpen={isModalOpen} handleClose={closeModal}>
+                  {errorMessage}
+                </MyModal>
                 <div className="flexData">
                   <p className="_textColor">CONTATO:</p>
                   <input
@@ -558,8 +558,38 @@ const Producao = () => {
                   </article>
                 </section>
                 <header className="Message">
-                  <form type="text" className="iArea"
-                  />
+                  <form className="iArea" >
+                    <input
+                      type="text"
+                      placeholder="Digite"
+                      className="textInput"
+                      autoFocus
+                    />
+                    <input
+                      type="text"
+                      placeholder="Digite"
+                      className="textInput"
+                      autoFocus
+                    />
+                    <input
+                      type="text"
+                      placeholder="Digite"
+                      className="textInput"
+                      autoFocus
+                    />
+                    <input
+                      type="text"
+                      placeholder="Digite"
+                      className="textInput"
+                      autoFocus
+                    />
+                    <input
+                      type="text"
+                      placeholder="Digite"
+                      className="textInput"
+                      autoFocus
+                    />
+                  </form>
                 </header>
               </div>
             </section>
@@ -568,7 +598,6 @@ const Producao = () => {
             <button className="screenClose typeToButton" onClick={redirectToFormulario}>Sair</button>
             <button type="submit" className="sendForm typeToButton">Enviar</button>
             <button className="printScreen typeToButton" onClick={handlePrint}>Imprimir</button>
-            {/* <button className="resetLastNumber typeToButton" onClick={resetLastNumber}>Resetar Last Number</button> */}
           </div>
         </form >
       </div >

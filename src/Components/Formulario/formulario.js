@@ -250,7 +250,8 @@ function Formulario() {
     return true;
   }
   const validateAniversario = (aniversario) => {
-    if (!aniversario) return 'Data de nascimento é obrigatória';
+    if (!aniversario.length !== 10) return 'Data de nascimento é obrigatória';
+    if (!aniversario) return "Data de nascimento é Obrigatório";
     const today = new Date();
     const aniversarioParts = aniversario.split('/');
     const aniversarioDate = new Date(aniversarioParts[2], aniversarioParts[1] - 1, aniversarioParts[0]);
@@ -414,6 +415,7 @@ function Formulario() {
                 placeholder="Nome"
                 value={vendedor}
                 onChange={(e) => setVendedor(e.target.value)}
+                autoComplete="off"
               />
               <span className="error-message"></span>
             </label>
@@ -430,6 +432,7 @@ function Formulario() {
                 placeholder="DD/MM/AAAA"
                 value={formatDate(dataPedido)}
                 onChange={(e) => setDataPedido(e.target.value)}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -444,6 +447,7 @@ function Formulario() {
                 placeholder="Pedido"
                 value={pedido}
                 onChange={(e) => setPedido(e.target.value)}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -461,6 +465,7 @@ function Formulario() {
                 placeholder="Cpf"
                 value={cpf}
                 onChange={(e) => setCpf(e.target.value)}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -475,6 +480,7 @@ function Formulario() {
                 placeholder="Cliente"
                 value={client}
                 onChange={(e) => setClient(e.target.value)}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -490,6 +496,7 @@ function Formulario() {
                 placeholder="Celular"
                 value={celular}
                 onChange={(e) => setCelular(e.target.value)}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -505,6 +512,7 @@ function Formulario() {
                 placeholder="Telefone"
                 value={telefone}
                 onChange={(e) => setTelefone(e.target.value)}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -522,6 +530,7 @@ function Formulario() {
                 placeholder="DD/MM/AAAA"
                 value={aniversario}
                 onChange={(e) => setAniversario(e.target.value)}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -536,6 +545,7 @@ function Formulario() {
                 placeholder="E-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -550,6 +560,7 @@ function Formulario() {
                 placeholder="Referência"
                 value={referencia}
                 onChange={(e) => setReferencia(e.target.value)}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -566,6 +577,7 @@ function Formulario() {
                 placeholder="0,00"
                 value={compra}
                 onChange={handleValorCompraChange}
+                autoComplete="off"
               />
             </label>
           </div>
@@ -749,7 +761,6 @@ function Formulario() {
               </div>
               <div className="vencimentoForm">
                 <label className="iDayMonth" type="text">Tx./Antecip.</label>
-                <input className="iDayMonth2" type="text" placeholder="%" value={taxaDesconto} onChange={handleTaxaDescontoChange} />
                 <input className="iDayMonth3" type="text" placeholder="$" value={resultadoDesconto} readOnly />
               </div>
             </div>
@@ -764,9 +775,7 @@ function Formulario() {
         <p className="copy">Este projeto foi desenvolvido por - Rogério de Almeia - &#169; 2024</p>
       </form >
       <ModalMassage isOpen={isModalOpen} onClose={closeModal} errors={errors} />
-
     </div>
-
   );
 }
 export default Formulario
