@@ -156,9 +156,11 @@ function Formulario() {
     handleLimparFormulario();
     localStorage.setItem('ultimoId', id + 1);
   };
+
   const validateFields = () => {
     let valid = true;
     let newErrors = {};
+
     if (!vendedor) {
       newErrors.Vendedor = 'Vendedor é obrigatório';
       valid = false;
@@ -250,7 +252,7 @@ function Formulario() {
     return true;
   }
   const validateAniversario = (aniversario) => {
-    if (!aniversario.length !== 10) return 'Data de nascimento é obrigatória';
+    if (aniversario.length !== 10) return 'Data de nascimento é obrigatória';
     if (!aniversario) return "Data de nascimento é Obrigatório";
     const today = new Date();
     const aniversarioParts = aniversario.split('/');
@@ -365,24 +367,23 @@ function Formulario() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const fetchClientNameByCpf = async (cpf) => {
-    try {
-      const response = await fetch(`http://localhost:3000/medidas/client/${cpf}`);
-      if (response.ok) {
-        const data = await response.json();
-        if (data.client) {
-          setClient(data.client.name);
-        }
-      } else {
-        console.error('Erro ao buscar nome do cliente pelo CPF:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Erro ao buscar nome do cliente pelo CPF:', error);
-    }
-  };
+  // const fetchClientNameByCpf = async (cpf) => {
+  //   try {
+  //     const response = await fetch(`http://localhost:3000/medidas/client/${cpf}`);
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       if (data.client) {
+  //         setClient(data.client.name);
+  //       }
+  //     } else {
+  //       console.error('Erro ao buscar nome do cliente pelo CPF:', response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error('Erro ao buscar nome do cliente pelo CPF:', error);
+  //   }
+  // };
   return (
     <div className='containerForm'>
-      {/* <form onSubmit={handleSubmit} > */}
       <form onSubmit={handleSubmit} >
         <div className="menuForm">
           <div className="formImg">
@@ -394,7 +395,7 @@ function Formulario() {
         <div className="rowsOne">
           <div className='id'>
             <label htmlFor="">
-              <span className='formLabel'>Id</span>
+              <span className='formLabel'>N.</span>
               <input
                 className='iId'
                 type="text"
@@ -422,10 +423,9 @@ function Formulario() {
           </div>
           <div className="data">
             <label htmlFor="dataPedido">
-              <span className='formLabel'>Data</span>
+              <span className='formLabel'>Date do Pedido</span>
               <input
                 className="iData"
-                mask="99/99/9999"
                 type="date"
                 id="dataPedido"
                 name="data"
@@ -438,7 +438,7 @@ function Formulario() {
           </div>
           <div className='pedido'>
             <label htmlFor="pedido">
-              <span className='formLabel'>Pedido</span>
+              <span className='formLabel'>Número do Pedido</span>
               <input
                 className={`iPed ${errors.pedido ? 'input-error' : ''}`}
                 type="number"
@@ -457,7 +457,7 @@ function Formulario() {
             <label htmlFor="cpf">
               <span className='formLabel'>Cpf</span>
               <InputMask
-                className={`iCpf errors.CPF ? 'input-error' : ""`}
+                className={`iCpf  ${errors.CPF ? 'input-error' : ""}`}
                 mask="999.999.999-99"
                 id="cpf"
                 type="text"
@@ -523,7 +523,7 @@ function Formulario() {
               <span className='formLabel'>Aniversário</span>
               <input
                 className={`iAniversario ${errors.aniversario ? 'input-error' : ''}`}
-                // mask="99/99/9999"
+                mask="99/99/9999"
                 type="date"
                 id="aniversario"
                 name="data"
