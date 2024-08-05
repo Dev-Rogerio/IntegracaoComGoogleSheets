@@ -301,7 +301,7 @@ border-radius: 3px;
 border: 1px solid #222;
 text-indent: 10px;
 cursor: pointer;
-text-transform: lowercase;
+text-transform: capitalize;
 }
 .rowsFour { 
   display: flex;

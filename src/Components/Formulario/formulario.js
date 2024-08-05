@@ -53,6 +53,21 @@ function Formulario() {
     setId(ultimoIdSalvo);
   }, []);
 
+  const loadCpfList = () => {
+    const savedCpfList = localStorage.getItem('cpfList');
+    return savedCpfList ? new Set(JSON.parse(savedCpfList)) : new Set();
+  };
+
+  const savedCpfList = (list) => {
+    localStorage.setItem('cpfList', JSON.stringify([...list]));
+  };
+
+  useEffect(() => {
+    const cpfListFromLocalStorage = loadCpfList();
+    setCpfList(cpfListFromLocalStorage);
+  }, [])
+
+
   const handleLimparFormulario = () => {
     setId(id + 1);
     setVendedor('');
@@ -93,27 +108,35 @@ function Formulario() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!validateFields()) {
-      openModal();
+    const cpf = event.target.cpf.value;
+    const unmaskedCpf = cpf.replace(/[^\d]+/g, '');
+
+    if (!validaCPF(unmaskedCpf)) {
+      alert("CPF inválido");
       return;
     }
-    const cpf = event.target.cpf.value;
-    if (cpfList.has(cpf)) {
+
+    if (cpfList.has(unmaskedCpf)) {
       alert("Este CPF já foi inserido.");
       return;
     }
-    const cpfAlreadyRegistered = await checkCpfRegistered(cpf);
+    const cpfAlreadyRegistered = await checkCpfRegistered(unmaskedCpf);
     if (cpfAlreadyRegistered) {
       alert("Este CPF já está cadastrado.");
       return;
     }
+    const updatedCpfList = new Set(cpfList).add(unmaskedCpf);
+    setCpfList(updatedCpfList);
+    savedCpfList(updatedCpfList);
+
+
     const data = {
       id,
       Vendedor: vendedor,
       'Data_Pedido': dataPedido,
       Pedido: pedido,
       Cliente: client,
-      cpf,
+      cpf: unmaskedCpf,
       Celular: celular,
       Telefone: telefone,
       email,
@@ -143,8 +166,8 @@ function Formulario() {
       if (response.ok) {
         console.log('Dados enviados com sucesso');
         handleLimparFormulario();
-        setCpfList(new Set(cpfList).add(cpf));
-        setDataVencimento();
+        setCpfList(updatedCpfList);
+        savedCpfList(updatedCpfList);
       } else {
         console.error('Erro ao enviar dados', response.statusText);
       }
@@ -162,7 +185,7 @@ function Formulario() {
     let newErrors = {};
 
     if (!vendedor) {
-      newErrors.Vendedor = 'Vendedor é obrigatório';
+      newErrors.Vendedor = 'Vendedor é obrigatória';
       valid = false;
     }
     if (!dataPedido) {
@@ -251,29 +274,22 @@ function Formulario() {
     }
     return true;
   }
-  const validateAniversario = (aniversario) => {
-    if (aniversario.length !== 10) return 'Data de nascimento é obrigatória';
-    if (!aniversario) return "Data de nascimento é Obrigatório";
-    const today = new Date();
-    const aniversarioParts = aniversario.split('/');
-    const aniversarioDate = new Date(aniversarioParts[2], aniversarioParts[1] - 1, aniversarioParts[0]);
 
-    if (aniversarioDate.getFullYear() <= 1900) {
-      return 'Data de nascimento deve ser maior que 1900';
+  const validateAniversario = (date) => {
+    const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+    if (!regex.test(date)) {
+      return "Formato de data inválido. Use DD/MM/AAAA.";
     }
-    const age = today.getFullYear() - aniversarioDate.getFullYear();
-    const monthDifference = today.getMonth() - aniversarioDate.getMonth();
-    if (
-      monthDifference < 0 ||
-      (monthDifference === 0 && today.getDate() < aniversarioDate.getDate())
-    ) {
-      age == age - 1;
+    const [day, month, year] = date.split('/').map(Number);
+    const isValidDate = day >= 1 && day <= 31 && month >= 1 && month <= 12 && year > 1900;
+    if (!isValidDate) {
+      return "Data invalida";
     }
-    if (age < 0 || age > 120) {
-      return 'Data de nascimento inválida';
-    }
-    return '';
+    return null;
   };
+
+
+
   const setInputSelection = (element, start, end) => {
     // Verifica se o elemento de entrada suporta a seleção de texto
     if (element.type === 'text' || element.type === 'search' || element.type === 'tel' || element.type === 'url' || element.type === 'password') {
@@ -281,15 +297,32 @@ function Formulario() {
       element.selectionEnd = end;
     }
   };
-  const formatDate = (date) => {
-    const d = new Date(date);
-    let month = '' + (d.getMonth() + 1);
-    let day = '' + d.getDate();
-    const year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
+
+  const formatToDisplay = (date) => {
+    if (!date) return '';
+    const [year, month, day] = date.split('-');
+    return `${day.padStart(2, '0')}/${month.padStart(2, '0')}/${year}`;
   };
+
+
+  const formatToDatabase = (date) => {
+    if (!date) return '';
+    const [day, month, year] = date.split('/');
+    if (!year || !month || !day) return '';
+    return `${year}-${month}-${day}`;
+  };
+
+
+
+  // const formatDate = (date) => {
+  //   const d = new Date(date);
+  //   let month = '' + (d.getMonth() + 1);
+  //   let day = '' + d.getDate();
+  //   const year = d.getFullYear();
+  //   if (month.length < 2) month = '0' + month;
+  //   if (day.length < 2) day = '0' + day;
+  //   return [year, month, day].join('-');
+  // };
   const handleValorCompraChange = (event) => {
     const valor = event.target.value;
     setCompra(valor);
@@ -382,6 +415,20 @@ function Formulario() {
   //     console.error('Erro ao buscar nome do cliente pelo CPF:', error);
   //   }
   // };
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    const formattedValue = value.replace(/[^0-9/]/g, '');
+    setDataPedido(formattedValue);
+  };
+  const handleCpfChange = (event) => {
+    const formattedCpf = event.target.value;
+    setCpf(formattedCpf);
+  };
+
+
+
+
   return (
     <div className='containerForm'>
       <form onSubmit={handleSubmit} >
@@ -424,14 +471,15 @@ function Formulario() {
           <div className="data">
             <label htmlFor="dataPedido">
               <span className='formLabel'>Date do Pedido</span>
-              <input
+              <InputMask
                 className="iData"
-                type="date"
+                mask="99/99/9999"
+                type="text"
                 id="dataPedido"
                 name="data"
                 placeholder="DD/MM/AAAA"
-                value={formatDate(dataPedido)}
-                onChange={(e) => setDataPedido(e.target.value)}
+                value={dataPedido}
+                onChange={handleChange}
                 autoComplete="off"
               />
             </label>
@@ -466,8 +514,12 @@ function Formulario() {
                 value={cpf}
                 onChange={(e) => setCpf(e.target.value)}
                 autoComplete="off"
-              />
+              >
+                {() => <input className="iCpf" type="text" name="cpf" id="cpf" />}
+              </InputMask>
+
             </label>
+
           </div>
           <div className='client'>
             <label htmlFor="cliente">
@@ -476,7 +528,7 @@ function Formulario() {
                 className={`iClient ${errors.client ? 'input-error' : ''}`}
                 type="text"
                 id="cliente"
-                name='clinte'
+                name='cliente'
                 placeholder="Cliente"
                 value={client}
                 onChange={(e) => setClient(e.target.value)}
@@ -524,12 +576,13 @@ function Formulario() {
               <input
                 className={`iAniversario ${errors.aniversario ? 'input-error' : ''}`}
                 mask="99/99/9999"
-                type="date"
+                type="text"
                 id="aniversario"
                 name="data"
                 placeholder="DD/MM/AAAA"
                 value={aniversario}
-                onChange={(e) => setAniversario(e.target.value)}
+                onChange={handleAniversarioChange}
+                // onChange={(e) => setAniversario(e.target.value)}
                 autoComplete="off"
               />
             </label>
@@ -779,3 +832,6 @@ function Formulario() {
   );
 }
 export default Formulario
+
+
+

@@ -60,9 +60,19 @@ const ClienteTabela = () => {
     return digito2 === parseInt(cpf.charAt(10));
   };
 
-  const salvar = () => {
+  const verificarCpfNoBackend = async (cpf) => {
+    try {
+      const response = await axios.post('http://localhost:3000/clientes/verificar', { cpf });
+      return response.data.exists;
+    } catch (error) {
+      ('Erro ao vrificar CPF:', error);
+      return false;
+    }
+  }
+
+  const salvar = async () => {
     setIsLoading(true);
-    setTimeout(() => {
+    setTimeout(async () => {
       if (resul.cpf.trim() === '') {
         openModal('CPF não pode ser vazio.');
         limparFormulario();
@@ -74,20 +84,28 @@ const ClienteTabela = () => {
         setIsLoading(false);
         return;
       }
-      const cpfExistente = resultado.some(cliente => cliente.cpf === resul.cpf);
+      const cpfExistente = await verificarCpfNoBackend(resul.cpf);
       if (cpfExistente) {
         openModal('Cliente já existe!');
         setIsLoading(false)
         return;
       }
-      const novoResul = { ...resul, id: resultado.length + 1 };
-      const newResultado = [...resultado, novoResul];
-      setResultado(newResultado);
-      localStorage.setItem('clientes', JSON.stringify(newResultado));
-      limparFormulario();
-      setIsLoading(false);
+      try {
+        await axios.post('http://localhost:3000/clientes', resul);
+        const novoResul = { ...resul, id: resultado.length + 1 };
+        const newResultado = [...resultado, novoResul];
+        setResultado(newResultado);
+        localStorage.setItem('clientes', JSON.stringify(newResultado));
+        limparFormulario();
+        setIsLoading(false);
+      } catch (error) {
+        openModal('Erro ao salvar cliente');
+        setIsLoading(false);
+      }
     }, 3000);
   };
+
+
   const limparFormulario = () => {
     setResul({
       id: '',
@@ -334,7 +352,7 @@ const ClienteTabela = () => {
         </main>
         <footer className="f_Button">
           <button className="btn_Salvar" onClick={salvar} >{isLoading ? "Enviando..." : "Salvar"}</button>
-          <button className="btn_Cancelar">Limpar</button>
+          <button className="btn_Cancelar" onClick={limparFormulario}>Limpar</button>
         </footer>
         <div className="list">
           <table className="_table">
@@ -365,9 +383,9 @@ const ClienteTabela = () => {
       </div>
       <tabela dados={resultado} onDelete={handleDelete} />
       <ModalCadCli
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        message={modalMessage} />
+        showModal={showModal}
+        closeModal={closeModal}
+        modalMessage={modalMessage} />
     </>
   )
 }
