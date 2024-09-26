@@ -48,46 +48,38 @@ const Formulario = () => {
     // Apenas calcula o desconto com base no valor bruto e a taxa de desconto
     setValorComDesconto((valorBruto * (1 - taxaDesconto)).toFixed(2));
   }, [valorBruto, taxaDesconto]);
-
   // Recupera o último ID salvo no localStorage
   useEffect(() => {
     const ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
     setId(ultimoIdSalvo);
   }, []);
-
   // Recupera a lista de CPFs ao carregar a página
   useEffect(() => {
     const cpfListFromLocalStorage = loadCpfList();
     setCpfList(cpfListFromLocalStorage);
   }, [])
-
   // Calcular o valor com desconto
   useEffect(() => {
     setValorComDesconto((valorBruto * (1 - taxaDesconto)).toFixed(2));
   }, [valorBruto, taxaDesconto]);
-
   // Recupera a lista de CPFs ao carregar a página
   useEffect(() => {
     const cpfListFromLocalStorage = loadCpfList();
     setCpfList(cpfListFromLocalStorage);
   }, [])
-
   // Update the value with discount
   useEffect(() => {
     setValorComDesconto((valorBruto * (1 - taxaDesconto)).toFixed(2));
   }, [valorBruto, taxaDesconto]);
-
   // Retrieve the last saved ID from localStorage
   useEffect(() => {
     const ultimoIdSalvo = parseInt(localStorage.getItem('ultimoId')) || 1;
     setId(ultimoIdSalvo);
   }, []);
-
   // Save CPF list whenever it changes
   useEffect(() => {
     savedCpfList(cpfList); // Save the CPF list here
   }, [cpfList]);
-
   // Load the CPF list when the page loads
   useEffect(() => {
     const cpfListFromLocalStorage = loadCpfList();
@@ -98,33 +90,24 @@ const Formulario = () => {
     const cpfListFromLocalStorage = loadCpfList();
     setCpfList(cpfListFromLocalStorage);
   }, [])
-
   // Update the value with discount
   useEffect(() => {
     setValorComDesconto((valorBruto * (1 - taxaDesconto)).toFixed(2));
   }, [valorBruto, taxaDesconto]);
-
-
   // Load the CPF list when the component mounts
   useEffect(() => {
     const cpfListFromLocalStorage = loadCpfList();
     setCpfList(cpfListFromLocalStorage);
   }, [])
-
   // Function to load CPF list from localStorage
   const loadCpfList = () => {
     const savedCpfList = localStorage.getItem('cpfList');
     return savedCpfList ? new Set(JSON.parse(savedCpfList)) : new Set();
   };
-
   // Function to save the CPF list to localStorage
   const savedCpfList = (list) => {
     localStorage.setItem('cpfList', JSON.stringify([...list]));
   };
-
-
-
-
   // Limpa o formulário após o envio
   const handleLimparFormulario = () => {
     setId(id + 1);
@@ -149,7 +132,6 @@ const Formulario = () => {
     setDesconto('');
     setValorComDesconto('');
   };
-
   // Lida com o envio do formulário
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -177,7 +159,6 @@ const Formulario = () => {
       if (resto !== parseInt(cpf.substring(10, 11))) return false;
       return true;
     }
-
     let errorMessage = {};
     if (!vendedor || vendedor.trim() === '') {
       errorMessage.vendedor = 'O campo Vendedor precisa ser preenchido.';
@@ -284,16 +265,6 @@ const Formulario = () => {
       setIsLoading(false);
     }
   };
-
-  // Atualiza o valor com desconto com base na forma de pagamento
-  // useEffect(() => {
-  //   if (formaPagamento === 'Debito/ Pix' || formaPagamento === 'Debito/ Cartao' || formaPagamento === 'Dinheiro') {
-  //     setValorComDesconto((valorBruto * (1 - taxaDesconto)).toFixed(2));
-  //   } else {
-  //     setValorComDesconto(valorBruto); // Sem desconto nas outras formas
-  //   }
-  // }, [valorBruto, formaPagamento, taxaDesconto]);
-
   const handleFormaPagamentoChange = (event) => {
     const forma = event.target.value;
     setFormaPagamento(forma);
@@ -301,7 +272,7 @@ const Formulario = () => {
     if (forma === "Debito/Pix" || forma === "Dinheiro" || forma === "Debito/Cartao") {
       // Se a forma de pagamento for "Débito/Pix" ou "Dinheiro", o saldo recebe o valor com desconto
       setSaldo(valorComDesconto);
-    } else if (forma === "Parc./1vezes") {
+    } else if (forma === "Parc./1vez") {
       setSaldo((compra / 1).toFixed(2));
     } else if (forma === "Parc./2vezes") {
       setSaldo((compra / 2).toFixed(2));
@@ -311,10 +282,6 @@ const Formulario = () => {
     console.log("Forma de pagamento:", forma);
     console.log("Saldo atualizado:", saldo); // Verificar se o saldo está sendo atualizado
   };
-
-
-
-
   // Verifica se o CPF já está cadastrado
   const checkCpfRegistered = async (cpf) => {
     try {
@@ -334,167 +301,6 @@ const Formulario = () => {
   const handleCompraChange = (event) => {
     setCompra(event.target.value); // Isso deve garantir que compra seja uma string
   };
-
-  // Lida com o envio do formulário
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   console.log("O botão Enviar foi clicado");
-
-  //   // Função para validar o CPF
-  //   function validarCPF(cpf) {
-  //     cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
-  //     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
-  //       return false; // CPF inválido se tiver menos de 11 dígitos ou se todos os dígitos forem iguais
-  //     }
-  //     let soma = 0;
-  //     let resto;
-  //     // Validação do primeiro dígito verificador
-  //     for (let i = 1; i <= 9; i++) {
-  //       soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
-  //     }
-  //     resto = (soma * 10) % 11;
-  //     if (resto === 10 || resto === 11) resto = 0;
-  //     if (resto !== parseInt(cpf.substring(9, 10))) return false;
-  //     soma = 0;
-  //     // Validação do segundo dígito verificador
-  //     for (let i = 1; i <= 10; i++) {
-  //       soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
-  //     }
-  //     resto = (soma * 10) % 11;
-  //     if (resto === 10 || resto === 11) resto = 0;
-  //     if (resto !== parseInt(cpf.substring(10, 11))) return false;
-  //     return true;
-  //   }
-  //   let errorMessage = {};
-  //   // Validação do campo vendedor
-  //   if (!vendedor || vendedor.trim() === '') {
-  //     errorMessage.vendedor = 'O campo Vendedor precisa ser preenchido.';
-  //   }
-  //   if (!dataPedido || dataPedido.trim() === '') {
-  //     errorMessage.dataPedido = 'O campo data do pedido precisa ser preenchido';
-  //   }
-  //   if (!pedido || pedido.trim() === '') {
-  //     errorMessage.pedido = 'O campo pedido precisa ser preenchido.';
-  //   }
-  //   // Verificar se o CPF já está cadastrado
-  //   if (cpfList.has(cpf)) {
-  //     errorMessage.cpf = 'Este CPF já está cadastrado.';
-  //   }
-  //   // Verificar se o CPF é válido
-  //   if (!validarCPF(cpf)) {
-  //     errorMessage.cpf = 'CPF inválido.';
-  //   }
-  //   // Verificar se o campo "nome" está preenchido
-  //   if (!client || client.trim() === '') {
-  //     errorMessage.nome = 'O Campo cliente precisa ser preenchido.';
-  //   }
-  //   if (!email || email.trim() === '') {
-  //     errorMessage.email = 'O campo e-mail precisa ser preenchido.';
-  //   }
-  //   if (!celular || celular.trim() === '') {
-  //     errorMessage.celular = 'O campo celular precisa ser preenchido';
-  //   }
-  //   if (!aniversario || aniversario.trim() === '') {
-  //     errorMessage.aniversario = "O campo aniversário precisa ser preenchido";
-  //   }
-  //   if (!referencia || referencia.trim() === '') {
-  //     errorMessage.referencia = 'O campo referência precisa ser preenchido';
-  //   }
-  //   if (!compra || compra.trim() === '') {
-  //     errorMessage.compra = 'O valor da compra precisa ser preenchido';
-  //   }
-  //   if (!taxaCartao || taxaCartao.trim() === '') {
-  //     errorMessage.taxaCartao = 'Preencha a taxa do cartão';
-  //   }
-  //   if (!taxaComissao || taxaComissao.trim() === '') {
-  //     errorMessage.taxaComissao = "Preencha a taxa de comissão "
-  //   }
-  //   if (!formaPagamento || formaPagamento.trim() === '') {
-  //     errorMessage.formaPagamento = "Qual a forma de pagamento";
-  //   }
-  //   // Se houver erros, definir no estado e abrir a modal
-  //   if (Object.keys(errorMessage).length > 0) {
-  //     setErrors(errorMessage);
-  //     setIsModalOpen(true);
-  //     return; // Impede o envio se houver erros
-  //   }
-  //   // Se não houver erros, prosseguir com o envio dos dados
-  //   const novoDado = {
-  //     id: Date.now(),
-  //     cpf: cpf,
-  //     cliente: client,
-  //     telefone: telefone,
-  //   };
-  //   setDadosFormulario([...dadosFormulario, novoDado]);
-  //   // Atualiza a lista de CPFs com o novo CPF
-  //   const updatedCpfList = new Set(cpfList).add(cpf);
-  //   setCpfList(updatedCpfList);
-  //   savedCpfList(updatedCpfList); // Salva a lista de CPFs
-
-  //   const data = {
-  //     id,
-  //     Vendedor: vendedor,
-  //     'Data_Pedido': dataPedido,
-  //     Pedido: pedido,
-  //     Cliente: client,
-  //     cpf,
-  //     Celular: celular,
-  //     Telefone: telefone,
-  //     email,
-  //     Referencia: referencia,
-  //     'Vl_Comp': compra,
-  //     Taxa: taxaCartao,
-  //     'Desc_Cartao': descCart,
-  //     'Valor_Bruto': valorBruto,
-  //     Comissao: taxaComissao,
-  //     'Valor_Liq.': valorLiquido,
-  //     Caixa: caixa,
-  //     'Form_Pag.': formaPagamento,
-  //     Aniversario: aniversario,
-  //     Desconto: desconto,
-  //   };
-
-  //   // Armazena o formulário preenchido no LocalStorage
-  //   const dadosSalvos = JSON.parse(localStorage.getItem('formulario')) || [];
-  //   const novoDadoComId = { id: Date.now(), ...data }; // Inclui um novo campo de ID
-  //   dadosSalvos.push(novoDadoComId);
-  //   localStorage.setItem('formulario', JSON.stringify(dadosSalvos));
-
-  //   // Atualiza o ID no localStorage
-  //   localStorage.setItem('ultimoId', id + 1);
-
-  //   // Limpa o formulário
-  //   handleLimparFormulario();
-  //   alert("Formulário enviado com sucesso!");
-
-  //   console.log('Enviando dados:', data);
-  //   setIsLoading(true);
-  //   try {
-  //     const response = await fetch("https://sheetdb.io/api/v1/iacg5pfqkrtq0", {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
-  //     if (response.ok) {
-  //       console.log('Dados enviados com sucesso');
-  //       handleLimparFormulario();
-  //       setCpfList(updatedCpfList);
-  //       savedCpfList(updatedCpfList);
-  //     } else {
-  //       console.error('Erro ao enviar dados', response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.log('Erro ao enviar dados', error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  //   handleLimparFormulario();
-  //   localStorage.setItem('ultimoId', id + 1);
-  // };
-
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -545,7 +351,6 @@ const Formulario = () => {
       newErrors.Compra = 'Valor da compra é obrigatório';
       valid = false;
     }
-
     const aniversarioError = validateAniversario(aniversario);
     if (aniversarioError) {
       newErrors.Aniversario = aniversarioError;
@@ -626,17 +431,12 @@ const Formulario = () => {
     const valor = parseFloat(event.target.value) || 0;
     setCompra(valor.toString());
     calcularValorComDesconto(valor, desconto);
-    // const valorComDescontoCalculado = calcularDesconto(valor, desconto);
-    // setValorComDesconto(valorComDescontoCalculado);
   };
   const handleDescontoChange = (event) => {
     const descontoValue = parseFloat(event.target.value) || 0;
     setDesconto(descontoValue);
     calcularValorComDesconto(compra, descontoValue)
-    // const valorComDescontoCalculado = calcularDesconto(compra, descontoValue);
-    // setValorComDesconto(valorComDescontoCalculado);
   };
-
   // Função para calcular o valor com desconto
   const calcularValorComDesconto = (valorCompra, desconto) => {
     // Aplicando o desconto em porcentagem
@@ -644,7 +444,6 @@ const Formulario = () => {
     // Armazena o valor com desconto
     setValorComDesconto(valorDesc.toFixed(2));
   }
-
   const handleTaxaDescontoChange = (event) => {
     const txDesconto = event.target.value;
     setTaxaDesconto(txDesconto);
@@ -679,9 +478,6 @@ const Formulario = () => {
       setCaixa('');
     }
   };
-  // const handleFormaPagamentoChange = (event) => {
-  //   setFormaPagamento(event.target.value);
-  // };
   const calcularDesconto = (valor, desconto) => {
     const valorFloat = parseFloat(valor);
     const descontoFloat = parseFloat(desconto);
@@ -1056,9 +852,9 @@ const Formulario = () => {
                 <option value="Debito/Cartao" className="optionForm" >Debito/Cartao</option>
                 <option value="Debito/Pix" className="optionForm" >Debito/Pix</option>
                 <option value="Dinheiro" className="optionForm" >Dinheiro</option>
-                <option value="Parc./1 vezes" className="optionForm" >Parc./1 vezes</option>
-                <option value="Parc./2 vezes" className="optionForm" >Parc./2 vezes</option>
-                <option value="Parc./3 vezes" className="optionForm" >Parc./3 vezes</option>
+                <option value="Parc./1vez" className="optionForm" >Parc./1vez</option>
+                <option value="Parc./2vezes" className="optionForm" >Parc./2vezes</option>
+                <option value="Parc./3vezes" className="optionForm" >Parc./3vezes</option>
               </select>
             </label>
           </div>
@@ -1073,113 +869,6 @@ const Formulario = () => {
               readOnly
             />
           </div>
-
-          {/* <div className="valorForm">
-            <label htmlFor="" className="parcelamento">Saldo</label>
-            <input
-              className="iValor"
-              type="text"
-              name='Form/Pag'
-              value={saldo}
-              readOnly
-            />
-          </div> */}
-
-          {/* <div className="valorForm">
-            <label htmlFor="" className="parcelamento">Saldo</label>
-            {(formaPagamento === 'Dinheiro') ? (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={compra}
-                readOnly
-              />
-            ) : formaPagamento === 'Debito/ Pix' ? (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={valorComDesconto}
-                readOnly
-              />
-            ) : formaPagamento === 'Parc./ 1 vezes' ? (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={(valorBruto / 1).toFixed(2)}
-                readOnly
-              />
-            ) : formaPagamento === 'Parc./ 2 vezes' ? (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={(valorBruto / 2).toFixed(2)}
-                readOnly
-                required
-              />
-            ) : (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={(valorBruto / 3).toFixed(2)}
-                readOnly
-                required
-              />
-            )}
-          </div> */}
-
-          {/* <div className="valorForm">
-            <label htmlFor="" className="parcelamento">Saldo</label>
-            {(formaPagamento === 'Dinheiro' || formaPagamento === 'Debito/ Pix') ? (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={formaPagamento === 'Debito/ Pix' ? valorComDesconto : compra}
-                readOnly
-              />
-            ) : formaPagamento === 'Parc./ 1 vezes' ? (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={(valorBruto / 1).toFixed(2)}
-                readOnly
-              />
-            ) : formaPagamento === 'Parc./ 1 vezes' ? (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={(valorBruto / 1).toFixed(2)}
-                readOnly
-                required
-              />
-            ) : formaPagamento === 'Parc./ 2 vezes' ? (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={(valorBruto / 2).toFixed(2)}
-                readOnly
-                required
-              />
-            ) : (
-              <input
-                className="iValor"
-                type="text"
-                name='Form/Pag'
-                value={(valorBruto / 3).toFixed(2)}
-                readOnly
-                required
-              />
-            )};
-          </div> */}
-
           <div className="vencimentoForm">
             <label className="iDayMonth" type="text">Tx./Antecip.</label>
             <input className="iDayMonth3" type="text" placeholder="$" value={resultadoDesconto} readOnly />
