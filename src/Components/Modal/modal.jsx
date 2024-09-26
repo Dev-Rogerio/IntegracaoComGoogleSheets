@@ -2,9 +2,48 @@ import React from "react";
 import '../Modal/modal.css'
 import ReactModal from "react-modal";
 
-const ModalMassage = ({ isOpen, onClose, errors }) => {
-  const firstErrorField = Object.keys(errors).find(key => errors[key]);
-
+const ModalMassage = ({ isOpen, onClose, errors = {} }) => {
+  let errorMessage = null;
+  // Verificar os erros na sequência desejada
+  if (errors.vendedor) {
+    errorMessage = errors.vendedor;
+  }
+  else if (errors.dataPedido) {
+    errorMessage = errors.dataPedido;
+  }
+  else if (errors.pedido) {
+    errorMessage = errors.pedido;
+  }
+  else if (errors.cpf) {
+    errorMessage = errors.cpf;
+  }
+  else if (errors.nome) {
+    errorMessage = errors.nome;
+  }
+  else if (errors.celular) {
+    errorMessage = errors.celular;
+  }
+  else if (errors.aniversario) {
+    errorMessage = errors.aniversario;
+  }
+  else if (errors.email) {
+    errorMessage = errors.email;
+  }
+  else if (errors.referencia) {
+    errorMessage = errors.referencia;
+  }
+  else if (errors.compra) {
+    errorMessage = errors.compra;
+  }
+  else if (errors.taxaCartao) {
+    errorMessage = errors.taxaCartao;
+  }
+  else if (errors.taxaComissao) {
+    errorMessage = errors.taxaComissao;
+  }
+  else if (errors.formaPagamento) {
+    errorMessage = errors.formaPagamento;
+  }
   return (
     <>
       <ReactModal
@@ -20,15 +59,12 @@ const ModalMassage = ({ isOpen, onClose, errors }) => {
               <button className="btm-close close-button" onClick={onClose}>X</button>
             </header>
             <article>
-              <p className="modal-text">"Por favor, Os campos devem ser preenchidos!"</p>
-            </article>
-            <aside modal-aside>
-              {firstErrorField && (
-                <h3 className="animated-text">
-                  {`O Campo [ ${firstErrorField} ] é Obrigatório.`}
-                </h3>
+              {errorMessage ? (
+                <p className="modal-text">{errorMessage}</p>
+              ) : (
+                <p className="modal-text">Erro desconhecido.</p>
               )}
-            </aside>
+            </article>
           </div>
         </div>
       </ReactModal>

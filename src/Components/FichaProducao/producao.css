@@ -431,13 +431,14 @@ display: flex;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 20px;  
   gap: 10px; 
 }
 .screenClose{
   width: 31%;
   height: 30px;
-  background-color: gray;
+  background-color: rgb(135, 37, 37);
+  margin-left: 30px;
 }
 .sendForm {
   width: 31%;
@@ -448,4 +449,16 @@ display: flex;
   width: 31%;
   height: 30px;
   background-color: blue;
+}
+/* .toGoback { 
+  width: 31%;
+  height: 30px;
+  background-color: gray;
+} */
+.backToForm {
+  width: 31%;
+  height: 30px;
+  background-color: gray;
+  margin-right: 30px;
+
 }

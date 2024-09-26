@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import InputMask from "react-input-mask";
 import Colarinho from '../AssetsIcons/typeColarinho.png';
@@ -15,35 +16,26 @@ import './producao.css';
 import './print.css';
 import MyModal from "./modal";
 
-const Producao = () => {
-  const [lastNumber, setLastNumber] = useState(() => {
-    return parseInt(localStorage.getItem('ultimoLastNumber')) || 1000;
-  });
 
-  const [formData, setFormData] = useState(() => {
-    const savedFormData = localStorage.getItem('formData');
-    return savedFormData ? JSON.parse(savedFormData) :
-      { number: lastNumber, cpf: '', clien: '', contato: '' };
-  });
+// Função para calcular a data de entrega
+function calculateDeliveryDate(date) {
+  if (!date) return '';
+  const currentDate = new Date(date);
+  currentDate.setDate(currentDate.getDate() + 16);
+  return currentDate.toLocaleDateString();
+}
 
-  useEffect(() => {
-    localStorage.setItem('ultimoLastNumber', lastNumber);
-  }, [lastNumber]);
 
-  useEffect(() => {
-    localStorage.setItem('formData', JSON.stringify(formData));
-  }, [formData]);
-
-  const calculateDelivreryDate = (date) => {
-    const currentDate = new Date(date);
-    currentDate.setDate(currentDate.getDate() + 16);
-    return currentDate.toLocaleDateString();
-  };
-
+function Producao() {
+  const [dadosCliente, setDadosCliente] = useState(null);
+  const [cpf, setCpf] = useState('');
+  const [cliente, setCliente] = useState(null);
+  const location = useLocation();
+  const [contato, setContato] = useState('');
+  const [error, setError] = useState('');
   const [formNumber, setFormNumber] = useState(1);
   const [errorMessage, setErrorMessage] = useState('');
   const [vendedor, setVendedor] = useState('');
-  const [cpf, setCpf] = useState(formData.cpf || '');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clearColar, setClearColar] = useState('');
   const [clearPala, setClearPala] = useState('');
@@ -53,7 +45,7 @@ const Producao = () => {
   const [clearQuadril, setClearQuadril] = useState('');
   const [clearCumprimento, setClearCumprimento] = useState('');
   const [clearPunho, setClearPunho] = useState('');
-  const [clearMetro, setClearMetro] = useState(formData.clearMetro || '');
+  const [clearMetro, setClearMetro] = useState('');
   const [clearMonograma, setClearMonograma] = useState('');
   const [clearParis, setClearParis] = useState('');
   const [clearWindsor, setClearWindsor] = useState('');
@@ -64,20 +56,101 @@ const Producao = () => {
   const [selectedRadio, setSelectedRadio] = useState('');
   const [selectedPunhoRadio, setSelectedPunhoRadio] = useState('');
   const [selectedFrenteRadio, setSelectedFrenteRadio] = useState('');
-  const [client, setClient] = useState(formData.client || '');
-  const [contato, setContato] = useState(formData.contato || '');
-  const [inputDate, setInputDate] = useState('');
+  const [client, setClient] = useState('');
+  const [formData, setFormData] = useState({ number: 1 });
+  const [lastNumber, setLastNumber] = useState(1);
+  const [deliveryDate, setDeliveryDate] = useState('');
   const navigate = useNavigate();
-  const [deliveryDate, setDeliveryDate] = useState(calculateDelivreryDate());
+  const [inputDate, setInputDate] = useState('');
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const cpf = queryParams.get('cpf');
+    if (cpf) {
+      fetchClientData(cpf);
+    }
+  }, [location.search]);
+
+
+
+  // Atualiza a data de entrega sempre que a data de entrada muda
+  useEffect(() => {
+    setDeliveryDate(calculateDeliveryDate(inputDate));
+  }, [inputDate]);
+
+
+
+
+  // Efeito para buscar dados do cliente quando o CPF mudar
+  useEffect(() => {
+    if (cpf) {
+      fetchClientData(cpf);
+    } else {
+      setCliente({});
+      setContato('');
+    }
+  }, [cpf]);
+
+
+  // Efeito para atualizar o número do formulário no localStorage
+  useEffect(() => {
+    localStorage.setItem('ultimoLastNumber', lastNumber);
+  }, [lastNumber]);
+
+
+
+  // Efeito para atualizar os dados do formulário no localStorage
+  useEffect(() => {
+    localStorage.setItem('formData', JSON.stringify(formData));
+  }, [formData]);
+
+
+  // Função para buscar dados do cliente
+  // Exemplo de solicitação com axios
+  const fetchClientData = async (cpf) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/clienttable?cpf=${cpf}`);
+      if (response.data && response.data.length > 0) {
+        const clientData = response.data[0];
+        setCliente(clientData);
+        setContato(clientData.telefone || '');
+      } else {
+        setCliente({});
+        setContato('');
+      }
+    } catch (error) {
+      console.error('Erro ao buscar dados do cliente:', error);
+      setError('Erro ao buscar dados do cliente');
+      setCliente({});
+      setContato('');
+    }
+  };
+
+
+
+
+
+  // Função para lidar com mudanças no CPF
+  const handleCpfChange = (event) => {
+    setCpf(event.target.value);
+  };
+
+
+
+
   const handlePrint = () => {
     window.print();
   };
+
+
+
   const handleLimparFormulario = () => {
-    setCpf('')
-    setClient('');
+    setCpf('');
+    setCliente({});
     setContato('');
     setInputDate('');
     setDeliveryDate('');
+    setClient('');
     setClearColar('');
     setClearPala('');
     setClearManga('');
@@ -101,94 +174,48 @@ const Producao = () => {
     setVendedor('')
     setInputDate('')
   }
-  const redirectToFormulario = () => {
-    navigate('/');
-  }
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (vendedor.trim() === '') {
-      setErrorMessage('Preencha o campo Vendedor.');
-      setIsModalOpen(true);
-      return;
-    }
-    if (cpf.trim() === '') {
-      setErrorMessage('Preencha o campo CPF.');
-      setIsModalOpen(true);
-      return;
-    }
-    if (inputDate.trim() === '') {
-      setErrorMessage('Informe um data válida');
-      setIsModalOpen(true);
-      return;
-    }
-    if (selectedRadio.trim() === '') {
-      setErrorMessage('selecione um tipo de colarinho');
-      setIsModalOpen(true);
-      return;
-    }
-    if (clearMetro.trim() === '') {
-      setErrorMessage('Qual a metragem do tecido.');
-      setIsModalOpen(true);
-      return;
-    }
-    if (selectedPunhoRadio.trim() === "") {
-      setErrorMessage('Selecione um tipo de punho');
-      setIsModalOpen(true);
-      return;
-    }
-    if (selectedFrenteRadio.trim() === '') {
-      setErrorMessage('Selecione o tipo de frente');
-      setIsModalOpen(true);
-      return;
-    }
-    const newFormNumber = formNumber + 1;
-    setFormNumber(newFormNumber);
-    console.log("Formulário enviado com sucesso!");
-    handleLimparFormulario();
-    setLastNumber(newFormNumber);
-    const updateFormData = { ...formData, number: newFormNumber, cpf, client, contato };
-    setFormData(updateFormData);
-    setDeliveryDate(calculateDelivreryDate(inputDate));
-    console.log('dados enviados:', updateFormData);
+
+
+  // Função para redirecionar para o formulário
+  // const redirectToFormulario = () => {
+  //   navigate('/');
+  // };
+
+  const isValidCPF = (cpf) => {
+    // Adicione a lógica para validar o CPF
+    return true; // Supondo que o CPF é válido
   };
-  const closeModal = () => {
-    setIsModalOpen(false)
-  }
-  useEffect(() => {
-    setDeliveryDate(calculateDelivreryDate())
-  }, []);
-  const handleDateChange = (event) => {
-    const newDate = event.target.value;
-    setInputDate(newDate);
-    if (newDate) {
-      setDeliveryDate(calculateDelivreryDate(newDate));
+
+  const handleSubmit = () => {
+    if (isValidCPF(cpf)) {
+      fetchClientData(cpf);
     } else {
-      setDeliveryDate('');
+      console.error('CPF inválido');
     }
   };
 
-  const handleCpfChange = async (event) => {
-    const newCpf = event.target.value;
-    setCpf(newCpf);
-    if (newCpf.length === 14) {
-      try {
-        const response = await axios.get(`http://localhost:3001/medidas/client/${newCpf}`);
-        console.log('resposta da API:', response.data);
-        if (response.data && response.data.client) {
-          setClient(response.data.client);
-          setContato(response.data.contato || '');
-          setFormData({ ...formData, client: response.data.client, contato: response.data.contato || '' });
-        } else {
-          setClient('Cliente não encontrado');
-        }
-      } catch (error) {
-        console.error('Erro ao buscar cliente pelo CPF:', error);
-        setClient('erro ao buscar cliente');
-      }
-    } else {
-      setClient('');
-    }
+
+
+
+
+
+
+
+  // Função para fechar o modal
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
+
+
+
+
+
+
+
+  const handleDateChange = (event) => {
+    setInputDate(event.target.value);
   };
+
   return (
     <>
       <div className="containerTypeMeasure">
@@ -199,7 +226,7 @@ const Producao = () => {
               <input
                 type="text"
                 className="seller  iFont"
-                value={vendedor}
+
                 onChange={(e) => setVendedor(e.target.value)}
               />
             </section>
@@ -209,7 +236,7 @@ const Producao = () => {
               <input
                 type="text"
                 className="numberToken iFont"
-                value={formData.number}
+
                 readOnly
               />
             </section>
@@ -227,9 +254,7 @@ const Producao = () => {
                     onChange={handleCpfChange}
                   />
                 </div>
-                <MyModal isOpen={isModalOpen} handleClose={closeModal}>
-                  {errorMessage}
-                </MyModal>
+
                 <div className="flexData">
                   <p className="_textColor">CONTATO:</p>
                   <input
@@ -237,6 +262,7 @@ const Producao = () => {
                     className="iClientProduction iFont"
                     value={contato}
                   />
+                  {/* <p>Last Number: {lastNumber}</p> */}
                 </div>
               </article>
               <div className="flexData _marginTop">
@@ -244,7 +270,7 @@ const Producao = () => {
                 <input
                   type="text"
                   className="iContactProduction iFont"
-                  value={client}
+                  value={cliente ? cliente.nome : ''}
                   readOnly
                 />
               </div>
@@ -272,7 +298,7 @@ const Producao = () => {
                     <input
                       type="text"
                       className="iColarProducao iFild"
-                      value={clearColar}
+
                       onChange={(e) => setClearColar(e.target.value)}
                     />
                     <p className="pFild">Colar</p>
@@ -281,7 +307,7 @@ const Producao = () => {
                     <input
                       type="text"
                       className="iPalaProducao iFild"
-                      value={clearPala}
+
                       onChange={(e) => setClearPala(e.target.value)}
                     />
                     <p className="pFild">Pala</p>
@@ -290,7 +316,7 @@ const Producao = () => {
                     <input
                       type="text"
                       className="iMangaProducao iFild"
-                      value={clearManga}
+
                       onChange={(e) => setClearManga(e.target.value)}
                     />
                     <p className="pFild">Manga</p>
@@ -299,7 +325,7 @@ const Producao = () => {
                     <input
                       type="text"
                       className="iToraxProducao iFild"
-                      value={clearTorax}
+
                       onChange={(e) => setClearTorax(e.target.value)}
                     />
                     <p className="pFild">Tórax</p>
@@ -308,7 +334,7 @@ const Producao = () => {
                     <input
                       type="text"
                       className="iCinturaProducao iFild"
-                      value={clearCintura}
+
                       onChange={(e) => setClearCintura(e.target.value)}
                     />
                     <p className="pFild">Cintura</p>
@@ -317,7 +343,7 @@ const Producao = () => {
                     <input
                       type="text"
                       className="iQuadrilProducao iFild"
-                      value={clearQuadril}
+
                       onChange={(e) => setClearQuadril(e.target.value)}
                     />
                     <p className="pFild">Quadril</p>
@@ -326,7 +352,7 @@ const Producao = () => {
                     <input
                       type="text"
                       className="iCumprProducao iFild"
-                      value={clearCumprimento}
+
                       onChange={(e) => setClearCumprimento(e.target.value)}
                     />
                     <p className="pFild">Cumpr.</p>
@@ -335,7 +361,7 @@ const Producao = () => {
                     <input
                       type="text"
                       className="iPunhoProducao iFild"
-                      value={clearPunho}
+
                       onChange={(e) => setClearPunho(e.target.value)}
                     />
                     <p className="pFild">Punho</p>
@@ -595,11 +621,13 @@ const Producao = () => {
             </section>
           </section>
           <div className="areaBottom">
-            <button className="screenClose typeToButton" onClick={redirectToFormulario}>Sair</button>
+            <button className="screenClose typeToButton" >Sair</button>
             <button type="submit" className="sendForm typeToButton">Enviar</button>
             <button className="printScreen typeToButton" onClick={handlePrint}>Imprimir</button>
+            <button type="button" className="backToForm">Voltar ao Formulário</button>
           </div>
         </form >
+        {/* {isModalOpen && <MyModal onClose={closeModal} />} */}
       </div >
     </>
   )

@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container_TableCadCli {
+  width: 100%;
+  overflow-x: auto; /* Permite rolagem horizontal */
+}
+
+._tableCadCli {
+  width: 100%;
+  border-collapse: collapse; /* Remove espaços entre células */
+  table-layout: fixed; /* Mantém as colunas com largura fixa */
+}
+
+._tableCadCli thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Mantém as colunas do thead alinhadas com o tbody */
+}
+
+._tableCadCli tbody {
+  display: block;
+  max-height: 300px; /* Define a altura máxima para o tbody */
+  overflow-y: auto; /* Adiciona rolagem vertical */
+  width: 100%;
+}
+
+.thead_ClientTable {
+  background-color: #f2f2f2;
+  text-align: left;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.tbodyCadCli tr {
+  display: table;
+  table-layout: fixed;
+  width: 100%; /* Garante que as linhas do tbody ocupem a mesma largura que o thead */
+}
+
+.td_tableLine {
+  padding: 8
+
+}
+._tableCadCli th, ._tableCadCli td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center; /* Centraliza o texto */
+  white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+}

@@ -2,40 +2,86 @@
   padding: 0;
   margin: 0;
 }
-html, boby {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-body {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 0, 0.102);
-}
-body, html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; 
+:root {
+  --primary-color: #726f6f;
+  --secondary-color: teal;
+  --text-color: #333;
+  --color-blue: blue;
+  --background-color: #f1f1f1;
+  --input-color: #eae6e6cc;
+  --menu-black: black;
+  --color-black: black;
 }
 input {
-  font-size: 12px;
+  display: block;
+  font-size: 18px;
+  width: 100%;
+  height: 35px;
   color: #2229;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid blue;
+  color: var(--text-color);
+  text-indent: 10px;
+  text-transform: capitalize; 
+}
+.formLabel {
+  font-family:Arial, Helvetica, sans-serif;
+  color: var(--color-blue);
+  font-size: 18px;   
+  text-transform: lowercase;
+}
+ html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+} 
+ body {
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+ background-color: var(--secondary-color);
+ margin: 0;
+ padding: 0; 
+} 
+ #root {
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+} 
+.containerForm {
+   display: flex;
+   background-color: #726f6f;
+   width: 75%; 
+   max-width: 75vw;
+   height: auto;
+   justify-content: center;
+   align-items: center;    
+   border-radius: 4px; 
+   padding: 20px; 
+  flex-direction: column;
+  border: 3px solid  black;  
+} 
+.containerForm form {
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;  
 }
 .menuForm {
   display: grid;
   grid-template-columns: 15% 70% 15%;
-  border: 4px;    
+  border: 4px;  
+  border-radius: 4px; 
+  background-color: var(--menu-black); 
 }
 .formImg {
   width: 100%;
@@ -43,9 +89,8 @@ input {
   border-radius: 4px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  grid-column: 1/2;
-  background-color: #222;
+  align-items: center;  
+  background-color: var(--menu-black);
 }
 .imgForm {
   width: 40%;  
@@ -70,989 +115,312 @@ input {
   margin-left: 30%;
   margin-top: 20px;
 }
-.formLabel {
-  font-family:Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  font-size: 11px;
-  color: #2226;   
-  text-transform: lowercase;
-}
-.formaPgto {
-   width: 100%;
-  height: 16px;
-  font-size: 8px;
-  text-align: center;
-  color: #222;
-  letter-spacing: 1.3px; 
-  border-bottom: 1px solid #222;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  text-align: center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-.containerForm {
-  display: flex;
-  background-color: #726f6f;
-  width: 65%;
-  height: 470px;
-  justify-content: center;
-  align-items: center;
-  margin-left: 50%;
-  margin-top: 40%;
-  transform: translate(-50%, -50%);
-  padding: 25px;
-  border: 3px solid  black;
-  border-radius: 4px;
-  }  
-  .rowsOne {
-  display: flex;
-  width: 94%;  
-  gap: 20px;
-  height:  60px;
+.rowsOne {
+ display: grid;
+ grid-template-columns: 10% 40% 25% 25%;
+  width: 100%;  
+  gap: 5px;
+  height:  70px;
   background-color: #efefef;
-  justify-content: center;  
+  justify-content: center;
+  align-items: center;  
   border-radius: 4px;    
   margin-top: 20px;
   padding: 0px 25px 0px 25px; 
   }
-  .id {     
-  width: 30%;
-  outline: 0;  
-}
-  .iId {    
-  display: block;
-  width: 100%;
-  height: 30px; 
-  outline: 0; 
-  border-radius: 3px;
-  border: 1px solid #222;
-  text-indent: 10px;       
-  background-color: #e2e1e1;
-  color: red;
-  }    
-  .vendedor {     
-  width: 100%;
-  outline: 0;
-  grid-column: 2/3;
-  }  
-  .iVend {
-  display: block;
-  width: 100%;
-  height: 30px; 
-  outline: 0; 
-  border-radius: 3px;
-  border: 1px solid #222;
-  text-indent: 10px;
-  text-transform: capitalize;
-  cursor: pointer;
-    }    
-.data {  
-width: 40%;
-outline: 0;
-grid-column: 3/4;
-}
-.iData {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0;
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-cursor: pointer;
-}
-.pedido {     
-width: 40%;
-outline: 0;
-grid-column: 4/5;
-display: grid;
-}
-  .iPed {    
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-cursor: pointer;
-}
-.rowsTwo {
-  display: flex;
-  width: 94%;  
-  gap: 6px;
-  height:  60px;
-  background-color: #efefef;
-  justify-content: space-between;  
-  border-radius: 4px;    
-  margin-top: 10px;
-  padding: 0px 25px 0px 25px;  
-  gap: 6px; 
- }
-.cpf {
- width: 50%; 
- outline: 0;
-}
-.iCpf {
-  display: block; 
-  width: 100%;
-  height: 30px; 
-  outline: 0; 
-  border-radius: 3px;
-  border: 1px solid #222;
-  text-indent: 10px; 
-  cursor: pointer;
- }
-.client {  
- width: 100%;
- outline: 0; 
-}
-.iClient {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-text-transform: capitalize;
-cursor: pointer;
-}
-.celular {  
-width: 50%;
-outline: 0;
-}
-.iCel {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-cursor: pointer;
-}
-.telefone {  
-width: 50%;
-outline: 0;
-}
-.iFone {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-cursor: pointer;
-}
-.rowsThree { 
-  display: flex;
-  width: 94%;  
-  gap: 6px;
-  height:  60px;
-  background-color: #efefef;
-  justify-content: space-between;  
-  border-radius: 4px;    
-  margin-top: 10px;
-  padding: 0px 25px 0px 25px;   
-}
-.aniversario {  
-  width: 40%;
-  outline: 0;
+  .rowsOne span {
+    text-transform: capitalize;
+    font-size: 14px;
   }
-  .iAniversario {
-  display: block;
-  width: 100%;
-  height: 30px; 
-  outline: 0; 
-  border-radius: 3px;
-  border: 1px solid #222;
-  text-indent: 10px;
-  cursor: pointer;
+  .rowsOne div:first-child {
+    width: 100%;        
   }
-.email {  
-width: 100%;
-outline: 0;
-grid-column: 2/3;
- }
-.iEmail {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-cursor: pointer;
-}
-.referencia {  
-width: 50%;
-outline: 0;
-}
-.iRef {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-cursor: pointer;
-text-transform: capitalize;
-}
-.rowsFour { 
-  display: flex;
-  width: 94%;  
-  gap: 6px;
-  height:  60px;
-  background-color: #efefef;
-  justify-content: space-between;  
-  border-radius: 4px;    
-  margin-top: 10px;
-  padding: 0px 25px 0px 25px;   
-}
-.valor {  
-width: 100%;
-outline: 0;
-}
-.iVal {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-margin-top: 3px;
-cursor: pointer;
-}
-.desconto {  
-  width: 60%;
-  outline: 0;    
+  .rowsOne div:nth-child(2){
+    width: 100%;   
   }
-  .iDesconto {
-  display: block;
-  width: 100%;
-  height: 30px; 
-  outline: 0; 
-  border-radius: 3px;
-  border: 1px solid #222;
-  text-indent: 10px;
-  margin-top: 3px;
-  cursor: pointer; 
+  .rowsOne div:nth-child(3){
+    width: 100%;   
   }
-  .valor_desconto {  
-    width: 100%;
-    outline: 0;    
-    }
-    .iValor_desconto {
-    display: block;
-    width: 100%;
-    height: 30px; 
-    outline: 0; 
-    border-radius: 3px;
-    border: 1px solid #222;
-    text-indent: 10px;
-    margin-top: 3px;
-    background-color: #e2e1e1;   
-    }    
-.taxaPercent {
-width: 60%;
-outline: 0;
-}
-.iTaxaCartao {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-margin-top: 3px;
-cursor: pointer;
-}
-.descCartao {
-width: 100%;
-outline: 0;
-}
-.iDesc {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-margin-top: 3px;
-background-color: #e2e1e1;
-}
-.bruto {
-width: 100%;
-outline: 0;
-}
-.iBruto {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-margin-top: 3px;
-background-color: #e2e1e1;
-color: rgb(95, 95, 242);
-}
-.comissao {  
-width: 60%;
-outline: 0;
-}
-.iCom {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-margin-top: 3px;
-cursor: pointer;
-}
-.liquido {
-  width: 100%;
-  outline: 0;    
+  .rowsOne div:nth-child(4){
+    width: 100%; 
+  }      
+  .rowsOne div:nth-of-type(1) input {
+    background-color: var(--input-color);
   }
-  .iLiq {
-  display: block;
-  width: 100%;
-  height: 30px; 
-  outline: 0; 
-  border-radius: 3px;
-  border: 1px solid #222;
-  text-indent: 10px;
-  margin-top: 3px;
-  background-color: #e2e1e1;
-  color: rgb(95, 95, 242);
-  }
-.caixa {
-width: 100%;
-outline: 0;
-}
-.iCaixa {
-display: block;
-width: 100%;
-height: 30px; 
-outline: 0; 
-border-radius: 3px;
-border: 1px solid #222;
-text-indent: 10px;
-margin-top: 3px;
-background-color: #e2e1e1;
-color: rgb(95, 95, 242);
-}
-.rows-Five {
-    display: block;
-    width: 100%;
-    height: 120px;
-    border-radius: 3px;
-    margin-top: 10px;
-    margin-left: 50%;
-    transform: translate(-50%);  
-    padding: 0px 25px 0px 25px;
-   }
-   .fiveAndsix {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    height: auto;
-    margin-left: 50%;
-    transform: translate(-50%);       
-   }   
-.rowsFive { 
-  width: 99%;
-  height: 20px;
- display: flex;
- gap: 1px;   
- border-radius: 4px 4px 0px 0px;
- margin: 0;
- margin-left: -1%;
- 
-} 
-.lFomrPag {   
-  display: flex;
-  width: 70%;
-  justify-content: center;
-  align-items: center;  
-  font-family: sans-serif;
-  font-size: 13px;
-  background-color: #efefef;
-  border-radius: 4px 4px  0px 0px;  
- }
-.LSalvarDados {  
-  display: flex;
-  width: 30%;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  font-size: 13px;
-  background-color: #efefef;
-  border-radius: 4px 4px  0px 0px;  
-}
-.rowsSix {  
-  display: flex;
-  justify-content: space-evenly;
-  width: 99%;
-  height: auto;
-  margin-top: 1px;
-  gap: 1px;
-}   
-.iOpton {  
-  display: flex;   
-  width: 68%;
-  height: 70px;
-  border-radius: 0px 0px 4px 4px;
-  background-color: #efefef;
-  grid-gap: 10px;  
-  padding: 1%;
- }
- .divOptionForm {
-  display: grid;
-  display: block;
-  width: 100%;
-  height: 70px;
-  justify-content: center;
-  grid-column: 1/2; 
-  background-color: #ccc;
-  border: 1px solid black;
-  outline: none;
-  border-radius: 4px;  
-  }
-.iSection {    
-  font-size: 12px;  
-  padding: 5px;  
-  width: 95%;
-  border-radius: 3px;  
-  outline: none;  
-  border-radius: 4px;
-  margin-left: 50%;
-  transform: translate(-50%);
-  color: #2229;
-  margin-top: 10px; 
-}
-.valorForm {
-  display: block;  
-  width: 100%;
-  height: 70px;
-  grid-column: 2/3;   
-  background-color: #ccc;
-  border: 1px solid #222;
-  border-radius: 4px;  
-}
-.parcelamento {  
-  width: 100%;
-  height: 16px;
-  font-size: 8px;
-  text-align: center;
-  color: #222;
-  letter-spacing: 1.3px; 
-  border-bottom: 1px solid #222;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  text-align: center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-.iValor {  
-  width: 90%;
-  height: 26px;
-  border: 1px solid #2229;
-  border-radius: 4px;
-  outline: none;  
-  color: #2229;
-  margin-top: 10px;
-  margin-left: 50%;
-  transform: translate(-50%);
-  text-align: center;  
-  background-color:#e2e1e1
-}
-.vencimentoForm {
-  display: grid;
-  display: block;
-  grid-column: 3/4;
-  width: 100%;
-  height: 70px;
-  border-radius: 4px;
-  border: 1px solid #222;
-  background-color: #ccc;
-}
-.iDayMonth {  
-  width: 100%;
-  height: 16px;
-  font-size: 8px;
-  text-align: center;
-  color: #222;
-  letter-spacing: 1.3px; 
-  border-bottom: 1px solid #222;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  text-align: center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-.iDayMonth2 {
-  display: block;
-  display: flex;
- border: 1px solid #2229;
-  background-color:#efefef;
-  height: 18px;
-  width: 80%;  
-  margin: 1px; 
-  border-radius: 4px;
-  outline: none;
-  margin-left: 50%;
-  transform: translate(-50%);
-  margin-top: 5px;
-  text-align: center;
-}
-.iDayMonth3 {
-  border-top: 0;
-  border-width: 0;
-  border-left: 0;
-  background-color:#efefef;
-  height: 18px;
-  width: 80%;  
-  border-radius: 4px;
-  border: 1px solid #2229;
-  outline: none;
-  margin-left: 50%;
-  transform: translate(-50%);
-  text-align: center;
-  color: #726f6f;
-}
-.botoes {
-  display: flex;   
-  background-color: #efefef;
-  width: 30%;
- gap: 15px;
- justify-content: center;
- align-items: center;
- border-radius: 0px 0px 4px 4px; 
-}
-.border {
-  display: flex;
-  width: 90%;
-  height: 54px;
-  border: 1px solid #222;
-  border-radius: 4px;
-  justify-content: center;
-  align-items: center;
-  padding: 7px;
-  gap: 10px;
-  background-color: #d5d5d5;
-}
-button {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100%;
-height: 40px;
-background-color: rgb(9, 5, 251, .7);
-border-radius: 4px;
-outline: 0;
-border: 1px;
-color: #fff;
-font-size: 12px;
-letter-spacing: 1.5px;
-cursor: poiter;
-}
-.copy {
-  display: flex;
-  color: #ccc ;
-  font-size: xx-small;
-  font-family: sans-serif;
-  width: 100%;
-  justify-content: center;
-  margin-top: 10px;
-}
-@media(max-width: 600px) {
-  .containerForm {
-    width: 100%;
-    margin-left: 50%;
-    margin-top: -50px;
-    margin-right: auto;
-  }
-  .iId {
-    font-size: 11px;
-  }
-  .form-h1 {
-    font-size: large;
-  }
-  .formImg {
-    height: 40px;
-  }
-  .sairForm {
-    font-size: small;    
-  }
-  .rowsOne {    
+  .rowsTwo {
+    display: grid;
+    grid-template-columns: 20% 40% 20% 20%;
+    width: 100%;  
+    gap: 5px;
+    height:  70px;
     background-color: #efefef;
-  height:  60px;
-  border-radius: 4px;   
-  margin-top: 10px;     
-  } 
-  .id {
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    width: 30%;
-   height: 90%;   
-  }
-  .vendedor {
-    display: flex;
-    justify-content: center;
-    align-items: center;   
-    width: 100%;
-   height: 90%;   
-  }
-  .data {
-    display: flex;
     justify-content: center;
     align-items: center;  
-    width: 60%;
-   height: 90%;   
+    border-radius: 4px;    
+    margin-top: 20px;
+    padding: 0px 25px 0px 25px; 
   }
-  .pedido {
-    display: flex;
+  .rowsTwo span {
+    text-transform: capitalize;
+    font-size: 14px;
+  }
+  rowsOne span {
+    text-transform: capitalize;
+  }
+  .rowsTwo div:first-child {
+    width: 100%;    
+  }
+  .rowsTwo div:nth-child(2){
+    width: 100%;   
+  }
+  .rowsTwo div:nth-child(3){
+    width: 100%;   
+  }
+  .rowsTwo div:nth-child(4){
+    width: 100%; 
+  }  
+  .rowsThree {  
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    width: 100%;  
+    gap: 5px;
+    height:  70px;
+    background-color: #efefef;
     justify-content: center;
-    align-items: center;     
-    width: 50%;
-   height: 90%;   
+    align-items: center;  
+    border-radius: 4px;    
+    margin-top: 20px;
+    padding: 0px 25px 0px 25px; 
+  }  
+  .rowsThree span {
+    text-transform: capitalize;
+    font-size: 14px;
   }
-  .formLabel {
-    font-size: 11px;
-  } 
-  .iId {
-    height: 25px;
-    width: 98%;
+  .rowsThree div:nth-of-type(2) input {
+   text-transform: lowercase;
   }
-  .iVend::placeholder {
-    font-size: smaller;
-    text-indent: 5%;
+  .rowsFour {
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    width: 100%;  
+    gap: 13px;
+    height:  70px;
+    background-color: #efefef;
+    justify-content: center;
+    align-items: center;  
+    border-radius: 4px;    
+    margin-top: 20px;
+    padding: 0px 25px 0px 25px;     
   }
-  .iData::placeholder {
-    font-size: 10px;   
-  text-indent: 5%;
+  .rowsFour span {
+    text-transform: capitalize;
+    font-size: 14px;
   }
-  .iPed::placeholder {
-    font-size: smaller;
-    text-indent: 5%;
-  }
-  .iVend {
-    height: 25px;
-    width: 98%;
-  }
-  .iData {
-    height: 25px;
-    width: 98%;
-  }
-  .iPed {
-    height: 25px;
-    width: 98%;
-  }
- .rowsTwo {
-  display: flex;
-    width: 94%;   
-    /* background-color: #efefef;    */
-    justify-content: space-between;
-    align-items: center;    
-   border-radius: 4px;
-   margin-top: 10px;   
-}
-.client {
-  display: flex;
-  justify-content: center;
-  align-items: center;  
-  width: 65%;
- height: 90%;   
-}
-.celular {
-  display: flex;
-  justify-content: center;
-  align-items: center;  
-  width: 33%;
- height: 90%;   
-}
-.telefone {
-  display: flex;
-  justify-content: center;
-  align-items: center;  
-  width: 33%;
- height: 90%;   
-}
-.iClint   {
-  height: 25px;
-    width: 98%;
-}
-.iFone{
-  height: 25px;
-    width: 98%;
-}
-.iCel {
-  height: 25px;
-    width: 98%;
-}
-.iClint::placeholder, .iCel::placeholder, .iFone::placeholder{
-  font-size: smaller;
-  text-indent: 5%;
-}
-.rowsThree {
-  background-color: #efefef;
-  height:  60px;
-  border-radius: 4px;   
-  margin-top: 10px; 
-}  
-.email {
-   width: 650%;
-  height: 90%;      
-  grid-column: 1/2;   
-}
-.referencia {
-margin: 0;
-width: 35%;
-height: 90%;        
-grid-column: 2/3; 
-}
-.iEmail {
-  width: 100%;
-  height: 25px;
-  font-size: smaller;
-  text-indent: 5px;
-}
-.iRef {
-  width: 100%;
-  height: 25px;
-  font-size: smaller;
-  text-indent: 5px;
- }
- .iRef::placeholder,
- .iEmail::placeholder {
-  font-size: smaller;
-    text-indent: 5%;
- }
- .rowsFour {
-  background-color: #efefef;
-  height:  60px;
-  border-radius: 4px;   
-  margin-top: 10px; 
-}
- .valor,
- .taxaPercent, 
- .descCartao, 
- .comissao,
- .liquido,
- .caixa,
- .bruto {
-  margin: 0;
-  width: 35%;
-  height: 90%;        
-  grid-column: 2/3; 
- }
- .iVal::placeholder,
- .iTaxaCartao::placeholder,
- .iDesc::placeholder,
- .iBruto::placeholder,
- .iCom::placeholder,
- .iLiq::placeholder,
- .iCaixa::placeholder {
-  text-indent: 5px;  
-  }
-  .iVal,
-  .iTaxaCartao,
-  .iDesc,
-  .iBruto,
-  .iCom,
-  .iLiq,
-  .iCaixa {
-  text-indent: 5px;     
-  width: 90%;
-  height: 25px;
-  margin: 0;
-  font-size: smaller;
+  .rowsFour :nth-of-type(1) input {
+     width: 100%;     
    }
-   form {
+   .rowsFour div:nth-child(1) input {
+    background-color: var(--input-color);
+   }
+   .rowsFour div:nth-child(3) input {
+    background-color: var(--input-color);
+   }
+   .rowsFour div:nth-child(5) input {
+    background-color: var(--input-color);
+   }
+   .rowsFour div:nth-child(6) input {
+    background-color: var(--input-color);
+   }
+   .rowsFour div:nth-child(8) input {
+    background-color: var(--input-color);
+   }
+   .rowsFour div:nth-child(9) input {
+    background-color: var(--input-color);
+   }
+  .rowsFive { 
+     display: grid;
+     grid-template-columns: 70% 30%;
+     width: 100%;  
+     height:  25px;
+     background-color: #efefef;
+     margin-top: 20px;
+     border-radius: 4px 4px 0px 0px;         
+ } 
+      .rowsFiveColumnLefth {
+        display: flex;
         width: 100%;
-   }
-   .fiveAndsix {
-    display: block;
-    width: 103%;
-    height: auto;
-    margin-left: 50%;
-    transform: translate(-50%);    
-   }      
-.rowsFive {
-  display: flex;
-  width: 54%;  
-  gap: 6px;
-  height:  160px;
-  background-color: red;
-  justify-content: space-between;  
-  border-radius: 4px;    
-  margin-top: 10px;
-  padding: 0px 25px 0px 25px;  
-  gap: 6px;   
+        justify-content: center;
+      }
+      .rowsFiveColumnRight {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+      .rowsSix {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        width: 100%;     
+        height:  70px;
+        background-color: #efefef;      
+        border-radius: 4px;    
+        margin-top: 1px;        
+      }
+      .iOpton {  
+        display: flex;   
+        width: 100%;        
+        border-radius: 0px 0px 0px 4px;
+        background-color: #efefef;
+        grid-gap: 10px;  
+        padding: 1%;       
+       }
+       .divOptionForm {        
+        display: block;
+        width: 100%;
+        height: 70px;
+        justify-content: center;        
+        background-color: #ccc;
+        border: 1px solid black;
+        outline: none;
+        border-radius: 4px;  
+        }
+      .iSection {    
+        font-size: 12px;  
+        padding: 5px;  
+        width: 95%;
+        border-radius: 3px;  
+        outline: none;  
+        border-radius: 4px;
+        margin-left: 50%;
+        transform: translate(-50%);
+        color: #2229;
+        margin-top: 10px; 
+      }
+       .valorForm {
+        display: block;  
+        width: 100%;
+        height: 70px;        
+        background-color: #ccc;
+        border: 1px solid #222;
+        border-radius: 4px;  
+      }
+      .iValor {  
+        width: 90%;
+        height: 26px;
+        border: 1px solid #2229;
+        border-radius: 4px;
+        outline: none;  
+        color: #2229;
+        margin-top: 10px;
+        margin-left: 50%;
+        transform: translate(-50%);
+        text-align: center;  
+        background-color:#e2e1e1
+      }
+      .formaPgto {
+        margin-left: 50%;
+        font-family: Arial, Helvetica, sans-serif;
+        transform: translate(-50%);
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3px;
+        width: 85%;
+        height: 20px;
+        font-size: 14px;   
+      }
+      .iDayMonth3 {
+        width: 90%;
+        height: 26px;
+        border: 1px solid #2229;
+        border-radius: 4px;
+        outline: none;  
+        color: #2229;
+        margin-top: 10px;
+        margin-left: 50%;
+        transform: translate(-50%);
+        text-align: center;  
+        background-color:#e2e1e1
+      }
+      .parcelamento {  
+          margin-left: 50%;
+          font-family: Arial, Helvetica, sans-serif;
+          transform: translate(-50%);
+          color: black;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 3px;
+          width: 85%;
+          height: 20px;
+          font-size: 14px;   
+      }
+      .vencimentoForm {       
+        display: block;       
+        width: 100%;
+        height: 70px;
+        border-radius: 4px;
+        border: 1px solid #222;
+        background-color: #ccc;
+      }
+      .iDayMonth {    
+        margin-left: 50%;
+        font-family: Arial, Helvetica, sans-serif;
+        transform: translate(-50%);
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3px;
+        width: 85%;
+        height: 20px;
+        font-size: 14px;   
 }
-.rowsSix {
-  margin-top: 6px;
-  width: 100%;
-   display: flex;
-  justify-content: center;
-  align-items: center;   
-  margin-left: 50%;
-  transform: translate(-50%); 
-  gap: 2px;
-}
-.lFomrPag {
-  width: 108% ;
-  height: 25px;
-  font-size: x-small;
-  /* background-color: #efefef; */
-background-color: yellow;
-}
-.LSalvarDados {
-  width: 100%;
-  height: 25px;
-  font-size: x-small;
-  /* background-color: #efefef; */
-  background-color: yellow;
-}
-.iOpton {
-  display: grid;
-  width: 75%;
-  grid-template-columns: 1fr 1fr 1fr; 
-  background-color: #efefef;
-  gap: 7px;
-}
-.divOptionForm { 
-  width: 100%;
-  height: 70px;  
-  grid-column: 1/2;  
-  border: 1px solid #222;  
-}
-.formaPgto {
-  margin-left: 50%;
-  font-family: Arial, Helvetica, sans-serif;
-  transform: translate(-50%);
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3px;
-  width: 85%;
-  height: 20px;
-  font-size: 7px;   
-}
-.iSection {
-   width: 90%;
-  height: 25px;
-  font-size: 10px;
-  border: none;
-  border: 1px solid #222;
-}
-.valorForm {  
-  width: 100%;
-  height: 70px;  
-  grid-column: 1/2;  
-  border: 1px solid #222; 
-  grid-column: 2/3; 
-}
-.parcelamento {
-  margin-left: 50%;
-  font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
-  transform: translate(-50%);
-  background-color: transparent;
-  color: black;
-  display: flex;  
-  align-items: center;
-  margin-top: 3px;
-  width: 95%;
-  height: 20px;
-  font-size: 7px;   
-}
-.iValor {
-  width: 90%;
-  height: 25px;
-  font-size: 10px;
-  border: none;
-  border: 1px solid #222;    
-}
-.vencimentoForm { 
-  width: 100%;
-  height: 70px;  
-  grid-column: 1/2;  
-  border: 1px solid #222;
-  background-color: #d5d5d5;
-  grid-column: 3/4;
-}
-.iDayMonth {
-  margin-left: 50%;
-  font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
-  transform: translate(-50%);
-  background-color: transparent;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3px;
-  width: 95%;
-  height: 20px;
-  font-size: 7px;     
-}
-.iDayMonth2 {
-  width: 90%;
-  height: 15px;
-  font-size: 10px;
-  border: 1px solid #2229;
-}
-.iDayMonth3 {
-  width: 90%;
-  height: 15px;
-  font-size: 10px;
-  border: 1px solid #222;
-}
-.formLabel{  
-  font-size: 8px;
-  color: #222;
-  background-color: saddlebrown;
-}
-.botoes {
-  display: block;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  width: 25%; 
-  background-color: #efefef;
-  }
+      .botoes {
+        display: flex;   
+        background-color: #efefef;
+        width: 100%;
+       gap: 15px;
+       justify-content: center;
+       align-items: center;
+       border-radius: 0px 0px 4px 0px;       
+      }
+      .border {
+        display: flex;
+        width: 90%;
+        height: 70px;
+        border: 1px solid #222;
+        border-radius: 4px;
+        justify-content: center;
+        align-items: center;
+        padding: 7px;
+        gap: 10px;
+        background-color: #d5d5d5;
+      }      
 button {
-  height: 25px;
-  margin-top: 5px;  
-  font-size: 8px;  
-  background-color: #706f6f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background-color: rgb(9, 5, 251, .7);
+  border-radius: 4px;
+  outline: 0;
+  border: 1px;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  cursor: poiter;
+  }
+  .copy {
+    display: flex;
+    color: var(--color-black);
+    font-size: xx-small;
+    font-family: sans-serif;
+    width: 100%;
+    justify-content: center;
+    margin-top: 30px;
+    transform: scale(1, 1.2);
+    letter-spacing: 0.3px;
+  } 
   
-}
-.copy {
-  font-size: xx-small;
-  color: #222;
-  margin-top: 18px;
-}
-}
-
-
-
-
-
-

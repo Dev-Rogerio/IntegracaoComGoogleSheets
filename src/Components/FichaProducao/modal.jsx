@@ -1,6 +1,6 @@
-import React from 'react'
-import Modal from 'react-modal'
-import "../../Components/FichaProducao/modal.css"
+import React from 'react';
+import Modal from 'react-modal';
+import "../../Components/FichaProducao/modal.css";
 
 const MyModal = ({ isOpen, handleClose, errorMessage }) => {
   return (
