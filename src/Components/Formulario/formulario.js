@@ -4,10 +4,11 @@ import ReactModal from "react-modal";
 import InputMask from "react-input-mask";
 import logoForm from "../../Img/logo branco.png";
 import ModalMassage from "../Modal/modal";
+import ModalEnvioForm from "./modalEnvioForm.jsx";
 import Tabela from '../Formulario/clientTabela.jsx'
 
 import "../Formulario/formulario.css";
-import '../Formulario/Tabela/formulario.desktop.css';
+
 ReactModal.setAppElement('#root');
 
 const Formulario = () => {
@@ -43,6 +44,9 @@ const Formulario = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [cpfList, setCpfList] = useState(new Set());
   const [dadosFormulario, setDadosFormulario] = useState([]);
+  const [isFirstModalOpen, setIsFirstModalOpen] = useState(false);
+
+
 
   useEffect(() => {
     // Apenas calcula o desconto com base no valor bruto e a taxa de desconto
@@ -99,6 +103,18 @@ const Formulario = () => {
     const cpfListFromLocalStorage = loadCpfList();
     setCpfList(cpfListFromLocalStorage);
   }, [])
+  const handleSair = () => {
+    window.location.href = "http://localhost:3000/menu"
+  }
+
+  // Função para fechar a primeira modal
+  const closeFirstModal = () => {
+    setIsFirstModalOpen(false);
+  };
+  // Função para fechar a modal de erros
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   // Function to load CPF list from localStorage
   const loadCpfList = () => {
     const savedCpfList = localStorage.getItem('cpfList');
@@ -240,6 +256,7 @@ const Formulario = () => {
       Aniversario: aniversario,
       Desconto: desconto,
     };
+    // Simulação de salvar no localStorage (mesma lógica)
     const dadosSalvos = JSON.parse(localStorage.getItem('formulario')) || [];
     const novoDadoComId = { id: Date.now(), ...data };
     dadosSalvos.push(novoDadoComId);
@@ -247,9 +264,9 @@ const Formulario = () => {
 
     localStorage.setItem('ultimoId', id + 1);
     handleLimparFormulario();
-    alert("Formulário enviado com sucesso!");
     setIsLoading(true);
     try {
+      // Enviar dados para o Google Sheets
       const response = await fetch("https://sheetdb.io/api/v1/iacg5pfqkrtq0", {
         method: 'POST',
         headers: {
@@ -260,8 +277,15 @@ const Formulario = () => {
       const result = await response.json();
       console.log(result);
       setIsLoading(false);
+      // Após o sucesso do envio, abrir a modal de sucesso
+      setIsFirstModalOpen(true);
+
     } catch (error) {
       console.error("Ocorreu um erro ao enviar os dados para o Google Sheets", error);
+      setIsLoading(false);
+      // Mesmo em caso de erro, você pode querer exibir a modal
+      setIsFirstModalOpen(true);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -300,9 +324,6 @@ const Formulario = () => {
   };
   const handleCompraChange = (event) => {
     setCompra(event.target.value); // Isso deve garantir que compra seja uma string
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
   };
   const validateFields = () => {
     let valid = true;
@@ -514,6 +535,7 @@ const Formulario = () => {
     const formattedCpf = event.target.value;
     setCpf(formattedCpf);
   };
+
   return (
     <form onSubmit={handleSubmit} className='containerForm'>
       <div>
@@ -522,7 +544,7 @@ const Formulario = () => {
             <img className="imgForm" src={logoForm} alt="" />
           </div>
           <h1 className='form-h1'>Relatório de vendas</h1>
-          <label className="sairForm" htmlFor="" >Sair</label>
+          <label className="sairForm" htmlFor="" onClick={handleSair} >Sair</label>
         </div>
       </div>
       <div className="rowsOne">
@@ -883,10 +905,11 @@ const Formulario = () => {
       </div>
       <p className="copy">Este projeto foi desenvolvido por - Rogério de Almeia - &#169; 2024</p>
       <ModalMassage isOpen={isModalOpen} onClose={handleCloseModal} errors={errors} />
+      <ModalEnvioForm isOpen={isFirstModalOpen} closeModal={closeFirstModal} />
     </form>
   );
 }
-export default Formulario
+export default Formulario;
 
 
 

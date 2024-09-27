@@ -423,4 +423,62 @@ button {
     transform: scale(1, 1.2);
     letter-spacing: 0.3px;
   } 
+  @media (min-width: 1024px) and (max-width: 1024px) and (min-height: 768px) and (max-height: 768px) {
+    body {
+      font-size: 18px;
+      padding: 20px;
+    }
+    .containerForm {
+      width: 85% !important;    
+    }
+  
+    header {
+      height: 100px;
+    }  
+    .container {
+      width: 90%;
+      margin: 0 auto;
+    }
+    .iId, 
+    .iVend, 
+    .iData, 
+    .iPed, 
+    .iCpf, 
+    .iClient, 
+    .iCel, 
+    .iFone,
+    .iAniversario,
+    .iEmail,
+    .iRef,
+    .iVal,
+    .iDesconto,
+    .iValor_desconto,
+    .iTaxaCartao,
+    .iDesc,
+    .iBruto,
+    .iCom,
+    .iCom,
+    .c,
+    .iCaixa,
+    .optionForm,
+    .iValor,
+    .iDayMonth3,
+    .iSection    
+    {
+      font-size: 16px;
+      font-size: red;
+    }
+    .border button {
+      font-size: 16px;
+    }
+    .lFomrPag, .LSalvarDados {
+      font-size: 15px;
+    }
+    .form-h1 {
+      font-size: 25px;
+    }
+    .sairForm {
+      width: auto;
+    }
+  }
   
