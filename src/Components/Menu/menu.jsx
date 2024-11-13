@@ -11,7 +11,7 @@ import "../Menu/menu.css";
 const Menu = () => {
   const navigate = useNavigate(); // Hook para navegação
   const redirectToFormulario = () => window.open('https://docs.google.com/spreadsheets/d/1lW0Umi_ctxjxSQgSP2PaCJlcVwmfLJSO2ybCoDm_Htk/edit?gid=0#gid=0');
-  const redirectToMeasure = () => navigate('/cotovia')
+  const redirectToMeasure = () => navigate('/producao')
 
   const redirecionarSite = () => {
     window.open('https://www.kamisariazanuto.com.br', '_blank');

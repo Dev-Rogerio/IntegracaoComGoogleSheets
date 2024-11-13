@@ -25,7 +25,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/tabela" element={<Tabela />} />
           <Route path="/medidas" element={<Medidas />} />
-          <Route path="/cotovia" element={<Producao />} />
+          <Route path="/producao" element={<Producao />} />
           <Route path="/clientTable" element={<ClientTabela />} />
           <Route path="/modalcadcli" element={<ModalCadCli />} />
           <Route path="/modaledite" element={<ModalEdite />} />
