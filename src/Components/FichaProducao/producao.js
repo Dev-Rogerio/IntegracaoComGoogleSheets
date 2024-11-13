@@ -434,6 +434,7 @@ function Producao() {
               </section>
               <section className="_wrapper-fist">
                 <section className="_sec-first">
+
                   <img src={Duplo} alt="" className="_punho" />
                   <section>
                     <input
